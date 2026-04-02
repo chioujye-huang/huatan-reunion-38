@@ -595,13 +595,10 @@
     btn.textContent = '報名中⋯';
     btn.disabled = true;
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('attendees', attendees);
-    formData.append('phone', phone);
-    formData.append('note', note);
+    const params = new URLSearchParams({ name, attendees, phone, note });
+    const url = GOOGLE_SCRIPT_URL + '?' + params.toString();
 
-    fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
+    fetch(url, { method: 'GET', mode: 'no-cors' })
     .then(() => {
       showToast(`${name}，報名成功！期待與你相見`, true);
       btn.textContent = '已完成報名 ✓';
