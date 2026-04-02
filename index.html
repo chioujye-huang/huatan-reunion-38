@@ -359,13 +359,80 @@
     opacity: 0; transition: opacity 0.5s;
   }
   .music-label.show { opacity: 1; }
+
+  /* ── Welcome overlay (for autoplay) ── */
+  .welcome-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: radial-gradient(ellipse at center, #1e2544 0%, #0e1225 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s;
+  }
+  .welcome-overlay.hide {
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .welcome-overlay .welcome-badge {
+    font-size: 13px; color: var(--gold);
+    letter-spacing: 3px; margin-bottom: 20px;
+    opacity: 0; animation: fadeDown 1s ease-out 0.3s both;
+  }
+  .welcome-overlay .welcome-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(26px, 6vw, 48px);
+    font-weight: 900; color: var(--warm-white);
+    text-align: center; line-height: 1.4;
+    margin-bottom: 12px;
+    opacity: 0; animation: fadeDown 1s ease-out 0.6s both;
+  }
+  .welcome-overlay .welcome-title .gold { color: var(--gold-light); }
+  .welcome-overlay .welcome-sub {
+    font-size: clamp(14px, 3vw, 18px);
+    color: rgba(255,255,255,0.5); margin-bottom: 40px;
+    opacity: 0; animation: fadeDown 1s ease-out 0.9s both;
+  }
+  .welcome-overlay .enter-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep-navy);
+    border: none; border-radius: 50px;
+    padding: 16px 48px;
+    font-size: 17px; font-weight: 700;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer; letter-spacing: 2px;
+    opacity: 0; animation: fadeDown 1s ease-out 1.2s both;
+    transition: transform 0.2s, box-shadow 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .welcome-overlay .enter-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(212,168,67,0.4);
+  }
+  .welcome-overlay .enter-hint {
+    margin-top: 16px; font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    opacity: 0; animation: fadeDown 1s ease-out 1.5s both;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,67,0.4); }
+    50% { box-shadow: 0 0 0 14px rgba(212,168,67,0); }
+  }
+  .welcome-overlay .enter-btn { animation: fadeDown 1s ease-out 1.2s both, pulse 2s ease-in-out 2.5s infinite; }
 </style>
 </head>
 <body>
 
+<!-- Welcome Overlay -->
+<div class="welcome-overlay" id="welcomeOverlay" onclick="enterSite()">
+  <div class="welcome-badge">花壇國中 三年八班</div>
+  <div class="welcome-title">那些年，<span class="gold">我們一起</span><br>走過的青春</div>
+  <div class="welcome-sub">畢業 33 週年同學會</div>
+  <button class="enter-btn" onclick="enterSite()">進入報名</button>
+  <div class="enter-hint">點擊後將自動播放音樂</div>
+</div>
+
 <!-- Background Music -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="bgm.mp3" type="audio/mpeg">
+  <source src="./bgm.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Music Toggle Button -->
@@ -377,7 +444,7 @@
     <div class="bar" style="height:16px"></div>
   </div>
 </button>
-<div class="music-label" id="musicLabel">點擊播放音樂</div>
+<div class="music-label" id="musicLabel">播放中</div>
 
 <!-- Animated background -->
 <div class="bg-canvas" id="bgCanvas"></div>
@@ -551,33 +618,43 @@
     return false;
   }
 
-  // ── Music control ──
+  // ── Welcome overlay & autoplay ──
   const bgMusic = document.getElementById('bgMusic');
   const musicBtn = document.getElementById('musicBtn');
   const musicLabel = document.getElementById('musicLabel');
   let isPlaying = false;
 
-  // Show hint on load
-  setTimeout(() => { musicLabel.classList.add('show'); }, 1500);
-  setTimeout(() => { musicLabel.classList.remove('show'); }, 5000);
+  function enterSite() {
+    // Hide overlay
+    document.getElementById('welcomeOverlay').classList.add('hide');
+
+    // Autoplay music
+    bgMusic.volume = 0.4;
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      musicBtn.classList.add('playing');
+      musicLabel.textContent = '播放中';
+      musicLabel.classList.add('show');
+      setTimeout(() => musicLabel.classList.remove('show'), 3000);
+    }).catch((err) => {
+      console.log('音樂播放失敗:', err);
+    });
+  }
 
   function toggleMusic() {
     if (isPlaying) {
       bgMusic.pause();
       musicBtn.classList.remove('playing');
+      isPlaying = false;
       musicLabel.textContent = '音樂已暫停';
     } else {
       bgMusic.volume = 0.4;
-      bgMusic.play().catch(() => {
-        musicLabel.textContent = '請先放入 bgm.mp3 檔案';
-        musicLabel.classList.add('show');
-        setTimeout(() => musicLabel.classList.remove('show'), 3000);
-        return;
-      });
-      musicBtn.classList.add('playing');
-      musicLabel.textContent = '正在播放中';
+      bgMusic.play().then(() => {
+        musicBtn.classList.add('playing');
+        isPlaying = true;
+        musicLabel.textContent = '播放中';
+      }).catch(() => {});
     }
-    isPlaying = !isPlaying;
     musicLabel.classList.add('show');
     setTimeout(() => musicLabel.classList.remove('show'), 2000);
   }
