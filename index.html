@@ -412,6 +412,83 @@
     color: rgba(255,255,255,0.25);
     opacity: 0; animation: fadeDown 1s ease-out 1.5s both;
   }
+
+  /* ── 報名狀態面板 ── */
+  .status-panel {
+    width: 90%; max-width: 420px;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeDown 1s ease-out 1.0s both;
+  }
+  .status-panel .stats-row {
+    display: flex; justify-content: center; gap: 24px;
+    margin-bottom: 16px;
+  }
+  .status-panel .stat-item {
+    text-align: center;
+  }
+  .status-panel .stat-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 32px; font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+  .status-panel .stat-label {
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+  }
+  .status-panel .names-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 14px;
+    padding: 14px 18px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  .status-panel .names-box::-webkit-scrollbar {
+    width: 4px;
+  }
+  .status-panel .names-box::-webkit-scrollbar-thumb {
+    background: rgba(212,168,67,0.3); border-radius: 4px;
+  }
+  .status-panel .names-title {
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    text-align: center; margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .status-panel .names-grid {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 8px;
+  }
+  .status-panel .name-tag {
+    display: inline-block;
+    background: rgba(212,168,67,0.12);
+    border: 1px solid rgba(212,168,67,0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px; color: var(--gold-light);
+    white-space: nowrap;
+  }
+  .status-panel .status-loading {
+    text-align: center; padding: 16px 0;
+    font-size: 13px; color: rgba(255,255,255,0.3);
+  }
+  .status-panel .status-loading .dot-pulse {
+    display: inline-block; animation: dotPulse 1.4s infinite;
+  }
+  @keyframes dotPulse {
+    0%, 80%, 100% { opacity: 0.2; }
+    40% { opacity: 1; }
+  }
+  .status-panel .status-empty {
+    text-align: center; padding: 12px 0;
+    font-size: 13px; color: rgba(255,255,255,0.3);
+  }
+  .status-panel .status-time {
+    text-align: center; margin-top: 8px;
+    font-size: 11px; color: rgba(255,255,255,0.2);
+  }
   @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,67,0.4); }
     50% { box-shadow: 0 0 0 14px rgba(212,168,67,0); }
@@ -426,6 +503,34 @@
   <div class="welcome-badge">花壇國中 三年八班</div>
   <div class="welcome-title">那些年，<span class="gold">我們一起</span><br>走過的青春</div>
   <div class="welcome-sub">畢業 33 週年同學會</div>
+
+  <!-- 報名狀態面板 -->
+  <div class="status-panel" id="statusPanel">
+    <div class="status-loading" id="statusLoading">
+      <span class="dot-pulse">.</span><span class="dot-pulse" style="animation-delay:0.2s">.</span><span class="dot-pulse" style="animation-delay:0.4s">.</span> 載入報名資訊中
+    </div>
+    <div id="statusContent" style="display:none">
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num" id="statCount">0</div>
+          <div class="stat-label">位同學報名</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" id="statAttendees">0</div>
+          <div class="stat-label">預計出席人數</div>
+        </div>
+      </div>
+      <div class="names-box" id="namesBox">
+        <div class="names-title">已報名同學</div>
+        <div class="names-grid" id="namesGrid"></div>
+      </div>
+      <div class="status-time" id="statusTime"></div>
+    </div>
+    <div class="status-empty" id="statusEmpty" style="display:none">
+      目前尚無人報名，成為第一位吧！
+    </div>
+  </div>
+
   <button class="enter-btn" onclick="enterSite()">進入報名</button>
   <div class="enter-hint">點擊後將自動播放音樂</div>
 </div>
@@ -573,6 +678,37 @@
   // ★★★ 請將下方網址替換為你的 Google Apps Script 部署網址 ★★★
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbIuLHttMa1eAggOjt0IrkN7NHTg5aMRoQAWQpW2yPWFNKDC4EMZij6dg49_3ZmGgOGA/exec';
 
+  // ── 載入報名狀態 ──
+  function loadRegistrationStatus() {
+    fetch(GOOGLE_SCRIPT_URL + '?action=list')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('statusLoading').style.display = 'none';
+        if (data.names && data.names.length > 0) {
+          document.getElementById('statusContent').style.display = 'block';
+          document.getElementById('statCount').textContent = data.count;
+          document.getElementById('statAttendees').textContent = data.totalAttendees;
+          const grid = document.getElementById('namesGrid');
+          grid.innerHTML = data.names.map(n =>
+            '<span class="name-tag">' + n + '</span>'
+          ).join('');
+          if (data.updatedAt) {
+            document.getElementById('statusTime').textContent = '更新於 ' + data.updatedAt;
+          }
+        } else {
+          document.getElementById('statusEmpty').style.display = 'block';
+        }
+      })
+      .catch(() => {
+        document.getElementById('statusLoading').style.display = 'none';
+        document.getElementById('statusEmpty').style.display = 'block';
+        document.getElementById('statusEmpty').textContent = '報名資訊載入失敗';
+      });
+  }
+
+  // 頁面載入時自動讀取報名狀態
+  loadRegistrationStatus();
+
   // ── Form submit ──
   function handleSubmit(e) {
     e.preventDefault();
@@ -605,6 +741,8 @@
       btn.style.background = 'linear-gradient(135deg, #5B8C6E, #4A7A5D)';
       btn.style.color = '#fff';
       document.getElementById('reunionForm').reset();
+      // 延遲 2 秒後刷新報名狀態（等 Sheets 寫入完成）
+      setTimeout(loadRegistrationStatus, 2000);
     })
     .catch(() => {
       showToast('報名失敗，請稍後再試或聯繫主辦人', false);
