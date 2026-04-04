@@ -214,6 +214,71 @@
   }
   .submit-btn:active { transform: translateY(0); }
 
+  /* ── 取消報名連結 ── */
+  .cancel-link {
+    display: block; text-align: center;
+    margin-top: 18px; font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    cursor: pointer; transition: color 0.3s;
+    text-decoration: none;
+  }
+  .cancel-link:hover { color: var(--accent-coral); }
+
+  /* ── 取消報名彈窗 ── */
+  .cancel-overlay {
+    position: fixed; inset: 0; z-index: 9998;
+    background: rgba(0,0,0,0.6);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .cancel-overlay.show {
+    opacity: 1; visibility: visible;
+  }
+  .cancel-modal {
+    background: #1e2240;
+    border: 1px solid rgba(232,120,90,0.3);
+    border-radius: 20px;
+    padding: 36px 32px;
+    width: 90%; max-width: 420px;
+    position: relative;
+  }
+  .cancel-modal .modal-close {
+    position: absolute; top: 14px; right: 18px;
+    background: none; border: none;
+    color: rgba(255,255,255,0.4); font-size: 22px;
+    cursor: pointer; transition: color 0.3s;
+    line-height: 1;
+  }
+  .cancel-modal .modal-close:hover { color: #fff; }
+  .cancel-modal h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--warm-white);
+    text-align: center; margin-bottom: 6px;
+  }
+  .cancel-modal .modal-desc {
+    text-align: center; font-size: 13px;
+    color: rgba(255,255,255,0.4); margin-bottom: 24px;
+  }
+  .cancel-btn {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, var(--accent-coral), #c0543e);
+    border: none; border-radius: 12px;
+    color: #fff;
+    font-size: 16px; font-weight: 700;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer; letter-spacing: 1px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+  }
+  .cancel-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(232,120,90,0.35);
+  }
+  .cancel-btn:active { transform: translateY(0); }
+
   /* ── Toast ── */
   .toast {
     position: fixed; top: -80px; left: 50%; transform: translateX(-50%);
@@ -280,6 +345,10 @@
       transform: scale(0.97);
       box-shadow: 0 4px 15px rgba(212,168,67,0.3);
     }
+
+    .cancel-modal { padding: 28px 20px; border-radius: 16px; }
+    .cancel-modal h3 { font-size: 18px; }
+    .cancel-btn:hover { transform: none; box-shadow: none; }
 
     .toast {
       width: calc(100% - 32px); left: 16px; transform: none;
@@ -645,6 +714,25 @@
 
       <button type="submit" class="submit-btn">確認報名</button>
     </form>
+    <a class="cancel-link" onclick="openCancelModal()">已報名？點此取消報名</a>
+  </div>
+</div>
+
+<!-- 取消報名彈窗 -->
+<div class="cancel-overlay" id="cancelOverlay">
+  <div class="cancel-modal">
+    <button class="modal-close" onclick="closeCancelModal()">&times;</button>
+    <h3>取消報名</h3>
+    <p class="modal-desc">請輸入報名時的姓名與電話以驗證身份</p>
+    <div class="field">
+      <label>姓名<span class="req">*</span></label>
+      <input type="text" id="cancelName" placeholder="請輸入報名時的姓名">
+    </div>
+    <div class="field">
+      <label>聯絡電話<span class="req">*</span></label>
+      <input type="tel" id="cancelPhone" placeholder="請輸入報名時的電話">
+    </div>
+    <button class="cancel-btn" onclick="handleCancel()">確認取消報名</button>
   </div>
 </div>
 
@@ -792,6 +880,54 @@
     }
     musicLabel.classList.add('show');
     setTimeout(() => musicLabel.classList.remove('show'), 2000);
+  }
+
+  // ── 取消報名 ──
+  function openCancelModal() {
+    document.getElementById('cancelOverlay').classList.add('show');
+  }
+  function closeCancelModal() {
+    document.getElementById('cancelOverlay').classList.remove('show');
+    document.getElementById('cancelName').value = '';
+    document.getElementById('cancelPhone').value = '';
+  }
+  // 點擊背景關閉
+  document.getElementById('cancelOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeCancelModal();
+  });
+
+  function handleCancel() {
+    const name = document.getElementById('cancelName').value.trim();
+    const phone = document.getElementById('cancelPhone').value.trim();
+
+    if (!name || !phone) {
+      showToast('請填寫姓名與電話', false);
+      return;
+    }
+
+    const btn = document.querySelector('.cancel-btn');
+    btn.textContent = '處理中⋯';
+    btn.disabled = true;
+
+    const params = new URLSearchParams({ action: 'cancel', name, phone });
+    fetch(GOOGLE_SCRIPT_URL + '?' + params.toString())
+      .then(r => r.json())
+      .then(data => {
+        if (data.status === 'success') {
+          showToast(data.message, true);
+          closeCancelModal();
+          setTimeout(loadRegistrationStatus, 1000);
+        } else {
+          showToast(data.message || '取消失敗', false);
+        }
+        btn.textContent = '確認取消報名';
+        btn.disabled = false;
+      })
+      .catch(() => {
+        showToast('網路錯誤，請稍後再試', false);
+        btn.textContent = '確認取消報名';
+        btn.disabled = false;
+      });
   }
 
   function showToast(msg, success) {
