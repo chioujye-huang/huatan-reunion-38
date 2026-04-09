@@ -478,10 +478,6 @@
                                 <input type="text" id="regName" placeholder="請輸入你的名字" required>
                             </div>
                             <div class="form-group">
-                                <label for="regEmail" class="required">電子郵件</label>
-                                <input type="email" id="regEmail" placeholder="your@email.com" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="regPhone" class="required">電話</label>
                                 <input type="tel" id="regPhone" placeholder="09XX-XXX-XXX" required>
                             </div>
@@ -863,18 +859,17 @@
         document.getElementById('registrationForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
             const phone = document.getElementById('regPhone').value.trim();
             const notes = document.getElementById('regNotes').value.trim();
 
-            if (!name || !email || !phone) {
+            if (!name || !phone) {
                 showFormMessage('請填寫所有必填欄位', 'error', 'registrationMessage');
                 return;
             }
 
             try {
                 const fd = new FormData();
-                fd.append('name', name); fd.append('email', email);
+                fd.append('name', name); fd.append('email', '');
                 fd.append('phone', phone); fd.append('notes', notes);
 
                 const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
