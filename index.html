@@ -4,1344 +4,824 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>花壇國中 三年八班 畢業33週年同學會</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 標楷體為系統字型，無需外部載入 -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; width: 100%; overflow-x: hidden; }
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #1A1F3A;
-            color: #FFF9F0;
-            line-height: 1.6;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', 'KaiTi', serif;
+            background-color: #1C1017;
+            color: #FFF5EE;
+            line-height: 1.8;
         }
 
         /* Animated Background */
         .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background:
-                radial-gradient(circle at 20% 50%, rgba(212, 168, 67, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(242, 217, 141, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, #1A1F3A 0%, #2A2F4A 50%, #1A1F3A 100%);
-            z-index: -1;
-            pointer-events: none;
+                radial-gradient(circle at 20% 50%, rgba(212,131,107,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245,198,184,0.05) 0%, transparent 50%),
+                linear-gradient(135deg, #1C1017 0%, #2A1820 50%, #1C1017 100%);
+            z-index: -1; pointer-events: none;
+        }
+        .animated-circles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+        .circle { position: absolute; border-radius: 50%; opacity: 0.05; animation: float 20s infinite ease-in-out; }
+        .circle:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 10%; animation-delay: 0s; border: 2px solid #D4836B; }
+        .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s; border: 2px solid #F5C6B8; }
+        .circle:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 50%; animation-delay: 4s; border: 2px solid #D4836B; }
+        .circle:nth-child(4) { width: 180px; height: 180px; top: 20%; left: 60%; animation-delay: 6s; border: 2px solid #F5C6B8; }
+        .circle:nth-child(5) { width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 8s; border: 2px solid #D4836B; }
+        @keyframes float { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px,-20px) scale(1.05); } }
+        .sparkles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+        .sparkle { position: absolute; width: 4px; height: 4px; background-color: #FFB7C5; border-radius: 50%; opacity: 0; animation: twinkle 3s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; } }
+
+        /* ==================== WELCOME PAGE ==================== */
+        .welcome-page {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            background: linear-gradient(135deg, #1C1017 0%, #261520 50%, #1C1017 100%);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .welcome-page.hidden {
+            opacity: 0; pointer-events: none; transform: scale(1.05);
+        }
+        .welcome-header {
+            text-align: center; animation: fadeInUp 1s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .welcome-header h1 {
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2.8rem;
+            color: #F5C6B8; text-shadow: 0 2px 15px rgba(212,131,107,0.4);
+            margin-bottom: 0.3rem;
+        }
+        .welcome-header .subtitle {
+            font-size: 1.4rem; color: #D4836B; margin-bottom: 0.3rem;
+        }
+        .welcome-header .year {
+            font-size: 1rem; color: rgba(255,245,238,0.6); margin-bottom: 2rem;
         }
 
-        .animated-circles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
+        /* Classmates Display */
+        .classmates-section {
+            text-align: center; margin: 1.5rem 0; animation: fadeInUp 1.2s ease;
+        }
+        .classmates-section h3 {
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 1.1rem;
+            color: #D4836B; margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        .classmates-names {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.6rem; max-width: 600px; margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .classmate-chip {
+            background: rgba(212,131,107,0.12); border: 1px solid rgba(212,131,107,0.3);
+            color: #F5C6B8; padding: 0.4rem 1rem; border-radius: 50px;
+            font-size: 0.95rem; animation: chipIn 0.5s ease backwards;
+            white-space: nowrap;
+        }
+        @keyframes chipIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .no-classmates {
+            color: rgba(255,245,238,0.5); font-size: 0.95rem;
+            font-style: italic;
+        }
+        .classmates-count {
+            color: rgba(255,245,238,0.5); font-size: 0.85rem;
+            margin-top: 0.8rem;
         }
 
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.05;
-            animation: float 20s infinite ease-in-out;
+        /* Enter Button */
+        .enter-btn {
+            background: linear-gradient(135deg, #D4836B 0%, #F5C6B8 100%);
+            color: #1C1017; border: none; padding: 1rem 3rem;
+            font-size: 1.1rem; border-radius: 50px; cursor: pointer;
+            font-weight: 700; transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(212,131,107,0.4);
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
+            margin-top: 2rem; animation: fadeInUp 1.4s ease;
+            letter-spacing: 2px;
         }
+        .enter-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(212,131,107,0.5); }
+        .enter-btn:active { transform: translateY(0); }
 
-        .circle:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 10%; animation-delay: 0s; border: 2px solid #D4A843; }
-        .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s; border: 2px solid #F2D98D; }
-        .circle:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 50%; animation-delay: 4s; border: 2px solid #D4A843; }
-        .circle:nth-child(4) { width: 180px; height: 180px; top: 20%; left: 60%; animation-delay: 6s; border: 2px solid #F2D98D; }
-        .circle:nth-child(5) { width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 8s; border: 2px solid #D4A843; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, -20px) scale(1.05); }
+        /* ==================== MAIN APP (hidden until enter) ==================== */
+        .main-app {
+            display: none; min-height: 100vh;
         }
+        .main-app.visible { display: block; }
 
-        /* Sparkles */
-        .sparkles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
+        /* Tab Navigation */
+        .tab-nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(28,16,23,0.97); backdrop-filter: blur(12px);
+            z-index: 100; border-bottom: 1px solid rgba(212,131,107,0.3);
+            padding: 0;
         }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background-color: #F2D98D;
-            border-radius: 50%;
-            opacity: 0;
-            animation: twinkle 3s infinite;
+        .tab-nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: stretch;
         }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.8; }
+        .tab-nav-brand {
+            display: flex; align-items: center; padding: 0.8rem 1.2rem;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 0.9rem;
+            color: #F5C6B8; white-space: nowrap; border-right: 1px solid rgba(212,131,107,0.2);
         }
-
-        /* Navigation Bar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 31, 58, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 100;
-            display: none;
-            justify-content: center;
-            border-bottom: 1px solid rgba(212, 168, 67, 0.3);
+        .tab-nav-tabs {
+            display: flex; flex: 1; list-style: none;
         }
-
-        nav.visible {
-            display: flex;
+        .tab-nav-tabs li {
+            flex: 1; display: flex;
         }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
+        .tab-nav-tabs a {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 1rem 1.5rem;
+            color: rgba(255,245,238,0.6); text-decoration: none;
+            font-weight: 500; font-size: 0.95rem;
+            transition: all 0.3s ease; position: relative;
+            border-bottom: 3px solid transparent;
         }
-
-        nav a {
-            color: #F2D98D;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+        .tab-nav-tabs a:hover {
+            color: #F5C6B8; background: rgba(212,131,107,0.05);
         }
-
-        nav a:hover {
-            color: #D4A843;
-            background-color: rgba(212, 168, 67, 0.1);
+        .tab-nav-tabs a.active {
+            color: #F5C6B8; border-bottom-color: #D4836B;
+            background: rgba(212,131,107,0.08);
         }
+        .tab-nav-tabs .tab-icon { margin-right: 0.5rem; font-size: 1.1rem; }
 
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 0.5rem;
-                font-size: 0.9rem;
-            }
-            nav a {
-                padding: 0.3rem 0.7rem;
-            }
+        /* Content Area */
+        .content-area {
+            padding-top: 65px; min-height: 100vh;
         }
+        .tab-page { display: none; animation: fadeIn 0.4s ease; }
+        .tab-page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Welcome Overlay */
-        .welcome-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 31, 58, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
 
-        .welcome-overlay.hidden {
-            display: none;
-        }
-
-        .welcome-content {
-            text-align: center;
-            animation: slideUp 0.8s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .welcome-content h1 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: #F2D98D;
-            text-shadow: 0 2px 10px rgba(212, 168, 67, 0.3);
-        }
-
-        .welcome-content p {
-            font-size: 1.3rem;
-            color: #FFF9F0;
-            margin-bottom: 1rem;
-        }
-
-        .welcome-content .subtitle {
-            font-size: 1rem;
-            color: #D4A843;
-            margin-bottom: 2rem;
-        }
-
-        .welcome-btn {
-            background: linear-gradient(135deg, #D4A843 0%, #F2D98D 100%);
-            color: #1A1F3A;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .welcome-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 168, 67, 0.4);
-        }
-
-        .welcome-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 6rem 2rem;
-            margin-top: 2rem;
-        }
-
-        .hero h1 {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 3rem;
-            color: #F2D98D;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(212, 168, 67, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #D4A843;
-            margin-bottom: 2rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.1rem;
-            color: #FFF9F0;
-        }
-
-        /* Section Headings */
+        /* Section Title */
         .section-title {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 2.2rem;
-            color: #F2D98D;
-            margin: 3rem 0 2rem 0;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2rem;
+            color: #F5C6B8; margin: 1.5rem 0 1.5rem 0;
+            text-align: center; position: relative; padding-bottom: 1rem;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 80px; height: 3px;
+            background: linear-gradient(90deg, transparent, #D4836B, transparent);
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #D4A843, transparent);
+        /* Hero Banner for each tab */
+        .tab-hero {
+            text-align: center; padding: 2.5rem 2rem 1rem;
         }
+        .tab-hero h2 {
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2.2rem;
+            color: #F5C6B8; margin-bottom: 0.5rem;
+        }
+        .tab-hero p { color: #D4836B; font-size: 1.05rem; }
 
         /* Info Cards */
         .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem; margin: 2rem 0;
         }
-
         .card {
-            background: rgba(212, 168, 67, 0.05);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
+            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.3);
+            border-radius: 10px; padding: 1.5rem; text-align: center;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
         }
+        .card:hover { transform: translateY(-3px); border-color: rgba(212,131,107,0.6); }
+        .card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .card h3 { font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; color: #F5C6B8; margin-bottom: 0.5rem; }
+        .card p { color: rgba(255,245,238,0.8); font-size: 0.9rem; }
 
-        .card:hover {
-            background: rgba(212, 168, 67, 0.1);
-            border-color: rgba(212, 168, 67, 0.5);
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            color: #F2D98D;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .card p {
-            color: #D4A843;
-            font-size: 0.95rem;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            border-bottom: 2px solid rgba(212, 168, 67, 0.3);
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: #D4A843;
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .tab-btn:hover {
-            color: #F2D98D;
-        }
-
-        .tab-btn.active {
-            color: #F2D98D;
-            border-bottom-color: #D4A843;
-        }
-
-        /* Restaurant Cards */
-        .restaurants-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .restaurant-card {
-            background: rgba(212, 168, 67, 0.08);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 10px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .restaurant-card:hover {
-            background: rgba(212, 168, 67, 0.12);
-            border-color: rgba(212, 168, 67, 0.5);
-            transform: translateY(-3px);
-        }
-
-        .restaurant-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-        }
-
-        .restaurant-name {
-            color: #F2D98D;
-            font-size: 1.2rem;
-            font-weight: 600;
-            flex: 1;
-        }
-
-        .restaurant-rating {
-            color: #D4A843;
-            font-weight: 600;
-            white-space: nowrap;
-            margin-left: 0.5rem;
-        }
-
-        .restaurant-details {
-            color: #D4A843;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-
-        .restaurant-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .restaurant-tag {
-            background: rgba(242, 217, 141, 0.1);
-            color: #F2D98D;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(242, 217, 141, 0.3);
-        }
-
-        .restaurant-map-btn {
-            background: rgba(212, 168, 67, 0.2);
-            color: #F2D98D;
-            border: 1px solid #D4A843;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            margin-top: auto;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .restaurant-map-btn:hover {
-            background: rgba(212, 168, 67, 0.4);
-            color: #FFF9F0;
-        }
-
-        /* Forms */
+        /* Form Styles */
         .form-section {
-            background: rgba(212, 168, 67, 0.05);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem 0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.2);
+            border-radius: 12px; padding: 2rem; max-width: 700px; margin: 0 auto 2rem;
         }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
+        .form-group { margin-bottom: 1.5rem; }
         .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #F2D98D;
-            font-weight: 500;
+            display: block; font-weight: 500; margin-bottom: 0.5rem; color: #F5C6B8;
         }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 249, 240, 0.05);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            color: #FFF9F0;
-            border-radius: 5px;
-            font-family: 'Noto Sans TC', sans-serif;
-            transition: all 0.3s ease;
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.8rem 1rem;
+            background: rgba(255,245,238,0.05); border: 1px solid rgba(212,131,107,0.3);
+            border-radius: 8px; color: #FFF5EE; font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
+            font-size: 1rem; transition: border-color 0.3s;
         }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 249, 240, 0.5);
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: #D4836B;
         }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #D4A843;
-            background: rgba(255, 249, 240, 0.08);
-            box-shadow: 0 0 10px rgba(212, 168, 67, 0.2);
-        }
-
-        .form-group select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4A843' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 0.8rem center;
-            background-size: 1.2em;
-            padding-right: 2.5rem;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .form-group select option { background: #2A1820; color: #FFF5EE; }
+        .required::after { content: ' *'; color: #FF9999; }
 
         .btn {
-            background: linear-gradient(135deg, #D4A843 0%, #F2D98D 100%);
-            color: #1A1F3A;
-            border: none;
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
+            width: 100%; padding: 0.9rem;
+            background: linear-gradient(135deg, #D4836B, #F5C6B8);
+            color: #1C1017; border: none; border-radius: 8px;
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
             transition: all 0.3s ease;
-            width: 100%;
-            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(212,131,107,0.4); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .form-message {
+            padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;
+        }
+        .form-message.success {
+            background: rgba(88,220,130,0.15); color: #58DC82;
+            border: 1px solid rgba(88,220,130,0.3);
+        }
+        .form-message.error {
+            background: rgba(220,88,88,0.15); color: #FF9999;
+            border: 1px solid rgba(220,88,88,0.3);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
+        /* Registered List */
+        .registered-list {
+            max-width: 700px; margin: 2rem auto;
+            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.2);
+            border-radius: 12px; padding: 1.5rem;
         }
+        .registered-list h4 {
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; color: #F5C6B8;
+            margin-bottom: 1rem; font-size: 1.1rem;
+        }
+        .registered-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.7rem 1rem; border-bottom: 1px solid rgba(212,131,107,0.1);
+        }
+        .registered-item:last-child { border-bottom: none; }
+        .registered-name { color: #FFF5EE; font-weight: 500; }
+        .cancel-btn {
+            background: rgba(220,88,88,0.2); color: #FF9999;
+            border: 1px solid rgba(220,88,88,0.3); padding: 0.3rem 0.8rem;
+            border-radius: 5px; cursor: pointer; font-size: 0.85rem;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; transition: all 0.3s;
+        }
+        .cancel-btn:hover { background: rgba(220,88,88,0.4); }
 
-        .btn:active {
-            transform: translateY(0);
+        /* Restaurant styles */
+        .tabs {
+            display: flex; gap: 0; margin: 1.5rem 0 1rem;
+            border-bottom: 2px solid rgba(212,131,107,0.2);
         }
+        .tab-btn {
+            padding: 0.8rem 1.5rem; background: none; border: none;
+            color: rgba(255,245,238,0.5); font-size: 1rem; cursor: pointer;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-weight: 500;
+            border-bottom: 3px solid transparent; transition: all 0.3s;
+            margin-bottom: -2px;
+        }
+        .tab-btn.active { color: #F5C6B8; border-bottom-color: #D4836B; }
+        .tab-btn:hover { color: #F5C6B8; }
 
-        .btn-secondary {
-            background: rgba(212, 168, 67, 0.2);
-            color: #F2D98D;
-            border: 1px solid #D4A843;
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
-        .btn-secondary:hover {
-            background: rgba(212, 168, 67, 0.3);
+        .restaurants-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem; margin: 1.5rem 0;
         }
+        .restaurant-card {
+            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.25);
+            border-radius: 10px; padding: 1.3rem; transition: all 0.3s;
+        }
+        .restaurant-card:hover { border-color: rgba(212,131,107,0.5); transform: translateY(-2px); }
+        .restaurant-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+        .restaurant-name { font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 1.1rem; color: #F5C6B8; font-weight: 700; }
+        .restaurant-rating { color: #F5C6B8; font-weight: 600; white-space: nowrap; }
+        .restaurant-details { font-size: 0.85rem; color: rgba(255,245,238,0.7); margin-bottom: 0.8rem; line-height: 1.8; }
+        .restaurant-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+        .restaurant-tag {
+            background: rgba(212,131,107,0.12); border: 1px solid rgba(212,131,107,0.25);
+            color: #D4836B; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem;
+        }
+        .restaurant-map-btn {
+            display: block; text-align: center; padding: 0.5rem;
+            background: rgba(212,131,107,0.1); border: 1px solid rgba(212,131,107,0.3);
+            border-radius: 6px; color: #D4836B; text-decoration: none;
+            font-size: 0.85rem; transition: all 0.3s;
+        }
+        .restaurant-map-btn:hover { background: rgba(212,131,107,0.2); }
 
         /* Vote Results */
         .vote-results {
-            margin-top: 2rem;
-            background: rgba(242, 217, 141, 0.05);
-            padding: 1.5rem;
+            margin-top: 1.5rem; padding: 1.2rem;
+            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.2);
             border-radius: 10px;
-            border: 1px solid rgba(212, 168, 67, 0.3);
         }
-
         .vote-results h4 {
-            color: #F2D98D;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; color: #F5C6B8;
+            margin-bottom: 1rem; font-size: 1.05rem;
         }
-
-        .vote-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .vote-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            color: #D4A843;
-            font-size: 0.95rem;
-        }
-
+        .vote-item { margin-bottom: 0.8rem; }
+        .vote-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.3rem; color: rgba(255,245,238,0.8); }
         .vote-bar-container {
-            background: rgba(255, 249, 240, 0.05);
-            height: 24px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(212, 168, 67, 0.2);
+            background: rgba(212,131,107,0.1); border-radius: 4px; height: 24px; overflow: hidden;
         }
-
         .vote-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #D4A843 0%, #F2D98D 100%);
-            width: 0%;
+            background: linear-gradient(90deg, #D4836B, #F5C6B8);
+            height: 100%; border-radius: 4px; min-width: 2px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; color: #1C1017; font-weight: 600;
             transition: width 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 0.5rem;
-            color: #1A1F3A;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* Registration Section */
-        .registration-section {
-            margin: 3rem 0;
-        }
-
-        .registration-info {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .registration-info p {
-            font-size: 1.1rem;
-            color: #D4A843;
-            margin-bottom: 1rem;
-        }
-
-        .registered-list {
-            max-width: 600px;
-            margin: 2rem auto;
-            background: rgba(212, 168, 67, 0.05);
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
-
-        .registered-list h4 {
-            color: #F2D98D;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .registered-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem;
-            border-bottom: 1px solid rgba(212, 168, 67, 0.2);
-            color: #FFF9F0;
-        }
-
-        .registered-item:last-child {
-            border-bottom: none;
-        }
-
-        .registered-name {
-            font-weight: 500;
-        }
-
-        .cancel-btn {
-            background: rgba(220, 88, 88, 0.2);
-            color: #FF9999;
-            border: 1px solid #DC5858;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .cancel-btn:hover {
-            background: rgba(220, 88, 88, 0.4);
-            color: #FFB3B3;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 500;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: #2A2F4A;
-            border: 1px solid rgba(212, 168, 67, 0.3);
-            border-radius: 10px;
-            padding: 2rem;
-            max-width: 400px;
-            animation: slideUp 0.3s ease;
-        }
-
-        .modal-header {
-            color: #F2D98D;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .modal-text {
-            color: #D4A843;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .modal-buttons button {
-            flex: 1;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            font-family: 'Noto Sans TC', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .modal-btn-confirm {
-            background: rgba(220, 88, 88, 0.3);
-            color: #FF9999;
-            border: 1px solid #DC5858;
-        }
-
-        .modal-btn-confirm:hover {
-            background: rgba(220, 88, 88, 0.5);
-        }
-
-        .modal-btn-cancel {
-            background: rgba(212, 168, 67, 0.2);
-            color: #F2D98D;
-            border: 1px solid #D4A843;
-        }
-
-        .modal-btn-cancel:hover {
-            background: rgba(212, 168, 67, 0.3);
         }
 
         /* Music Toggle */
         .music-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #D4A843 0%, #F2D98D 100%);
-            color: #1A1F3A;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            z-index: 50;
-            box-shadow: 0 4px 15px rgba(212, 168, 67, 0.3);
-            font-family: 'Noto Sans TC', sans-serif;
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            width: 55px; height: 55px; border-radius: 50%;
+            background: rgba(212,131,107,0.15); border: 2px solid rgba(212,131,107,0.4);
+            color: #F5C6B8; font-size: 1.5rem; cursor: pointer;
+            z-index: 200; transition: all 0.3s; display: none;
+            align-items: center; justify-content: center;
+        }
+        .music-toggle.visible { display: flex; }
+        .music-toggle:hover { background: rgba(212,131,107,0.3); transform: scale(1.1); }
+        .music-toggle.playing { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212,131,107,0.3); }
+            50% { box-shadow: 0 0 0 10px rgba(212,131,107,0); }
         }
 
-        .music-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(212, 168, 67, 0.4);
+        /* Toast Message */
+        .toast {
+            position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
+            background: rgba(28,16,23,0.95); border: 1px solid rgba(212,131,107,0.4);
+            color: #FFF5EE; padding: 0.8rem 1.5rem; border-radius: 8px;
+            z-index: 300; animation: toastIn 0.3s ease;
+            backdrop-filter: blur(10px);
         }
-
-        .music-toggle.paused {
-            background: rgba(212, 168, 67, 0.2);
-            color: #F2D98D;
-        }
-
-        /* Messages */
-        .message {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(212, 168, 67, 0.9);
-            color: #1A1F3A;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
-            z-index: 999;
-            animation: slideIn 0.3s ease;
-        }
-
-        .message.error {
-            background: rgba(220, 88, 88, 0.9);
-            color: #FFF9F0;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+        .toast.success { border-color: rgba(88,220,130,0.4); }
+        .toast.error { border-color: rgba(220,88,88,0.4); color: #FF9999; }
+        @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -10px); } to { opacity: 1; transform: translate(-50%, 0); } }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 1.7rem;
-            }
-
-            .restaurants-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-section {
-                padding: 1.5rem;
-            }
-
-            .music-toggle {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                bottom: 1rem;
-                right: 1rem;
-            }
-
-            nav ul {
-                gap: 0.5rem;
-            }
-
-            .welcome-content h1 {
-                font-size: 1.8rem;
-            }
+            .welcome-header h1 { font-size: 2rem; }
+            .welcome-header .subtitle { font-size: 1.1rem; }
+            .tab-nav-brand { display: none; }
+            .tab-nav-tabs a { padding: 0.8rem 0.5rem; font-size: 0.85rem; }
+            .tab-nav-tabs .tab-icon { margin-right: 0.3rem; }
+            .section-title { font-size: 1.6rem; }
+            .restaurants-grid { grid-template-columns: 1fr; }
+            .info-cards { grid-template-columns: repeat(2, 1fr); }
+            .container { padding: 1.5rem; }
+            .form-section { padding: 1.5rem; }
         }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .required::after {
-            content: ' *';
-            color: #FF9999;
-        }
-
-        .form-message {
-            padding: 0.8rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .form-message.success {
-            background: rgba(88, 220, 130, 0.2);
-            color: #58DC82;
-            border: 1px solid rgba(88, 220, 130, 0.4);
-        }
-
-        .form-message.error {
-            background: rgba(220, 88, 88, 0.2);
-            color: #FF9999;
-            border: 1px solid rgba(220, 88, 88, 0.4);
+        @media (max-width: 480px) {
+            .info-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
     <div class="animated-circles">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div>
     </div>
     <div class="sparkles" id="sparkles"></div>
 
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <ul>
-            <li><a href="#hero" class="nav-link">首頁</a></li>
-            <li><a href="#event-info" class="nav-link">活動資訊</a></li>
-            <li><a href="#restaurants" class="nav-link">餐廳推薦</a></li>
-            <li><a href="#vote-restaurant" class="nav-link">投票選餐廳</a></li>
-            <li><a href="#vote-date" class="nav-link">日期投票</a></li>
-            <li><a href="#registration" class="nav-link">報名</a></li>
-        </ul>
-    </nav>
-
-    <!-- Welcome Overlay -->
-    <div class="welcome-overlay" id="welcomeOverlay">
-        <div class="welcome-content">
+    <!-- ==================== WELCOME PAGE ==================== -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-header">
             <h1>花壇國中 三年八班</h1>
-            <p>畢業33週年同學會</p>
-            <p class="subtitle">歡迎回家</p>
-            <button class="welcome-btn" onclick="closeWelcome()">開始探索</button>
+            <div class="subtitle">畢業33週年同學會</div>
+            <div class="year">2026 · 歡迎回家</div>
+        </div>
+
+        <div class="classmates-section">
+            <h3>── 已報名同學 ──</h3>
+            <div class="classmates-names" id="welcomeClassmates">
+                <div class="no-classmates">載入中...</div>
+            </div>
+            <div class="classmates-count" id="welcomeCount"></div>
+        </div>
+
+        <button class="enter-btn" id="enterBtn" onclick="enterSite()">進 入 同 學 會</button>
+    </div>
+
+    <!-- ==================== MAIN APP ==================== -->
+    <div class="main-app" id="mainApp">
+        <!-- Tab Navigation -->
+        <nav class="tab-nav">
+            <div class="tab-nav-inner">
+                <div class="tab-nav-brand">三年八班</div>
+                <ul class="tab-nav-tabs">
+                    <li><a href="#" class="active" onclick="switchPage(event, 'page-register')"><span class="tab-icon">📋</span>報名</a></li>
+                    <li><a href="#" onclick="switchPage(event, 'page-restaurant')"><span class="tab-icon">🍽️</span>餐廳選擇</a></li>
+                    <li><a href="#" onclick="switchPage(event, 'page-date')"><span class="tab-icon">📅</span>日期選擇</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="content-area">
+
+            <!-- ===== PAGE 1: 報名 ===== -->
+            <div class="tab-page active" id="page-register">
+                <div class="tab-hero">
+                    <h2>同學會報名</h2>
+                    <p>填寫表單確認參與，讓我們重溫青春年代</p>
+                </div>
+
+                <div class="container">
+                    <!-- Event Info -->
+                    <div class="info-cards">
+                        <div class="card">
+                            <div class="card-icon">📍</div>
+                            <h3>地點</h3>
+                            <p>台中/彰化</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">由投票結果決定</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">📅</div>
+                            <h3>時間</h3>
+                            <p>7月-8月</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">選擇參與日期</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">🍽️</div>
+                            <h3>聚餐</h3>
+                            <p>餐廳聚餐</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">享受美食，敘舊談心</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">👥</div>
+                            <h3>人數</h3>
+                            <p>全班參與</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">誠摯邀請</p>
+                        </div>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <h3 class="section-title">填寫報名</h3>
+                    <div class="form-section">
+                        <form id="registrationForm">
+                            <div class="form-message" id="registrationMessage" style="display:none;"></div>
+                            <div class="form-group">
+                                <label for="regName" class="required">姓名</label>
+                                <input type="text" id="regName" placeholder="請輸入你的名字" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="regEmail" class="required">電子郵件</label>
+                                <input type="email" id="regEmail" placeholder="your@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="regPhone" class="required">電話</label>
+                                <input type="tel" id="regPhone" placeholder="09XX-XXX-XXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="regNotes">備註 (選填)</label>
+                                <textarea id="regNotes" placeholder="有任何問題或特殊需求嗎？"></textarea>
+                            </div>
+                            <button type="submit" class="btn">確認報名</button>
+                        </form>
+                    </div>
+
+                    <!-- Registered List -->
+                    <div class="registered-list" id="registeredList" style="display:none;">
+                        <h4>已報名同學 (<span id="registeredCount">0</span>人)</h4>
+                        <div id="registeredItemsContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PAGE 2: 餐廳選擇 ===== -->
+            <div class="tab-page" id="page-restaurant">
+                <div class="tab-hero">
+                    <h2>餐廳選擇</h2>
+                    <p>瀏覽推薦餐廳，投票選出聚餐地點</p>
+                </div>
+
+                <div class="container">
+                    <!-- Restaurant Recommendations -->
+                    <h3 class="section-title">推薦餐廳</h3>
+
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="switchRestaurantTab(event, 'taichung')">台中市 (5間)</button>
+                        <button class="tab-btn" onclick="switchRestaurantTab(event, 'changhua')">彰化市 (5間)</button>
+                    </div>
+
+                    <!-- Taichung -->
+                    <div id="taichung" class="tab-content active">
+                        <div class="restaurants-grid">
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">馨苑小料理</div>
+                                    <div class="restaurant-rating">⭐ 4.7</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中西區<br>菜系：台菜<br>米其林必比登推薦<br>人均：NT$600-1200</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">包廂</span><span class="restaurant-tag">免費停車</span></div>
+                                <a href="https://www.google.com/maps/search/馨苑小料理+台中西區" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">厝秘功夫菜</div>
+                                    <div class="restaurant-rating">⭐ 4.5</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中西屯/大里<br>菜系：台菜合菜<br>圓桌包廂可容15-20人</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">大包廂</span><span class="restaurant-tag">停車場</span></div>
+                                <a href="https://www.google.com/maps/search/厝秘功夫菜+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">九瀧唐景觀宴會</div>
+                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中北屯大坑<br>菜系：粵菜<br>180°百萬夜景</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">景觀</span><span class="restaurant-tag">停車20+台</span></div>
+                                <a href="https://www.google.com/maps/search/九瀧唐景觀宴會+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">膳馨民間創作料理</div>
+                                    <div class="restaurant-rating">⭐ 4.5</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中西區<br>菜系：創意台菜<br>適合長輩</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">適合聚餐</span><span class="restaurant-tag">公有停車場</span></div>
+                                <a href="https://www.google.com/maps/search/膳馨民間創作料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">全鴨坊烤鴨料理</div>
+                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中西屯<br>菜系：烤鴨合菜<br>米其林推薦</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">停車場</span><span class="restaurant-tag">包廂</span></div>
+                                <a href="https://www.google.com/maps/search/全鴨坊烤鴨料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Changhua -->
+                    <div id="changhua" class="tab-content">
+                        <div class="restaurants-grid">
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">松柏軒景觀餐廳</div>
+                                    <div class="restaurant-rating">⭐ 4.9</div>
+                                </div>
+                                <div class="restaurant-details">地點：彰化永靖<br>菜系：私廚套餐<br>日式庭園</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">免費停車</span><span class="restaurant-tag">日式庭園</span></div>
+                                <a href="https://www.google.com/maps/search/松柏軒景觀餐廳+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">農食憶</div>
+                                    <div class="restaurant-rating">⭐ 4.6</div>
+                                </div>
+                                <div class="restaurant-details">地點：彰化市<br>菜系：台菜辦桌<br>包廂附投影</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">包廂</span><span class="restaurant-tag">投影設備</span></div>
+                                <a href="https://www.google.com/maps/search/農食憶+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">品八方燒鵝</div>
+                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                </div>
+                                <div class="restaurant-details">地點：彰化市<br>菜系：港式燒鵝<br>合菜熱炒</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">路邊停車</span><span class="restaurant-tag">港式</span></div>
+                                <a href="https://www.google.com/maps/search/品八方燒鵝+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">京江小棧</div>
+                                    <div class="restaurant-rating">⭐ 4.8</div>
+                                </div>
+                                <div class="restaurant-details">地點：彰化市<br>菜系：複合式料理<br>白飯飲料吃到飽</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">包廂</span><span class="restaurant-tag">飲料吃到飽</span></div>
+                                <a href="https://www.google.com/maps/search/京江小棧+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">立軒閣文化廚苑</div>
+                                    <div class="restaurant-rating">⭐ 4.3</div>
+                                </div>
+                                <div class="restaurant-details">地點：彰化市<br>菜系：中式料理<br>百年老宅</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">老宅特色</span><span class="restaurant-tag">交通便利</span></div>
+                                <a href="https://www.google.com/maps/search/立軒閣文化廚苑+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Vote -->
+                    <h3 class="section-title">投票選餐廳</h3>
+                    <div class="form-section">
+                        <form id="restaurantVoteForm">
+                            <div class="form-message" id="restaurantVoteMessage" style="display:none;"></div>
+                            <div class="form-group">
+                                <label for="restaurantVoteName" class="required">姓名</label>
+                                <input type="text" id="restaurantVoteName" placeholder="請輸入你的名字" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="restaurantVoteSelect" class="required">選擇餐廳</label>
+                                <select id="restaurantVoteSelect" required>
+                                    <option value="">-- 選擇餐廳 --</option>
+                                    <optgroup label="台中市">
+                                        <option value="馨苑小料理">馨苑小料理 (台中西區)</option>
+                                        <option value="厝秘功夫菜">厝秘功夫菜 (台中西屯/大里)</option>
+                                        <option value="九瀧唐景觀宴會">九瀧唐景觀宴會 (台中北屯)</option>
+                                        <option value="膳馨民間創作料理">膳馨民間創作料理 (台中西區)</option>
+                                        <option value="全鴨坊烤鴨料理">全鴨坊烤鴨料理 (台中西屯)</option>
+                                    </optgroup>
+                                    <optgroup label="彰化市">
+                                        <option value="松柏軒景觀餐廳">松柏軒景觀餐廳 (彰化永靖)</option>
+                                        <option value="農食憶">農食憶 (彰化市)</option>
+                                        <option value="品八方燒鵝">品八方燒鵝 (彰化市)</option>
+                                        <option value="京江小棧">京江小棧 (彰化市)</option>
+                                        <option value="立軒閣文化廚苑">立軒閣文化廚苑 (彰化市)</option>
+                                    </optgroup>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="restaurantVoteOther">推薦其他餐廳 (選填)</label>
+                                <textarea id="restaurantVoteOther" placeholder="如果選擇「其他」，請在此推薦餐廳及原因"></textarea>
+                            </div>
+                            <button type="submit" class="btn">投票</button>
+                        </form>
+
+                        <div class="vote-results" id="restaurantVoteResults" style="display:none;">
+                            <h4>投票結果</h4>
+                            <div id="restaurantResultsChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PAGE 3: 日期選擇 ===== -->
+            <div class="tab-page" id="page-date">
+                <div class="tab-hero">
+                    <h2>日期選擇</h2>
+                    <p>選擇最適合的聚會日期，七八月週末等你來</p>
+                </div>
+
+                <div class="container">
+                    <h3 class="section-title">投票選日期</h3>
+                    <div class="form-section">
+                        <form id="dateVoteForm">
+                            <div class="form-message" id="dateVoteMessage" style="display:none;"></div>
+                            <div class="form-group">
+                                <label for="dateVoteName" class="required">姓名</label>
+                                <input type="text" id="dateVoteName" placeholder="請輸入你的名字" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateVoteSelect" class="required">選擇日期</label>
+                                <select id="dateVoteSelect" required>
+                                    <option value="">-- 選擇日期 --</option>
+                                    <optgroup label="7月 2026">
+                                        <option value="2026-07-04">7月4日 (星期六)</option>
+                                        <option value="2026-07-05">7月5日 (星期日)</option>
+                                        <option value="2026-07-11">7月11日 (星期六)</option>
+                                        <option value="2026-07-12">7月12日 (星期日)</option>
+                                        <option value="2026-07-18">7月18日 (星期六)</option>
+                                        <option value="2026-07-19">7月19日 (星期日)</option>
+                                        <option value="2026-07-25">7月25日 (星期六)</option>
+                                        <option value="2026-07-26">7月26日 (星期日)</option>
+                                    </optgroup>
+                                    <optgroup label="8月 2026">
+                                        <option value="2026-08-01">8月1日 (星期六)</option>
+                                        <option value="2026-08-02">8月2日 (星期日)</option>
+                                        <option value="2026-08-08">8月8日 (星期六)</option>
+                                        <option value="2026-08-09">8月9日 (星期日)</option>
+                                        <option value="2026-08-15">8月15日 (星期六)</option>
+                                        <option value="2026-08-16">8月16日 (星期日)</option>
+                                        <option value="2026-08-22">8月22日 (星期六)</option>
+                                        <option value="2026-08-23">8月23日 (星期日)</option>
+                                        <option value="2026-08-29">8月29日 (星期六)</option>
+                                        <option value="2026-08-30">8月30日 (星期日)</option>
+                                    </optgroup>
+                                    <option value="其他">其他日期</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateVoteOther">建議其他日期 (選填)</label>
+                                <textarea id="dateVoteOther" placeholder="如果選擇「其他日期」，請在此建議日期及理由"></textarea>
+                            </div>
+                            <button type="submit" class="btn">投票</button>
+                        </form>
+
+                        <div class="vote-results" id="dateVoteResults" style="display:none;">
+                            <h4>投票結果</h4>
+                            <div id="dateResultsChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <h1>同學會開始了！</h1>
-        <p>33 週年紀念 · 2026</p>
-        <p class="subtitle">感謝有你們，讓回憶更加溫暖</p>
-    </section>
-
-    <!-- Event Info Section -->
-    <section class="container" id="event-info">
-        <h2 class="section-title">活動資訊</h2>
-        <div class="info-cards">
-            <div class="card">
-                <div class="card-icon">📍</div>
-                <h3>地點</h3>
-                <p>台中/彰化</p>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem;">待定，由投票結果決定</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">📅</div>
-                <h3>時間</h3>
-                <p>7月-8月</p>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem;">選擇參與日期</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🍽️</div>
-                <h3>聚餐</h3>
-                <p>餐廳聚餐</p>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem;">享受美食，敘舊談心</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">👥</div>
-                <h3>人數</h3>
-                <p>誠摯邀請全班參與</p>
-                <p style="font-size: 0.85rem; margin-top: 0.5rem;">一起重溫青春年代</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Restaurant Recommendations Section -->
-    <section class="container" id="restaurants">
-        <h2 class="section-title">餐廳推薦</h2>
-
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab(event, 'taichung')">台中市 (5間)</button>
-            <button class="tab-btn" onclick="switchTab(event, 'changhua')">彰化市 (5間)</button>
-        </div>
-
-        <!-- Taichung Restaurants -->
-        <div id="taichung" class="tab-content active">
-            <div class="restaurants-grid">
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">馨英小料理</div>
-                        <div class="restaurant-rating">⭐ 4.7</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：台中西區</div>
-                        <div>菜系：台菜</div>
-                        <div>米其林必比登推薦</div>
-                        <div>人均：NT$600-1200</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">包廂</span>
-                        <span class="restaurant-tag">免費停車</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/馨苑小料理+台中西區" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">厝秘功夫菜</div>
-                        <div class="restaurant-rating">⭐ 4.5</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：台中西屯/大里</div>
-                        <div>菜系：台菜合菜</div>
-                        <div>圓桌包廂可容15-20人</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">大包廂</span>
-                        <span class="restaurant-tag">停車場</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/厝秘功夫菜+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">九瀧唐景觀宴會</div>
-                        <div class="restaurant-rating">⭐ 4.4</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：台中北屯大坑</div>
-                        <div>菜系：粵菜</div>
-                        <div>180°百萬夜景</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">景觀</span>
-                        <span class="restaurant-tag">停車20+台</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/九瀧唐景觀宴會+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">膳馨民間創作料理</div>
-                        <div class="restaurant-rating">⭐ 4.5</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：台中西區</div>
-                        <div>菜系：創意台菜</div>
-                        <div>適合長輩</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">適合聚餐</span>
-                        <span class="restaurant-tag">公有停車場</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/膳馨民間創作料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">全鴨坊烤鴨料理</div>
-                        <div class="restaurant-rating">⭐ 4.4</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：台中西屯</div>
-                        <div>菜系：烤鴨合菜</div>
-                        <div>米其林推薦</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">停車場</span>
-                        <span class="restaurant-tag">包廂</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/全鴨坊烤鴨料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Changhua Restaurants -->
-        <div id="changhua" class="tab-content">
-            <div class="restaurants-grid">
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">松柏軒景觀餐廳</div>
-                        <div class="restaurant-rating">⭐ 4.9</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：彰化永靖</div>
-                        <div>菜系：私廚套餐</div>
-                        <div>日式庭園</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">免費停車</span>
-                        <span class="restaurant-tag">日式庭園</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/松柏軒景觀餐廳+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">農食憶</div>
-                        <div class="restaurant-rating">⭐ 4.6</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：彰化市</div>
-                        <div>菜系：台菜辦桌</div>
-                        <div>包廂附投影</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">包廂</span>
-                        <span class="restaurant-tag">投影設備</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/農食憶+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">品八方燒鵝</div>
-                        <div class="restaurant-rating">⭐ 4.4</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：彰化市</div>
-                        <div>菜系：港式燒鵝</div>
-                        <div>合菜烱炒</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">路邊停車</span>
-                        <span class="restaurant-tag">港式</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/品八方燒鵝+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">京江小棧</div>
-                        <div class="restaurant-rating">⭐ 4.8</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：彰化市</div>
-                        <div>菜系：複合式料理</div>
-                        <div>白飯飲料吃到飽</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">包廂</span>
-                        <span class="restaurant-tag">飲料吃到飽</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/京江小棧+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-
-                <div class="restaurant-card">
-                    <div class="restaurant-header">
-                        <div class="restaurant-name">立軒閣文化廚苑</div>
-                        <div class="restaurant-rating">⭐ 4.3</div>
-                    </div>
-                    <div class="restaurant-details">
-                        <div>地點：彰化市</div>
-                        <div>菜系：中式料理</div>
-                        <div>百年老宅</div>
-                    </div>
-                    <div class="restaurant-tags">
-                        <span class="restaurant-tag">老宅特色</span>
-                        <span class="restaurant-tag">交通便利</span>
-                    </div>
-                    <a href="https://www.google.com/maps/search/立軒閣文化廚苑+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Restaurant Vote Section -->
-    <section class="container" id="vote-restaurant">
-        <h2 class="section-title">投票選餐廳</h2>
-        <div class="form-section">
-            <form id="restaurantVoteForm">
-                <div class="form-message" id="restaurantVoteMessage" style="display: none;"></div>
-
-                <div class="form-group">
-                    <label for="restaurantVoteName" class="required">姓名</label>
-                    <input type="text" id="restaurantVoteName" placeholder="請輸入你的名字" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="restaurantVoteSelect" class="required">選擇餐廳</label>
-                    <select id="restaurantVoteSelect" required>
-                        <option value="">-- 選擇餐廳 --</option>
-                        <optgroup label="台中市">
-                            <option value="馨英小料理">馨苑小料理 (台中西區)</option>
-                            <option value="厝秘功夫菜">厝秘功夫菜 (台中西屯/大里)</option>
-                            <option value="九瀧唐景觀宴會">九瀧唐景觀宴會 (台中北屯)</option>
-                            <option value="膳馨民間創作料理">膳馨民間創作料理 (台中西區)</option>
-                            <option value="全鴨坊烤鴨料理">全鴨坊烤鴨料理 (台中西屯)</option>
-                        </optgroup>
-                        <optgroup label="彰化市">
-                            <option value="松柏軒景觀餐廳">松柏軒景觀餐廳 (彰化永靖)</option>
-                            <option value="農食憶">農食憶 (彰化市)</option>
-                            <option value="品八方燒鵝">品八方燒鵝 (彰化市)</option>
-                            <option value="京江小棧">京江小棧 (彰化市)</option>
-                         <option value="立軒閣文化廚苑">立軒閣文化廚苑 (彰化市)</option>
-                        </optgroup>
-                        <option value="其他">其他</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="restaurantVoteOther">推薦其他餐廳 (選填)</label>
-                    <textarea id="restaurantVoteOther" placeholder="如果選擇「其他」，請在此推薦餐廳及原因"></textarea>
-                </div>
-
-                <button type="submit" class="btn">投票</button>
-            </form>
-
-            <div class="vote-results" id="restaurantVoteResults" style="display: none;">
-                <h4>投票結果</h4>
-                <div id="restaurantResultsChart"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Date Vote Section -->
-    <section class="container" id="vote-date">
-        <h2 class="section-title">日期投票</h2>
-        <div class="form-section">
-            <form id="dateVoteForm">
-                <div class="form-message" id="dateVoteMessage" style="display: none;"></div>
-
-                <div class="form-group">
-                    <label for="dateVoteName" class="required">姓名</label>
-                    <input type="text" id="dateVoteName" placeholder="請輸入你的名字" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="dateVoteSelect" class="required">選擇日期</label>
-                    <select id="dateVoteSelect" required>
-                        <option value="">-- 選擇日期 --</option>
-                        <optgroup label="7月 2026">
-                            <option value="2026-07-05">7月5日 (星期日)</option>
-                            <option value="2026-07-06">7月6日 (星期一)</option>
-                            <option value="2026-07-12">7月12日 (星期日)</option>
-                            <option value="2026-07-13">7月13日 (星期一)</option>
-                            <option value="2026-07-19">7月19日 (星期日)</option>
-                            <option value="2026-07-20">7月20日 (星期一)</option>
-                            <option value="2026-07-26">7月26日 (星期日)</option>
-                            <option value="2026-07-27">7月27日 (星期一)</option>
-                        </optgroup>
-                        <optgroup label="8月 2026">
-                            <option value="2026-08-02">8月2日 (星期日)</option>
-                            <option value="2026-08-03">8月3日 (星期一)</option>
-                            <option value="2026-08-09">8月9日 (星期日)</option>
-                            <option value="2026-08-10">8月10日 (星期一)</option>
-                            <option value="2026-08-16">8月16日 (星期日)</option>
-                            <option value="2026-08-17">8月17日 (星期一)</option>
-                            <option value="2026-08-23">8月23日 (星期日)</option>
-                            <option value="2026-08-24">8月24日 (星期一)</option>
-                            <option value="2026-08-30">8月30日 (星期日)</option>
-                            <option value="2026-08-31">8月31日 (星期一)</option>
-                        </optgroup>
-                        <option value="其他">其他日期</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="dateVoteOther">建議其他日期 (選填)</label>
-                    <textarea id="dateVoteOther" placeholder="如果選擇「其他日期」，請在此建議日期及理由"></textarea>
-                </div>
-
-                <button type="submit" class="btn">投票</button>
-            </form>
-
-            <div class="vote-results" id="dateVoteResults" style="display: none;">
-                <h4>投票結果</h4>
-                <div id="dateResultsChart"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration Section -->
-    <section class="container registration-section" id="registration">
-        <h2 class="section-title">報名</h2>
-        <div class="registration-info">
-            <p>歡迎報名參與同學會！</p>
-            <p>請填寫下方表單以確認您的參與</p>
-        </div>
-
-        <div class="form-section">
-            <form id="registrationForm">
-                <div class="form-message" id="registrationMessage" style="display: none;"></div>
-
-                <div class="form-group">
-                    <label for="regName" class="required">姓名</label>
-                    <input type="text" id="regName" placeholder="請輸入你的名字" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="regEmail" class="required">電子郵件</label>
-                    <input type="email" id="regEmail" placeholder="your@email.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="regPhone" class="required">電話</label>
-                    <input type="tel" id="regPhone" placeholder="09XX-XXX-XXX" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="regNotes">備註 (選填)</label>
-                    <textarea id="regNotes" placeholder="有任何問題或特殊需求嗎？"></textarea>
-                </div>
-
-                <button type="submit" class="btn">確認報名</button>
-            </form>
-        </div>
-
-        <div class="registered-list" id="registeredList" style="display: none;">
-            <h4>已報名同學 (<span id="registeredCount">0</span>人)</h4>
-            <div id="registeredItemsContainer"></div>
-        </div>
-    </section>
-
-    <!-- Music Toggle Button -->
+    <!-- Music Toggle -->
     <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="背景音樂">🎵</button>
 
-    <!-- Hidden Audio Element -->
+    <!-- Audio -->
     <audio id="bgMusic" loop>
-        <source src="https://assets.mixkit.co/active_storage/sfx/2747/2747-preview.mp3" type="audio/mpeg">
+        <source src="bgm.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Configuration
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbIuLHttMa1eAggOjt0IrkN7NHTg5aMRoQAWQpW2yPWFNKDC4EMZij6dg49_3ZmGgOGA/exec';
 
-        // Sparkles Animation
+        // ==================== SPARKLES ====================
         function createSparkles() {
             const container = document.getElementById('sparkles');
             for (let i = 0; i < 30; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(sparkle);
+                const s = document.createElement('div');
+                s.className = 'sparkle';
+                s.style.left = Math.random() * 100 + '%';
+                s.style.top = Math.random() * 100 + '%';
+                s.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(s);
             }
         }
 
-        // Welcome Overlay
-        function closeWelcome() {
-            const overlay = document.getElementById('welcomeOverlay');
-            overlay.classList.add('hidden');
-            localStorage.setItem('welcomeSeen', 'true');
+        // ==================== WELCOME PAGE ====================
+        async function loadWelcomeClassmates() {
+            try {
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=list');
+                const data = await response.json();
+                const container = document.getElementById('welcomeClassmates');
+                const countEl = document.getElementById('welcomeCount');
+
+                if (data.registrations && data.registrations.length > 0) {
+                    container.innerHTML = data.registrations.map((reg, i) =>
+                        `<div class="classmate-chip" style="animation-delay:${i * 0.08}s">${reg.name}</div>`
+                    ).join('');
+                    countEl.textContent = `共 ${data.registrations.length} 位同學已報名`;
+                } else {
+                    container.innerHTML = '<div class="no-classmates">尚無同學報名，快來成為第一位！</div>';
+                    countEl.textContent = '';
+                }
+            } catch (error) {
+                document.getElementById('welcomeClassmates').innerHTML =
+                    '<div class="no-classmates">載入失敗，請進入後查看</div>';
+            }
         }
 
-        // Check if welcome should be shown
-        window.addEventListener('load', function() {
-            createSparkles();
-            if (localStorage.getItem('welcomeSeen') === 'true') {
-                document.getElementById('welcomeOverlay').classList.add('hidden');
-            }
-        });
+        function enterSite() {
+            const welcomePage = document.getElementById('welcomePage');
+            const mainApp = document.getElementById('mainApp');
+            const musicBtn = document.getElementById('musicToggle');
 
-        // Navigation Bar Show/Hide
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 300) {
-                navbar.classList.add('visible');
-            } else {
-                navbar.classList.remove('visible');
-            }
-        });
+            welcomePage.classList.add('hidden');
+            setTimeout(() => { welcomePage.style.display = 'none'; }, 600);
 
-        // Smooth scrolling for nav links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
+            mainApp.classList.add('visible');
+            musicBtn.classList.add('visible');
+
+            // Play music
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicBtn.classList.add('playing');
+                musicBtn.textContent = '🎵';
+            }).catch(() => {
+                // Autoplay blocked - user can click the button
             });
-        });
 
-        // Tab Switching
-        function switchTab(e, tabName) {
+            // Load data
+            loadRestaurantResults();
+            loadDateResults();
+            loadRegisteredList();
+        }
+
+        // ==================== PAGE SWITCHING ====================
+        function switchPage(e, pageId) {
+            e.preventDefault();
+            // Update nav tabs
+            document.querySelectorAll('.tab-nav-tabs a').forEach(a => a.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            // Update pages
+            document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== RESTAURANT TABS ====================
+        function switchRestaurantTab(e, tabName) {
+            document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                if (btn !== e.target) btn.classList.remove('active');
-            });
-
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
         }
 
-        // Music Toggle
+        // ==================== MUSIC ====================
         const bgMusic = document.getElementById('bgMusic');
         let musicPlaying = false;
 
@@ -1349,31 +829,27 @@
             const btn = document.getElementById('musicToggle');
             if (musicPlaying) {
                 bgMusic.pause();
-                btn.classList.add('paused');
+                btn.classList.remove('playing');
                 btn.textContent = '🔇';
                 musicPlaying = false;
             } else {
                 bgMusic.play();
-                btn.classList.remove('paused');
+                btn.classList.add('playing');
                 btn.textContent = '🎵';
                 musicPlaying = true;
             }
         }
 
-        // Show Message
-        function showMessage(msg, type = 'success', containerId = null) {
-            const messageEl = document.createElement('div');
-            messageEl.className = `message ${type}`;
-            messageEl.textContent = msg;
-            document.body.appendChild(messageEl);
-
-            setTimeout(() => {
-                messageEl.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => messageEl.remove(), 300);
-            }, 3000);
+        // ==================== MESSAGES ====================
+        function showToast(msg, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
-        function showFormMessage(msg, type = 'success', elementId) {
+        function showFormMessage(msg, type, elementId) {
             const el = document.getElementById(elementId);
             if (el) {
                 el.textContent = msg;
@@ -1382,90 +858,10 @@
             }
         }
 
-        // Restaurant Vote Form
-        document.getElementById('restaurantVoteForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('restaurantVoteName').value.trim();
-            const restaurant = document.getElementById('restaurantVoteSelect').value;
-            const other = document.getElementById('restaurantVoteOther').value.trim();
-
-            if (!name || !restaurant) {
-                showFormMessage('請填寫所有必填欄位', 'error', 'restaurantVoteMessage');
-                return;
-            }
-
-            try {
-                const formData = new FormData();
-                formData.append('action', 'voteRestaurant');
-                formData.append('name', name);
-                formData.append('restaurant', restaurant);
-                formData.append('other', other);
-
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (result.success || result.status === 'ok') {
-                    showFormMessage('投票成功！感謝您的參與', 'success', 'restaurantVoteMessage');
-                    document.getElementById('restaurantVoteForm').reset();
-                    loadRestaurantResults();
-                } else {
-                    showFormMessage('投票失敗，請重試', 'error', 'restaurantVoteMessage');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'restaurantVoteMessage');
-            }
-        });
-
-        // Date Vote Form
-        document.getElementById('dateVoteForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('dateVoteName').value.trim();
-            const date = document.getElementById('dateVoteSelect').value;
-            const other = document.getElementById('dateVoteOther').value.trim();
-
-            if (!name || !date) {
-                showFormMessage('請填寫所有必填欄位', 'error', 'dateVoteMessage');
-                return;
-            }
-
-            try {
-                const formData = new FormData();
-                formData.append('action', 'voteDate');
-                formData.append('name', name);
-                formData.append('date', date);
-                formData.append('other', other);
-
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (result.success || result.status === 'ok') {
-                    showFormMessage('投票成功！感謝您的參與', 'success', 'dateVoteMessage');
-                    document.getElementById('dateVoteForm').reset();
-                    loadDateResults();
-                } else {
-                    showFormMessage('投票失敗，請重試', 'error', 'dateVoteMessage');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'dateVoteMessage');
-            }
-        });
-
-        // Registration Form
+        // ==================== FORMS ====================
+        // Registration
         document.getElementById('registrationForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const phone = document.getElementById('regPhone').value.trim();
@@ -1477,164 +873,171 @@
             }
 
             try {
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('email', email);
-                formData.append('phone', phone);
-                formData.append('notes', notes);
+                const fd = new FormData();
+                fd.append('name', name); fd.append('email', email);
+                fd.append('phone', phone); fd.append('notes', notes);
 
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
+                const result = await res.json();
 
                 if (result.success || result.status === 'ok') {
-                    showFormMessage('報名成功！我們已收到您的信息', 'success', 'registrationMessage');
+                    showFormMessage('報名成功！歡迎加入同學會', 'success', 'registrationMessage');
                     document.getElementById('registrationForm').reset();
                     loadRegisteredList();
-                   } else {
+                } else {
                     showFormMessage('報名失敗，請重試', 'error', 'registrationMessage');
                 }
-            } catch (error) {
-                console.error('Error:', error);
+            } catch (err) {
                 showFormMessage('發生錯誤，請檢查網路連線', 'error', 'registrationMessage');
             }
         });
 
-        // Load Restaurant Results
+        // Restaurant Vote
+        document.getElementById('restaurantVoteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('restaurantVoteName').value.trim();
+            const restaurant = document.getElementById('restaurantVoteSelect').value;
+            const other = document.getElementById('restaurantVoteOther').value.trim();
+
+            if (!name || !restaurant) {
+                showFormMessage('請填寫所有必填欄位', 'error', 'restaurantVoteMessage');
+                return;
+            }
+
+            try {
+                const fd = new FormData();
+                fd.append('action', 'voteRestaurant');
+                fd.append('name', name); fd.append('restaurant', restaurant); fd.append('other', other);
+
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
+                const result = await res.json();
+
+                if (result.success || result.status === 'ok') {
+                    showFormMessage('投票成功！感謝您的參與', 'success', 'restaurantVoteMessage');
+                    document.getElementById('restaurantVoteForm').reset();
+                    loadRestaurantResults();
+                } else {
+                    showFormMessage('投票失敗，請重試', 'error', 'restaurantVoteMessage');
+                }
+            } catch (err) {
+                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'restaurantVoteMessage');
+            }
+        });
+
+        // Date Vote
+        document.getElementById('dateVoteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('dateVoteName').value.trim();
+            const date = document.getElementById('dateVoteSelect').value;
+            const other = document.getElementById('dateVoteOther').value.trim();
+
+            if (!name || !date) {
+                showFormMessage('請填寫所有必填欄位', 'error', 'dateVoteMessage');
+                return;
+            }
+
+            try {
+                const fd = new FormData();
+                fd.append('action', 'voteDate');
+                fd.append('name', name); fd.append('date', date); fd.append('other', other);
+
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
+                const result = await res.json();
+
+                if (result.success || result.status === 'ok') {
+                    showFormMessage('投票成功！感謝您的參與', 'success', 'dateVoteMessage');
+                    document.getElementById('dateVoteForm').reset();
+                    loadDateResults();
+                } else {
+                    showFormMessage('投票失敗，請重試', 'error', 'dateVoteMessage');
+                }
+            } catch (err) {
+                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'dateVoteMessage');
+            }
+        });
+
+        // ==================== LOAD RESULTS ====================
         async function loadRestaurantResults() {
             try {
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=restaurantResults');
-                const data = await response.json();
-
-                if (data.results) {
-                    const resultsEl = document.getElementById('restaurantVoteResults');
-                    const chartEl = document.getElementById('restaurantResultsChart');
-
-                    let maxVotes = 0;
-                    data.results.forEach(item => {
-                        if (item.count > maxVotes) maxVotes = item.count;
-                    });
-
-                    chartEl.innerHTML = data.results.map(item => `
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=restaurantResults');
+                const data = await res.json();
+                if (data.results && data.results.length > 0) {
+                    const el = document.getElementById('restaurantVoteResults');
+                    const chart = document.getElementById('restaurantResultsChart');
+                    let max = Math.max(...data.results.map(r => r.count));
+                    chart.innerHTML = data.results.map(item => `
                         <div class="vote-item">
-                            <div class="vote-label">
-                                <span>${item.restaurant || '其他'}</span>
-                                <span>${item.count} 票</span>
-                            </div>
+                            <div class="vote-label"><span>${item.restaurant || '其他'}</span><span>${item.count} 票</span></div>
                             <div class="vote-bar-container">
-                                <div class="vote-bar" style="width: ${maxVotes > 0 ? (item.count / maxVotes * 100) : 0}%">
-                                    ${item.count > 0 ? item.count : ''}
-                                </div>
+                                <div class="vote-bar" style="width:${max > 0 ? (item.count/max*100) : 0}%">${item.count > 0 ? item.count : ''}</div>
                             </div>
                         </div>
                     `).join('');
-
-                    resultsEl.style.display = 'block';
+                    el.style.display = 'block';
                 }
-            } catch (error) {
-                console.error('Error loading results:', error);
-            }
+            } catch (err) { console.error('Error:', err); }
         }
 
-        // Load Date Results
         async function loadDateResults() {
             try {
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=dateResults');
-                const data = await response.json();
-
-                if (data.results) {
-                    const resultsEl = document.getElementById('dateVoteResults');
-                    const chartEl = document.getElementById('dateResultsChart');
-
-                    let maxVotes = 0;
-                    data.results.forEach(item => {
-                        if (item.count > maxVotes) maxVotes = item.count;
-                    });
-
-                    chartEl.innerHTML = data.results.map(item => `
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=dateResults');
+                const data = await res.json();
+                if (data.results && data.results.length > 0) {
+                    const el = document.getElementById('dateVoteResults');
+                    const chart = document.getElementById('dateResultsChart');
+                    let max = Math.max(...data.results.map(r => r.count));
+                    chart.innerHTML = data.results.map(item => `
                         <div class="vote-item">
-                            <div class="vote-label">
-                                <span>${item.date || '其他'}</span>
-                                <span>${item.count} 票</span>
-                            </div>
+                            <div class="vote-label"><span>${item.date || '其他'}</span><span>${item.count} 票</span></div>
                             <div class="vote-bar-container">
-                                <div class="vote-bar" style="width: ${maxVotes > 0 ? (item.count / maxVotes * 100) : 0}%">
-                                    ${item.count > 0 ? item.count : ''}
-                                </div>
+                                <div class="vote-bar" style="width:${max > 0 ? (item.count/max*100) : 0}%">${item.count > 0 ? item.count : ''}</div>
                             </div>
                         </div>
                     `).join('');
-
-                    resultsEl.style.display = 'block';
+                    el.style.display = 'block';
                 }
-            } catch (error) {
-                console.error('Error loading results:', error);
-            }
+            } catch (err) { console.error('Error:', err); }
         }
 
-        // Load Registered List
         async function loadRegisteredList() {
             try {
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=list');
-                const data = await response.json();
-
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL + '?action=list');
+                const data = await res.json();
                 if (data.registrations && data.registrations.length > 0) {
                     const listEl = document.getElementById('registeredList');
-                    const containerEl = document.getElementById('registeredItemsContainer');
-
-                    containerEl.innerHTML = data.registrations.map(reg => `
+                    const container = document.getElementById('registeredItemsContainer');
+                    container.innerHTML = data.registrations.map(reg => `
                         <div class="registered-item">
                             <span class="registered-name">${reg.name || '未知'}</span>
                             <button class="cancel-btn" onclick="cancelRegistration('${reg.name}')">取消報名</button>
                         </div>
                     `).join('');
-
                     document.getElementById('registeredCount').textContent = data.registrations.length;
                     listEl.style.display = 'block';
                 }
-            } catch (error) {
-                console.error('Error loading list:', error);
-            }
+            } catch (err) { console.error('Error:', err); }
         }
 
-        // Cancel Registration
         async function cancelRegistration(name) {
             if (!confirm(`確定要取消 ${name} 的報名嗎？`)) return;
-
             try {
-                const formData = new FormData();
-                formData.append('action', 'cancel');
-                formData.append('name', name);
-
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
+                const fd = new FormData();
+                fd.append('action', 'cancel'); fd.append('name', name);
+                const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
+                const result = await res.json();
                 if (result.success || result.status === 'ok') {
-                    showMessage(`已取消 ${name} 的報名`);
+                    showToast(`已取消 ${name} 的報名`);
                     loadRegisteredList();
                 } else {
-                    showMessage('取消失敗，請重試', 'error');
+                    showToast('取消失敗，請重試', 'error');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('發生錯誤', 'error');
-            }
+            } catch (err) { showToast('發生錯誤', 'error'); }
         }
 
-        // Load data on page load
+        // ==================== INIT ====================
         window.addEventListener('load', function() {
-            setTimeout(() => {
-                loadRestaurantResults();
-                loadDateResults();
-                loadRegisteredList();
-            }, 500);
+            createSparkles();
+            loadWelcomeClassmates();
         });
     </script>
 </body>
