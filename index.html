@@ -182,13 +182,25 @@
 
         /* Hero Banner for each tab */
         .tab-hero {
-            text-align: center; padding: 2.5rem 2rem 1rem;
+            text-align: center; padding: 1.5rem 2rem 0.5rem;
         }
         .tab-hero h2 {
             font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2.2rem;
             color: #2C3E50; margin-bottom: 0.5rem;
         }
         .tab-hero p { color: #8B5E3C; font-size: 1.05rem; }
+        .calendar-section{max-width:1000px;margin:0 auto 1.5rem;padding:0 2rem}
+        .calendar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+        .month-card{background:rgba(255,255,255,.6);border:1px solid rgba(212,165,116,.3);border-radius:10px;padding:.8rem;text-align:center}
+        .month-card.highlight{border-color:#D4A574;background:rgba(212,165,116,.12);box-shadow:0 2px 8px rgba(212,165,116,.2)}
+        .month-title{font-family:'DFKai-SB','標楷體','BiauKai',serif;font-size:.95rem;font-weight:700;color:#2C3E50;margin-bottom:.4rem}
+        .month-card.highlight .month-title{color:#8B5E3C}
+        .cal-header{display:grid;grid-template-columns:repeat(7,1fr);font-size:.65rem;color:#8B5E3C;font-weight:600;margin-bottom:.15rem}
+        .cal-body{display:grid;grid-template-columns:repeat(7,1fr);font-size:.7rem;color:#2C3E50;line-height:1.6}
+        .cal-body .sun{color:#C0392B}.cal-body .sat{color:#2980B9}.cal-body .empty{visibility:hidden}
+        .cal-body .weekend-highlight{background:rgba(212,165,116,.25);border-radius:3px;font-weight:700}
+        @media(max-width:768px){.calendar-grid{grid-template-columns:repeat(3,1fr)}}
+        @media(max-width:480px){.calendar-grid{grid-template-columns:repeat(2,1fr)}}
 
         /* Info Cards */
         .info-cards {
@@ -538,6 +550,24 @@
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
+                                    <div class="restaurant-name">九瀧唐景觀宴會</div>
+                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中北屯大坑<br>菜系：粵菜<br>180°百萬夜景</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">景觀</span><span class="restaurant-tag">停車20+台</span></div>
+                                <a href="https://www.google.com/maps/search/九瀧唐景觀宴會+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
+                                    <div class="restaurant-name">膳馨民間創作料理</div>
+                                    <div class="restaurant-rating">⭐ 4.5</div>
+                                </div>
+                                <div class="restaurant-details">地點：台中西區<br>菜系：創意台菜<br>適合長輩</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">適合聚餐</span><span class="restaurant-tag">公有停車場</span></div>
+                                <a href="https://www.google.com/maps/search/膳馨民間創作料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                            </div>
+                            <div class="restaurant-card">
+                                <div class="restaurant-header">
                                     <div class="restaurant-name">厝秘功夫菜</div>
                                     <div class="restaurant-rating">⭐ 4.5</div>
                                 </div>
@@ -612,7 +642,7 @@ O��[ۏ���[ۈ�[YOH�
                                     <div class="restaurant-name">立軒閣文化廚苑</div>
                                     <div class="restaurant-rating">⭐ 4.3</div>
                                 </div>
-                                <div class="restaurant-details">地點：彰化市<br>菜系：中式料理<br>白平老宅</div>
+                                <div class="restaurant-details">地點：彰化市<br>菜系：中式料理<br>百年老宅</div>
                                 <div class="restaurant-tags"><span class="restaurant-tag">老宅特色</span><span class="restaurant-tag">交通便利</span></div>
                                 <a href="https://www.google.com/maps/search/立軒閣文化廚苑+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
                             </div>
@@ -713,6 +743,11 @@ O��[ۏ���[ۈ�[YOH�
                     <p>選擇最適合的聚會日期，七八月週末等你來</p>
                 </div>
 
+                
+                <div class="calendar-section">
+                    <h3 class="section-title">2026 年曆參考</h3>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
                 <div class="container">
                     <h3 class="section-title">投票選日期</h3>
                     <div class="form-section">
@@ -739,14 +774,14 @@ O��[ۏ���[ۈ�[YOH�
                                     <optgroup label="8月 2026">
                                         <option value="2026-08-01">8月1日 (星期六)</option>
                                         <option value="2026-08-02">8月2日 (星期日)</option>
-                                        <option value="2026-08-04">8月8日 (星期六)</option>
+                                        <option value="2026-08-08">8月8日 (星期六)</option>
                                         <option value="2026-08-09">8月9日 (星期日)</option>
                                         <option value="2026-08-15">8月15日 (星期六)</option>
                                         <option value="2026-08-16">8月16日 (星期日)</option>
                                         <option value="2026-08-22">8月22日 (星期六)</option>
                                         <option value="2026-08-23">8月23日 (星期日)</option>
                                         <option value="2026-08-29">8月29日 (星期六)</option>
-                                        <option value="2026-04-30">8月30日 (星期日)</option>
+                                        <option value="2026-08-30">8月30日 (星期日)</option>
                                     </optgroup>
                                     <option value="其他">其他日期</option>
                                 </select>
@@ -774,7 +809,7 @@ O��[ۏ���[ۈ�[YOH�
                                         <option value="2026-08-16">8月16日 (星期日)</option>
                                         <option value="2026-08-22">8月22日 (星期六)</option>
                                         <option value="2026-08-23">8月23日 (星期日)</option>
-                                        <option value="2026-04-29">8月29日 (星期六)</option>
+                                        <option value="2026-08-29">8月29日 (星期六)</option>
                                         <option value="2026-08-30">8月30日 (星期日)</option>
                                     </optgroup>
                                     <option value="其他">其他日期</option>
@@ -838,6 +873,8 @@ O��[ۏ���[ۈ�[YOH�
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbIuLHttMa1eAggOjt0IrkN7NHTg5aMRoQAWQpW2yPWFNKDC4EMZij6dg49_3ZmGgOGA/exec';
 
         // ==================== SPARKLES ====================
+        
+        function generateCalendar(){var g=document.getElementById("calendarGrid");if(!g)return;var dn=["日","一","二","三","四","五","六"],mn=["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],hl=[6,7];for(var m=0;m<12;m++){var c=document.createElement("div");c.className="month-card"+(hl.includes(m)?" highlight":"");var t=document.createElement("div");t.className="month-title";t.textContent=mn[m];c.appendChild(t);var h=document.createElement("div");h.className="cal-header";dn.forEach(function(d){var s=document.createElement("span");s.textContent=d;h.appendChild(s)});c.appendChild(h);var b=document.createElement("div");b.className="cal-body";var fd=new Date(2026,m,1).getDay(),dim=new Date(2026,m+1,0).getDate();for(var e=0;e<fd;e++){var s=document.createElement("span");s.className="empty";s.textContent=".";b.appendChild(s)}for(var d=1;d<=dim;d++){var dow=(fd+d-1)%7,s=document.createElement("span");s.textContent=d;if(dow===0)s.className="sun";else if(dow===6)s.className="sat";if(hl.includes(m)&&(dow===0||dow===6))s.classList.add("weekend-highlight");b.appendChild(s)}c.appendChild(b);g.appendChild(c)}}
         function createSparkles() {
             const container = document.getElementById('sparkles');
             for (let i = 0; i < 30; i++) {
@@ -1143,6 +1180,7 @@ O��[ۏ���[ۈ�[YOH�
         // ==================== INIT ====================
         window.addEventListener('load', function() {
             createSparkles();
+        generateCalendar();
             loadWelcomeClassmates();
         });
     </script>
