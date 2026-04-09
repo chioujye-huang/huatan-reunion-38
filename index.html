@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>花壇國中 三年八班 畢業33週年同學會</title>
-    <!-- 標楷體為系統字型，無需外部載入 -->
+    <title>è±å£åä¸­ ä¸å¹´å«ç­ ç¢æ¥­33é±å¹´åå­¸æ</title>
+    <!-- æ¨æ¥·é«çºç³»çµ±å­åï¼ç¡éå¤é¨è¼å¥ -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; width: 100%; overflow-x: hidden; }
         body {
-            font-family: 'DFKai-SB', h'標楷體', 'BiauKai', 'KaiTi', serif;
-            background-color: #1C1017;
-            color: #FFF5EE;
+            font-family: 'Times New Roman', 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', 'KaiTi', serif;
+            background-color: #F9F6F0;
+            color: #2C3E50;
             line-height: 1.8;
-        } 
+        }
 
         /* Animated Background */
         .animated-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;h
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background:
-                radial-gradient(circle at 20% 50%, rgba(212,131,107,0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(245,198,184,0.05) 0%, transparent 50%),
-                linear-gradient(135deg, #1C1017 0%, #2A1820 50%, #1C1017 100%);
+                radial-gradient(circle at 20% 50%, rgba(212,165,116,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139,94,60,0.05) 0%, transparent 50%),
+                linear-gradient(135deg, #F9F6F0 0%, #E8E2D8 50%, #F9F6F0 100%);
             z-index: -1; pointer-events: none;
         }
         .animated-circles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; pointer-events: none; }
         .circle { position: absolute; border-radius: 50%; opacity: 0.05; animation: float 20s infinite ease-in-out; }
-        .circle:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 10%; animation-delay: 0s; border: 2px solid #D4836B; }
-        .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s; border: 2px solid #F5C6B8; }
-        .circle:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 50%; animation-delay: 4s; border: 2px solid #D4836B; }
-        .circle:nth-child(4) { width: 180px; height: 180px; top: 20%; left: 60%; animation-delay: 6s; border: 2px solid #F5C6B8; }
-        .circle:nth-child(5) { width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 8s; border: 2px solid #D4836B; }
+        .circle:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 10%; animation-delay: 0s; border: 2px solid rgba(212,165,116,0.3); }
+        .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s; border: 2px solid rgba(212,165,116,0.3); }
+        .circle:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 50%; animation-delay: 4s; border: 2px solid rgba(212,165,116,0.3); }
+        .circle:nth-child(4) { width: 180px; height: 180px; top: 20%; left: 60%; animation-delay: 6s; border: 2px solid rgba(212,165,116,0.3); }
+        .circle:nth-child(5) { width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 8s; border: 2px solid rgba(212,165,116,0.3); }
         @keyframes float { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px,-20px) scale(1.05); } }
         .sparkles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-        .sparkle { position: absolute; width: 4px; height: 4px; background-color: #FFB7C5; border-radius: 50%; opacity: 0; animation: twinkle 3s infinite; }
+        .sparkle { position: absolute; width: 4px; height: 4px; background-color: #D4A574; border-radius: 50%; opacity: 0; animation: twinkle 3s infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; } }
 
         /* ==================== WELCOME PAGE ==================== */
-        .welcome-page {
+        .welcome-page { color: #F9F6F0;
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1000; display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            background: linear-gradient(135deg, #1C1017 0%, #261520 50%, #1C1017 100%);
+            background: linear-gradient(135deg, #2C3E50 0%, #3D5166 50%, #2C3E50 100%);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .welcome-page.hidden {
@@ -55,12 +55,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .welcome-header h1 {
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2.8rem;
-            color: #F5C6B8; text-shadow: 0 2px 15px rgba(212,131,107,0.4);
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-size: 2.8rem;
+            color: #D4A574; text-shadow: 0 2px 15px rgba(212,131,107,0.4);
             margin-bottom: 0.3rem;
         }
         .welcome-header .subtitle {
-            font-size: 1.4rem; color: #D4836B; margin-bottom: 0.3rem;
+            font-size: 1.4rem; color: #D4A574; margin-bottom: 0.3rem;
         }
         .welcome-header .year {
             font-size: 1rem; color: rgba(255,245,238,0.6); margin-bottom: 2rem;
@@ -71,8 +71,8 @@
             text-align: center; margin: 1.5rem 0; animation: fadeInUp 1.2s ease;
         }
         .classmates-section h3 {
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 1.1rem;
-            color: #D4836B; margin-bottom: 1rem;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-size: 1.1rem;
+            color: #D4A574; margin-bottom: 1rem;
             letter-spacing: 2px;
         }
         .classmates-names {
@@ -82,7 +82,7 @@
         }
         .classmate-chip {
             background: rgba(212,131,107,0.12); border: 1px solid rgba(212,131,107,0.3);
-            color: #F5C6B8; padding: 0.4rem 1rem; border-radius: 50px;
+            color: #D4A574; padding: 0.4rem 1rem; border-radius: 50px;
             font-size: 0.95rem; animation: chipIn 0.5s ease backwards;
             white-space: nowrap;
         }
@@ -101,12 +101,12 @@
 
         /* Enter Button */
         .enter-btn {
-            background: linear-gradient(135deg, #D4836B 0%, #F5C6B8 100%);
-            color: #1C1017; border: none; padding: 1rem 3rem;
+            background: linear-gradient(135deg, #D4A574 0%, #D4A574 100%);
+            color: #F9F6F0; border: none; padding: 1rem 3rem;
             font-size: 1.1rem; border-radius: 50px; cursor: pointer;
             font-weight: 700; transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(212,131,107,0.4);
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif;
             margin-top: 2rem; animation: fadeInUp 1.4s ease;
             letter-spacing: 2px;
         }
@@ -122,7 +122,7 @@
         /* Tab Navigation */
         .tab-nav {
             position: fixed; top: 0; left: 0; right: 0;
-            background: rgba(28,16,23,0.97); backdrop-filter: blur(12px);
+            background: rgba(44,62,80,0.97); backdrop-filter: blur(12px);
             z-index: 100; border-bottom: 1px solid rgba(212,131,107,0.3);
             padding: 0;
         }
@@ -132,8 +132,8 @@
         }
         .tab-nav-brand {
             display: flex; align-items: center; padding: 0.8rem 1.2rem;
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 0.9rem;
-            color: #F5C6B8; white-space: nowrap; border-right: 1px solid rgba(212,131,107,0.2);
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-size: 0.9rem;
+            color: #D4A574; white-space: nowrap; border-right: 1px solid rgba(212,131,107,0.2);
         }
         .tab-nav-tabs {
             display: flex; flex: 1; list-style: none;
@@ -150,10 +150,10 @@
             border-bottom: 3px solid transparent;
         }
         .tab-nav-tabs a:hover {
-            color: #F5C6B8; background: rgba(212,131,107,0.05);
+            color: #D4A574; background: rgba(212,165,116,0.08);
         }
         .tab-nav-tabs a.active {
-            color: #F5C6B8; border-bottom-color: #D4836B;
+            color: #D4A574; border-bottom-color: #D4A574;
             background: rgba(212,131,107,0.08);
         }
         .tab-nav-tabs .tab-icon { margin-right: 0.5rem; font-size: 1.1rem; }
@@ -170,14 +170,14 @@
 
         /* Section Title */
         .section-title {
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2rem;
-            color: #F5C6B8; margin: 1.5rem 0 1.5rem 0;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-size: 2rem;
+            color: #2C3E50; margin: 1.5rem 0 1.5rem 0;
             text-align: center; position: relative; padding-bottom: 1rem;
         }
         .section-title::after {
             content: ''; position: absolute; bottom: 0; left: 50%;
             transform: translateX(-50%); width: 80px; height: 3px;
-            background: linear-gradient(90deg, transparent, #D4836B, transparent);
+            background: linear-gradient(90deg, transparent, #D4A574, transparent);
         }
 
         /* Hero Banner for each tab */
@@ -185,10 +185,10 @@
             text-align: center; padding: 2.5rem 2rem 1rem;
         }
         .tab-hero h2 {
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 2.2rem;
-            color: #F5C6B8; margin-bottom: 0.5rem;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-size: 2.2rem;
+            color: #2C3E50; margin-bottom: 0.5rem;
         }
-        .tab-hero p { color: #D4836B; font-size: 1.05rem; }
+        .tab-hero p { color: #8B5E3C; font-size: 1.05rem; }
 
         /* Info Cards */
         .info-cards {
@@ -196,43 +196,43 @@
             gap: 1.5rem; margin: 2rem 0;
         }
         .card {
-            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.3);
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(212,165,116,0.3);
             border-radius: 10px; padding: 1.5rem; text-align: center;
             transition: all 0.3s ease;
         }
         .card:hover { transform: translateY(-3px); border-color: rgba(212,131,107,0.6); }
         .card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-        .card h3 { font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; color: #F5C6B8; margin-bottom: 0.5rem; }
-        .card p { color: rgba(255,245,238,0.8); font-size: 0.9rem; }
+        .card h3 { font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; color: #8B5E3C; margin-bottom: 0.5rem; }
+        .card p { color: #2C3E50; font-size: 0.9rem; }
 
         /* Form Styles */
         .form-section {
-            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.2);
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(212,165,116,0.3);
             border-radius: 12px; padding: 2rem; max-width: 700px; margin: 0 auto 2rem;
         }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label {
-            display: block; font-weight: 500; margin-bottom: 0.5rem; color: #F5C6B8;
+            display: block; font-weight: 500; margin-bottom: 0.5rem; color: #2C3E50;
         }
         .form-group input, .form-group select, .form-group textarea {
             width: 100%; padding: 0.8rem 1rem;
-            background: rgba(255,245,238,0.05); border: 1px solid rgba(212,131,107,0.3);
-            border-radius: 8px; color: #FFF5EE; font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
+            background: rgba(255,255,255,0.7); border: 1px solid rgba(212,165,116,0.4);
+            border-radius: 8px; color: #2C3E50; font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif;
             font-size: 1rem; transition: border-color 0.3s;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none; border-color: #D4836B;
+            outline: none; border-color: #D4A574;
         }
         .form-group textarea { min-height: 80px; resize: vertical; }
-        .form-group select option { background: #2A1820; color: #FFF5EE; }
-        .required::after { content: ' *'; color: #FF9999; }
+        .form-group select option { background: #F9F6F0; color: #2C3E50; }
+        .required::after { content: ' *'; color: #8B5E3C; }
 
         .btn {
             width: 100%; padding: 0.9rem;
-            background: linear-gradient(135deg, #D4836B, #F5C6B8);
-            color: #1C1017; border: none; border-radius: 8px;
+            background: linear-gradient(135deg, #2C3E50, #3D5166);
+            color: #F9F6F0; border: none; border-radius: 8px;
             font-size: 1rem; font-weight: 700; cursor: pointer;
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif;
             transition: all 0.3s ease;
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(212,131,107,0.4); }
@@ -242,22 +242,22 @@
             padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;
         }
         .form-message.success {
-            background: rgba(88,220,130,0.15); color: #58DC82;
+            background: rgba(88,220,130,0.15); color: #5A7247;
             border: 1px solid rgba(88,220,130,0.3);
         }
         .form-message.error {
-            background: rgba(220,88,88,0.15); color: #FF9999;
+            background: rgba(220,88,88,0.15); color: #8B5E3C;
             border: 1px solid rgba(220,88,88,0.3);
         }
 
         /* Registered List */
         .registered-list {
             max-width: 700px; margin: 2rem auto;
-            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.2);
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(212,165,116,0.3);
             border-radius: 12px; padding: 1.5rem;
         }
         .registered-list h4 {
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; color: #F5C6B8;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; color: #8B5E3C;
             margin-bottom: 1rem; font-size: 1.1rem;
         }
         .registered-item {
@@ -265,12 +265,12 @@
             padding: 0.7rem 1rem; border-bottom: 1px solid rgba(212,131,107,0.1);
         }
         .registered-item:last-child { border-bottom: none; }
-        .registered-name { color: #FFF5EE; font-weight: 500; }
+        .registered-name { color: #2C3E50; font-weight: 500; }
         .cancel-btn {
-            background: rgba(220,88,88,0.2); color: #FF9999;
+            background: rgba(220,88,88,0.2); color: #8B5E3C;
             border: 1px solid rgba(220,88,88,0.3); padding: 0.3rem 0.8rem;
             border-radius: 5px; cursor: pointer; font-size: 0.85rem;
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; transition: all 0.3s;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; transition: all 0.3s;
         }
         .cancel-btn:hover { background: rgba(220,88,88,0.4); }
 
@@ -281,13 +281,13 @@
         }
         .tab-btn {
             padding: 0.8rem 1.5rem; background: none; border: none;
-            color: rgba(255,245,238,0.5); font-size: 1rem; cursor: pointer;
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-weight: 500;
+            color: rgba(44,62,80,0.5); font-size: 1rem; cursor: pointer;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-weight: 500;
             border-bottom: 3px solid transparent; transition: all 0.3s;
             margin-bottom: -2px;
         }
-        .tab-btn.active { color: #F5C6B8; border-bottom-color: #D4836B; }
-        .tab-btn:hover { color: #F5C6B8; }
+        .tab-btn.active { color: #D4A574; border-bottom-color: #D4A574; }
+        .tab-btn:hover { color: #D4A574; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -297,23 +297,23 @@
             gap: 1.2rem; margin: 1.5rem 0;
         }
         .restaurant-card {
-            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.25);
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(212,165,116,0.3);
             border-radius: 10px; padding: 1.3rem; transition: all 0.3s;
         }
         .restaurant-card:hover { border-color: rgba(212,131,107,0.5); transform: translateY(-2px); }
         .restaurant-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
-        .restaurant-name { font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 1.1rem; color: #F5C6B8; font-weight: 700; }
-        .restaurant-rating { color: #F5C6B8; font-weight: 600; white-space: nowrap; }
-        .restaurant-details { font-size: 0.85rem; color: rgba(255,245,238,0.7); margin-bottom: 0.8rem; line-height: 1.8; }
+        .restaurant-name { font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; font-size: 1.1rem; color: #2C3E50; font-weight: 700; }
+        .restaurant-rating { color: #8B5E3C; font-weight: 600; white-space: nowrap; }
+        .restaurant-details { font-size: 0.85rem; color: rgba(44,62,80,0.7); margin-bottom: 0.8rem; line-height: 1.8; }
         .restaurant-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
         .restaurant-tag {
-            background: rgba(212,131,107,0.12); border: 1px solid rgba(212,131,107,0.25);
-            color: #D4836B; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem;
+            background: rgba(212,165,116,0.15); border: 1px solid rgba(212,165,116,0.35);
+            color: #8B5E3C; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem;
         }
         .restaurant-map-btn {
             display: block; text-align: center; padding: 0.5rem;
-            background: rgba(212,131,107,0.1); border: 1px solid rgba(212,131,107,0.3);
-            border-radius: 6px; color: #D4836B; text-decoration: none;
+            background: rgba(44,62,80,0.08); border: 1px solid rgba(44,62,80,0.2);
+            border-radius: 6px; color: #2C3E50; text-decoration: none;
             font-size: 0.85rem; transition: all 0.3s;
         }
         .restaurant-map-btn:hover { background: rgba(212,131,107,0.2); }
@@ -321,23 +321,23 @@
         /* Vote Results */
         .vote-results {
             margin-top: 1.5rem; padding: 1.2rem;
-            background: rgba(212,131,107,0.05); border: 1px solid rgba(212,131,107,0.2);
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(212,165,116,0.3);
             border-radius: 10px;
         }
         .vote-results h4 {
-            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; color: #F5C6B8;
+            font-family: 'DFKai-SB', 'æ¨æ¥·é«', 'BiauKai', serif; color: #8B5E3C;
             margin-bottom: 1rem; font-size: 1.05rem;
         }
         .vote-item { margin-bottom: 0.8rem; }
-        .vote-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.3rem; color: rgba(255,245,238,0.8); }
+        .vote-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.3rem; color: #2C3E50; }
         .vote-bar-container {
             background: rgba(212,131,107,0.1); border-radius: 4px; height: 24px; overflow: hidden;
         }
         .vote-bar {
-            background: linear-gradient(90deg, #D4836B, #F5C6B8);
+            background: linear-gradient(90deg, #D4A574, #D4A574);
             height: 100%; border-radius: 4px; min-width: 2px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; color: #1C1017; font-weight: 600;
+            font-size: 0.75rem; color: #F9F6F0; font-weight: 600;
             transition: width 0.5s ease;
         }
 
@@ -346,7 +346,7 @@
             position: fixed; bottom: 1.5rem; right: 1.5rem;
             width: 55px; height: 55px; border-radius: 50%;
             background: rgba(212,131,107,0.15); border: 2px solid rgba(212,131,107,0.4);
-            color: #F5C6B8; font-size: 1.5rem; cursor: pointer;
+            color: $D4@574; font-size: 1.5rem; cursor: pointer;
             z-index: 200; transition: all 0.3s; display: none;
             align-items: center; justify-content: center;
         }
@@ -361,13 +361,13 @@
         /* Toast Message */
         .toast {
             position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
-            background: rgba(28,16,23,0.95); border: 1px solid rgba(212,131,107,0.4);
-            color: #FFF5EE; padding: 0.8rem 1.5rem; border-radius: 8px;
+            background: rgba(44,62,80,0.95); border: 1px solid rgba(212,165,116,0.4);
+            color: #F9F6F0; padding: 0.8rem 1.5rem; border-radius: 8px;
             z-index: 300; animation: toastIn 0.3s ease;
             backdrop-filter: blur(10px);
         }
         .toast.success { border-color: rgba(88,220,130,0.4); }
-        .toast.error { border-color: rgba(220,88,88,0.4); color: #FF9999; }
+        .toast.error { border-color: rgba(220,88,88,0.4); color: #8B5E3C; }
         @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -10px); } to { opacity: 1; transform: translate(-50%, 0); } }
 
         /* Responsive */
@@ -399,20 +399,20 @@
     <!-- ==================== WELCOME PAGE ==================== -->
     <div class="welcome-page" id="welcomePage">
         <div class="welcome-header">
-            <h1>花壇國中 三年八班</h1>
-            <div class="subtitle">畢業33週年同學會</div>
-            <div class="year">2026 · 歡迎回家</div>
+            <h1>è±å£åä¸­ ä¸å¹´å«ç­</h1>
+            <div class="subtitle">ç¢æ¥­33é±å¹´åå­¸æ</div>
+            <div class="year">2026 Â· æ­¡è¿åå®¶</div>
         </div>
 
         <div class="classmates-section">
-            <h3>── 已報名同學 ──</h3>
+            <h3>ââ å·²å ±ååå­¸ ââ</h3>
             <div class="classmates-names" id="welcomeClassmates">
-                <div class="no-classmates">載入中...</div>
+                <div class="no-classmates">è¼å¥ä¸­...</div>
             </div>
             <div class="classmates-count" id="welcomeCount"></div>
         </div>
 
-        <button class="enter-btn" id="enterBtn" onclick="enterSite()">進 入 同 學 會</button>
+        <button class="enter-btn" id="enterBtn" onclick="enterSite()">é² å¥ å å­¸ æ</button>
     </div>
 
     <!-- ==================== MAIN APP ==================== -->
@@ -420,11 +420,11 @@
         <!-- Tab Navigation -->
         <nav class="tab-nav">
             <div class="tab-nav-inner">
-                <div class="tab-nav-brand">三年八班</div>
+                <div class="tab-nav-brand">ä¸å¹´å«ç­</div>
                 <ul class="tab-nav-tabs">
-                    <li><a href="#" class="active" onclick="switchPage(event, 'page-register')"><span class="tab-icon">📋</span>報名</a></li>
-                    <li><a href="#" onclick="switchPage(event, 'page-restaurant')"><span class="tab-icon">🍽️</span>餐廳選擇</a></li>
-                    <li><a href="#" onclick="switchPage(event, 'page-date')"><span class="tab-icon">📅</span>日期選擇</a></li>
+                    <li><a href="#" class="active" onclick="switchPage(event, 'page-register')"><span class="tab-icon">ð</span>å ±å</a></li>
+                    <li><a href="#" onclick="switchPage(event, 'page-restaurant')"><span class="tab-icon">ð½ï¸</span>é¤å»³é¸æ</a></li>
+                    <li><a href="#" onclick="switchPage(event, 'page-date')"><span class="tab-icon">ð</span>æ¥æé¸æ</a></li>
                 </ul>
             </div>
         </nav>
@@ -432,85 +432,95 @@
         <!-- Content Area -->
         <div class="content-area">
 
-            <!-- ===== PAGE 1: 報名 ===== -->
+            <!-- ===== PAGE 1: å ±å ===== -->
             <div class="tab-page active" id="page-register">
                 <div class="tab-hero">
-                    <h2>同學會報名</h2>
-                    <p>填寫表單確認參與，讓我們重溫青春年代</p>
+                    <h2>åå­¸æå ±å</h2>
+                    <p>å¡«å¯«è¡¨å®ç¢ºèªåèï¼è®æåéæº«éæ¥å¹´ä»£</p>
                 </div>
 
                 <div class="container">
                     <!-- Event Info -->
                     <div class="info-cards">
                         <div class="card">
-                            <div class="card-icon">📍</div>
-                            <h3>地點</h3>
-                            <p>台中/彰化</p>
-                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">由投票結果決定</p>
+                            <div class="card-icon">ð</div>
+                            <h3>å°é»</h3>
+                            <p>å°ä¸­/å½°å</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(44,62,80,0.5)">ç±æç¥¨çµææ±ºå®</p>
                         </div>
                         <div class="card">
-                            <div class="card-icon">📅</div>
-                            <h3>時間</h3>
-                            <p>7月-8月</p>
-                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">選擇參與日期</p>
+                            <div class="card-icon">ð</div>
+                            <h3>æé</h3>
+                            <p>7æ-8æ</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(44,62,80,0.5)">é¸æåèæ¥æ</p>
                         </div>
                         <div class="card">
-                            <div class="card-icon">🍽️</div>
-                            <h3>聚餐</h3>
-                            <p>餐廳聚餐</p>
-                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">享受美食，敘舊談心</p>
+                            <div class="card-icon">ð½ï¸</div>
+                            <h3>èé¤</h3>
+                            <p>é¤å»³èé¤</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(44,62,80,0.5)">äº«åç¾é£ï¼æèè«å¿</p>
                         </div>
                         <div class="card">
-                            <div class="card-icon">👥</div>
-                            <h3>人數</h3>
-                            <p>全班參與</p>
-                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(255,245,238,0.5)">誠摯邀請</p>
+                            <div class="card-icon">ð¥</div>
+                            <h3>äººæ¸</h3>
+                            <p>å¨ç­åè</p>
+                            <p style="font-size:0.8rem;margin-top:0.3rem;color:rgba(44,62,80,0.5)">èª æ¯éè«</p>
                         </div>
                     </div>
 
                     <!-- Registration Form -->
-                    <h3 class="section-title">填寫報名</h3>
+                    <h3 class="section-title">å¡«å¯«å ±å</h3>
                     <div class="form-section">
                         <form id="registrationForm">
                             <div class="form-message" id="registrationMessage" style="display:none;"></div>
                             <div class="form-group">
-                                <label for="regName" class="required">姓名</label>
-                                <input type="text" id="regName" placeholder="請輸入你的名字" required>
+                                <label for="regName" class="required">å§å</label>
+                                <input type="text" id="regName" placeholder="è«è¼¸å¥ä½ çåå­" required>
                             </div>
                             <div class="form-group">
-                                <label for="regPhone" class="required">電話</label>
+                                <label for="regPhone" class="required">é»è©±</label>
                                 <input type="tel" id="regPhone" placeholder="09XX-XXX-XXX" required>
                             </div>
                             <div class="form-group">
-                                <label for="regNotes">備註 (選填)</label>
-                                <textarea id="regNotes" placeholder="有任何問題或特殊需求嗎？"></textarea>
+                                <label for="regCount" class="required">åå äººæ¸</label>
+                                <select id="regCount" required>
+                                    <option value="1">1 äºº</option>
+                                    <option value="2">2 äºº</option>
+                                    <option value="3">3 äºº</option>
+                                    <option value="4">4 äºº</option>
+                                    <option value="5">5 äºº</option>
+                                    <option value="6">6 äºº</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn">確認報名</button>
+                            <div class="form-group">
+                                <label for="regNotes">åè¨» (é¸å¡«)</label>
+                                <textarea id="regNotes" placeholder="æä»»ä½åé¡æç¹æ®éæ±åï¼"></textarea>
+                            </div>
+                            <button type="submit" class="btn">ç¢ºèªå ±å</button>
                         </form>
                     </div>
 
                     <!-- Registered List -->
                     <div class="registered-list" id="registeredList" style="display:none;">
-                        <h4>已報名同學 (<span id="registeredCount">0</span>人)</h4>
+                        <h4>å·²å ±ååå­¸ (<span id="registeredCount">0</span>äºº)</h4>
                         <div id="registeredItemsContainer"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ===== PAGE 2: 餐廳選擇 ===== -->
+            <!-- ===== PAGE 2: é¤å»³ é¸æ ===== -->
             <div class="tab-page" id="page-restaurant">
                 <div class="tab-hero">
-                    <h2>餐廳選擇</h2>
-                    <p>瀏覽推薦餐廳，投票選出聚餐地點</p>
+                    <h2>é¤å»³é¸æ</h2>
+                    <p>çè¦½æ¨è¦é¤å»³ï¼æç¥¨é¸åºèé¤å°é»</p>
                 </div>
 
                 <div class="container">
                     <!-- Restaurant Recommendations -->
-                    <h3 class="section-title">推薦餐廳</h3>
+                    <h3 class="section-title">æ¨è¦é¤å»³</h3>
 
                     <div class="tabs">
-                        <button class="tab-btn active" onclick="switchRestaurantTab(event, 'taichung')">台中市 (5間)</button>
-                        <button class="tab-btn" onclick="switchRestaurantTab(event, 'changhua')">彰化市 (5間)</button>
+                        <button class="tab-btn active" onclick="switchRestaurantTab(event, 'taichung')">å°ä¸­å¸ (5é)</button>
+                        <button class="tab-btn" onclick="switchRestaurantTab(event, 'changhua')">å½°åå¸ (5é)</button>
                     </div>
 
                     <!-- Taichung -->
@@ -518,48 +528,48 @@
                         <div class="restaurants-grid">
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">馨苑小料理</div>
-                                    <div class="restaurant-rating">⭐ 4.7</div>
+                                    <div class="restaurant-name">é¦¨èå°æç</div>
+                                    <div class="restaurant-rating">â­ 4.7</div>
                                 </div>
-                                <div class="restaurant-details">地點：台中西區<br>菜系：台菜<br>米其林必比登推薦<br>人均：NT$600-1200</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">包廂</span><span class="restaurant-tag">免費停車</span></div>
-                                <a href="https://www.google.com/maps/search/馨苑小料理+台中西區" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å°ä¸­è¥¿å<br>èç³»ï¼å°è<br>ç±³å¶æå¿æ¯ç»æ¨è¦<br>äººåï¼NT$600-1200</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">åå»</span><span class="restaurant-tag">åè²»åè»</span></div>
+                                <a href="https://www.google.com/maps/search/é¦¨èå°æç+å°ä¸­è¥¿å" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">厝秘功夫菜</div>
-                                    <div class="restaurant-rating">⭐ 4.5</div>
+                                    <div class="restaurant-name">åç§åå¤«è</div>
+                                    <div class="restaurant-rating">â­ 4.5</div>
                                 </div>
-                                <div class="restaurant-details">地點：台中西屯/大里<br>菜系：台菜合菜<br>圓桌包廂可容15-20人</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">大包廂</span><span class="restaurant-tag">停車場</span></div>
-                                <a href="https://www.google.com/maps/search/厝秘功夫菜+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å°ä¸­è¥¿å±¯/e¤§é<br>èç³»ï¼å°èåè<br>åæ¡åå»å¯å®¹15-20äºº</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">å¤§åå»</span><span class="restaurant-tag">åè»å ´</span></div>
+                                <a href="https://www.google.com/maps/search/åç§åå¤«è+å°ä¸­" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">九瀧唐景觀宴會</div>
-                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                    <div class="restaurant-name">ä¹ç§åæ¯è§å®´æ</div>
+                                    <div class="restaurant-rating">â­ 4.4</div>
                                 </div>
-                                <div class="restaurant-details">地點：台中北屯大坑<br>菜系：粵菜<br>180°百萬夜景</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">景觀</span><span class="restaurant-tag">停車20+台</span></div>
-                                <a href="https://www.google.com/maps/search/九瀧唐景觀宴會+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å°ä¸­åå±¯å¤§å<br>èç³»ï¼ç²µè<br>180Â°ç¾è¬å¤æ¯</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">æ¯è§</span><span class="restaurant-tag">åè»20+å°</span></div>
+                                <a href="https://www.google.com/maps/search/ä¹ç§åæ¯è§å®´æ+å°ä¸­" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">膳馨民間創作料理</div>
-                                    <div class="restaurant-rating">⭐ 4.5</div>
+                                    <div class="restaurant-name">è³é¦¨æ°éåµä½æç</div>
+                                    <div class="restaurant-rating">â­ 4.5</div>
                                 </div>
-                                <div class="restaurant-details">地點：台中西區<br>菜系：創意台菜<br>適合長輩</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">適合聚餐</span><span class="restaurant-tag">公有停車場</span></div>
-                                <a href="https://www.google.com/maps/search/膳馨民間創作料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å°ä¸­è¥¿å<br>èç³»ï¼åµæå°è<br>é©åé·è¼©</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">é©åèé¤</span><span class="restaurant-tag">å¬æåè»å ´</span></div>
+                                <a href="https://www.google.com/maps/search/è³é¦¨æ°éåµä½æç+å°ä¸­" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">全鴨坊烤鴨料理</div>
-                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                    <div class="restaurant-name">å¨é´¨åç¤é´¨æç</div>
+                                    <div class="restaurant-rating">â­ 4.4</div>
                                 </div>
-                                <div class="restaurant-details">地點：台中西屯<br>菜系：烤鴨合菜<br>米其林推薦</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">停車場</span><span class="restaurant-tag">包廂</span></div>
-                                <a href="https://www.google.com/maps/search/全鴨坊烤鴨料理+台中" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å°ä¸­è¥¿å±¯<br>èç³»ï¼ç¤é´¨åè<br>ç±³å¶ææ¨è¦</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">åè»å ´</span><span class="restaurant-tag">åå»</span></div>
+                                <a href="https://www.google.com/maps/search/å¨é´¨åç¤é´¨æç+å°ä¸­" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                         </div>
                     </div>
@@ -569,161 +579,260 @@
                         <div class="restaurants-grid">
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">松柏軒景觀餐廳</div>
-                                    <div class="restaurant-rating">⭐ 4.9</div>
+                                    <div class="restaurant-name">æ¾æè»æ¯è§é¤å»³</div>
+                                    <div class="restaurant-rating">â­ 4.9</div>
                                 </div>
-                                <div class="restaurant-details">地點：彰化永靖<br>菜系：私廚套餐<br>日式庭園</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">免費停車</span><span class="restaurant-tag">日式庭園</span></div>
-                                <a href="https://www.google.com/maps/search/松柏軒景觀餐廳+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å½°åæ°¸é<br>èç³»ï¼ç§å»å¥é¤<br>æ¥å¼åº­å</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">åè²»åè»</span><span class="restaurant-tag">æ¥å¼åº­å</span></div>
+                                <a href="https://www.google.com/maps/search/æ¾æè»æ¯è§é¤å»³+å½°å" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">農食憶</div>
-                                    <div class="restaurant-rating">⭐ 4.6</div>
+                                    <div class="restaurant-name">è¾²é£æ¶ ð»</div>
+                                    <div class="restaurant-rating">â­ 4.6</div>
                                 </div>
-                                <div class="restaurant-details">地點：彰化市<br>菜系：台菜辦桌<br>包廂附投影</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">包廂</span><span class="restaurant-tag">投影設備</span></div>
-                                <a href="https://www.google.com/maps/search/農食憶+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å½°åå¸<br>èç³»ï¼æ¸¯å¼çéµ<br>åèç±ç</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">åè²»åè»</span><span class="restaurant-tag">æ¸¯å¼</span></div>
+                                <a href="https://www.google.com/maps/search/è¾²é£æ¶+å½°å" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">品八方燒鵝</div>
-                                    <div class="restaurant-rating">⭐ 4.4</div>
+                                    <div class="restaurant-name">åå«æ¹çéµ </div>
+                                    <div class="restaurant-rating">â­ 4.4</div>
                                 </div>
-                                <div class="restaurant-details">地點：彰化市<br>菜系：港式燒鵝<br>合菜熱炒</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">路邊停車</span><span class="restaurant-tag">港式</span></div>
-                                <a href="https://www.google.com/maps/search/品八方燒鵝+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å½°åå¸<br>èç³»ï¼æ¸¯å¼çéµ<br>åèç±ç</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">è·¯éåè»</span><span class="restaurant-tag">æ¸¯å¼</span></div>
+                                <a href="https://www.google.com/maps/search/åå«æ¹çéµ+å½°å" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">京江小棧</div>
-                                    <div class="restaurant-rating">⭐ 4.8</div>
+                                    <div class="restaurant-name">äº¬æ±å°æ£§</div>
+                                    <div class="restaurant-rating">â­ 4.8</div>
                                 </div>
-                                <div class="restaurant-details">地點：彰化市<br>菜系：複合式料理<br>白飯飲料吃到飽</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">包廂</span><span class="restaurant-tag">飲料吃到飽</span></div>
-                                <a href="https://www.google.com/maps/search/京江小棧+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å½°åå¸<br>èç³»ï¼è¤åå¼æç<br>ç½é£¯é£²æåå°é£½</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">åå»</span><span class="restaurant-tag">é£²æåå°é£½</span></div>
+                                <a href="https://www.google.com/maps/search/äº¬æ±å°æ£§+å½°å" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                             <div class="restaurant-card">
                                 <div class="restaurant-header">
-                                    <div class="restaurant-name">立軒閣文化廚苑</div>
-                                    <div class="restaurant-rating">⭐ 4.3</div>
+                                    <div class="restaurant-name">ç«è»é£æåå»è</div>
+                                    <div class="restaurant-rating">â­ 4.3</div>
                                 </div>
-                                <div class="restaurant-details">地點：彰化市<br>菜系：中式料理<br>百年老宅</div>
-                                <div class="restaurant-tags"><span class="restaurant-tag">老宅特色</span><span class="restaurant-tag">交通便利</span></div>
-                                <a href="https://www.google.com/maps/search/立軒閣文化廚苑+彰化" target="_blank" class="restaurant-map-btn">查看地圖</a>
+                                <div class="restaurant-details">å°é»ï¼å½°åå¸<br>èç³»ï¼ä¸­å¼æç<br>ç¾å¹´èå®</div>
+                                <div class="restaurant-tags"><span class="restaurant-tag">èå®ç¹è²</span><span class="restaurant-tag">äº¤éä¾¿å©</span></div>
+                                <a href="https://www.google.com/maps/search/ç«è»é£æåå»è+å½°å" target="_blank" class="restaurant-map-btn">æ¥çå°å</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Restaurant Vote -->
-                    <h3 class="section-title">投票選餐廳</h3>
+                    <h3 class="section-title">æç¥¨é¸é¤å»³</h3>
                     <div class="form-section">
                         <form id="restaurantVoteForm">
                             <div class="form-message" id="restaurantVoteMessage" style="display:none;"></div>
                             <div class="form-group">
-                                <label for="restaurantVoteName" class="required">姓名</label>
-                                <input type="text" id="restaurantVoteName" placeholder="請輸入你的名字" required>
+                                <label for="restaurantVoteName" class="required">å§å</label>
+                                <input type="text" id="restaurantVoteName" placeholder="è«è¼¸å¥ä½ çåå­" required>
                             </div>
                             <div class="form-group">
-                                <label for="restaurantVoteSelect" class="required">選擇餐廳</label>
-                                <select id="restaurantVoteSelect" required>
-                                    <option value="">-- 選擇餐廳 --</option>
-                                    <optgroup label="台中市">
-                                        <option value="馨苑小料理">馨苑小料理 (台中西區)</option>
-                                        <option value="厝秘功夫菜">厝秘功夫菜 (台中西屯/大里)</option>
-                                        <option value="九瀧唐景觀宴會">九瀧唐景觀宴會 (台中北屯)</option>
-                                        <option value="膳馨民間創作料理">膳馨民間創作料理 (台中西區)</option>
-                                        <option value="全鴨坊烤鴨料理">全鴨坊烤鴨料理 (台中西屯)</option>
+                                <label for="restaurantVote1" class="required">ç¬¬ä¸å¿é¡</label>
+                                <select id="restaurantVote1" required>
+                                    <option value="">-- é¸æé¤å»³ --</option>
+                                    <optgroup label="å°ä¸­å¸">
+                                        <option value="é¦¨èå°æç">é¦¨èå°æç (å°ä¸­è¥¿å)</option>
+                                        <option value="åç§åå¤«è">åç§åå¤«è (å°ä¸­è¥¿å±¯/å¤§é)</option>
+                                        <option value="ä¹ç§åæ¯è§å®´æ">ä¹ç§åæ¯è§å®´æ (å°ä¸­åå±¯)</option>
+                                        <option value="è³é¦¨æ°éåµä½æç">è³é¦¨æ°éåµä½æç (å°ä¸­è¥¿å)</option>
+                                        <option value="å¨é´¨åç¤é´¨æç">å¨é´¨åç¤é´¨æç (å°ä¸­è¥¿å±¯)</option>
                                     </optgroup>
-                                    <optgroup label="彰化市">
-                                        <option value="松柏軒景觀餐廳">松柏軒景觀餐廳 (彰化永靖)</option>
-                                        <option value="農食憶">農食憶 (彰化市)</option>
-                                        <option value="品八方燒鵝">品八方燒鵝 (彰化市)</option>
-                                        <option value="京江小棧">京江小棧 (彰化市)</option>
-                                        <option value="立軒閣文化廚苑">立軒閣文化廚苑 (彰化市)</option>
+                                    <optgroup label="å½°åå¸">
+                                        <option value="æ¾æè»æ¯è§é¤å»³">æ¾æè»æ¯è§é¤å»³ (å½°åæ°¸é)</option>
+                                        <option value="è¾²é£æ¶">è¾²é£æ¶ (å½°åå¸)</option>
+                                        <option value="åå«æ¹çéµ">åå«æ¹çéµ (å½°åå¸)</option>
+                                        <option value="äº¬æ±å°æ£§">äº¬æ±å°æ£§ (å½°åå¸)</option>
+                                        <option value="ç«è»é£æåå»è">ç«è»é£æåå»è (å½°åå¸)</option>
                                     </optgroup>
-                                    <option value="其他">其他</option>
+                                    <option value="å¶ä»">å¶ä»</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="restaurantVoteOther">推薦其他餐廳 (選填)</label>
-                                <textarea id="restaurantVoteOther" placeholder="如果選擇「其他」，請在此推薦餐廳及原因"></textarea>
+                                <label for="restaurantVote2">ç¬¬äºå¿é¡</label>
+                                <select id="restaurantVote2">
+                                    <option value="">-- å¯ä¸é¸ --</option>
+                                    <optgroup label="å°ä¸­å¸">
+                                        <option value="é¦¨èå°æç">é¦¨èå°æç (å°ä¸­è¥¿å)</option>
+                                        <option value="åç§åå¤«è">åç§åå¤«è (å°ä¸­è¥¿å±¯/e¤§é)</option>
+                                        <option value="ä¹ç§åæ¯è§å®´æ">ä¹ç§åæ¯è§å®´æ (å°ä¸­åå±¯)</option>
+                                        <option value="è³é¦¨æ°éåµä½æç">è³é¦¨æ°éåµä½æç (å°ä¸­è¥¿å)</option>
+                                        <option value="å¨é´¨åç¤é´¨æç">å¨é´¨åç¤é´¨æç (å°ä¸­è¥¿å±¯)</option>
+                                    </optgroup>
+                                    <optgroup label="å½°åå¸">
+                                        <option value="æ¾æè»æ¯è§é¤å»³">æ¾æè»æ¯è§é¤å»³ (å½°åæ°¸é)</option>
+                                        <option value="è¾²é£æ¶">è¾²é£æ¶ (å½°åå¸)</option>
+                                        <option value="åå«æ¹çéµ">åå«æ¹çéµ (å½°åå¸)</option>
+                                        <option value="äº¬æ±å°æ£§">äº¬æ±å°æ£§ (å½°åå¸)</option>
+                                        <option value="ç«è»é£æåå»è">ç«è»é£æåå»è (å½°åå¸)</option>
+                                    </optgroup>
+                                    <option value="å¶ä»">å¶ä»</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn">投票</button>
+                            <div class="form-group">
+                                <label for="restaurantVote3">ç¬¬ä¸å¿é¡</label>
+                                <select id="restaurantVote3">
+                                    <option value="">-- å¯ä¸é¸ --</option>
+                                    <optgroup label="å°ä¸­å¸">
+                                        <option value="é¦¨èå°æç">é¦¨èå°æç (å°ä¸­è¥¿å)</option>
+                                        <option value="åç§åå¤«è">åç§åå¤«è (å°ä¸­è¥¿å±¯/å¤§é)</option>
+                                        <option value="ä¹ç§åæ¯è§å®´æ">ä¹ç§åæ¯è§å®´æ (å°ä¸­åå±¯)</option>
+                                        <option value="è³é¦¨æ°éåµä½æç">è³é¦¨æ°éåµä½æç (å°ä¸­è¥¿å)</option>
+                                        <option value="å¨é´¨åç¤é´¨æç">å¨é´¨åç¤é´¨æç (å°ä¸­è¥¿å±¯)</option>
+                                    </optgroup>
+                                    <optgroup label="å½°åå¸">
+                                        <option value="æ¾æè»æ¯è§é¤å»³">æ¾æè»æ¯è§é¤å»³ (å½°åæ°¸é)</option>
+                                        <option value="è¾²é£æ¶">è¾²é£æ¶ (å½°åå¸)</option>
+                                        <option value="åå«æ¹çéµ">åå«æ¹çéµ (å½°åå¸)</option>
+                                        <option value="äº¬æ±å°æ£§">äº¬æ±å°æ£§ (å½°åå¸)</option>
+                                        <option value="ç«è»é£æåå»è">ç«è»é£æåå»è (å½°åå¸)</option>
+                                    </optgroup>
+                                    <option value="å¶ä»">å¶ä»</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="restaurantVoteOther">æ¨è¦å¶ä»é¤å»³ (é¸å¡«)</label>
+                                <textarea id="restaurantVoteOther" placeholder="å¦æé¸æãå¶ä»ãï¼è«å¨æ­¤æ¨è¦é¤å»³ååå "></textarea>
+                            </div>
+                            <button type="submit" class="btn">æç¥¨</button>
                         </form>
 
                         <div class="vote-results" id="restaurantVoteResults" style="display:none;">
-                            <h4>投票結果</h4>
+                            <h4>æç¥¨çµæ</h4>
                             <div id="restaurantResultsChart"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== PAGE 3: 日期選擇 ===== -->
+            <!-- ===== PAGE 3: æ¥æé¸æ ===== -->
             <div class="tab-page" id="page-date">
                 <div class="tab-hero">
-                    <h2>日期選擇</h2>
-                    <p>選擇最適合的聚會日期，七八月週末等你來</p>
+                    <h2>æ¥æé¸æ</h2>
+                    <p>é¸ææé©åçèææ¥æï¼ä¸å«æé±æ«ç­ä½ ä¾</p>
                 </div>
 
                 <div class="container">
-                    <h3 class="section-title">投票選日期</h3>
+                    <h3 class="section-title">æç¥¨é¸æ¥æ</h3>
                     <div class="form-section">
                         <form id="dateVoteForm">
                             <div class="form-message" id="dateVoteMessage" style="display:none;"></div>
                             <div class="form-group">
-                                <label for="dateVoteName" class="required">姓名</label>
-                                <input type="text" id="dateVoteName" placeholder="請輸入你的名字" required>
+                                <label for="dateVoteName" class="required">å§å</label>
+                                <input type="text" id="dateVoteName" placeholder="è«è¼¸å¥ä½ çåå­" required>
                             </div>
                             <div class="form-group">
-                                <label for="dateVoteSelect" class="required">選擇日期</label>
-                                <select id="dateVoteSelect" required>
-                                    <option value="">-- 選擇日期 --</option>
-                                    <optgroup label="7月 2026">
-                                        <option value="2026-07-04">7月4日 (星期六)</option>
-                                        <option value="2026-07-05">7月5日 (星期日)</option>
-                                        <option value="2026-07-11">7月11日 (星期六)</option>
-                                        <option value="2026-07-12">7月12日 (星期日)</option>
-                                        <option value="2026-07-18">7月18日 (星期六)</option>
-                                        <option value="2026-07-19">7月19日 (星期日)</option>
-                                        <option value="2026-07-25">7月25日 (星期六)</option>
-                                        <option value="2026-07-26">7月26日 (星期日)</option>
+                                <label for="dateVote1" class="required">ç¬¬ä¸å¿é¡</label>
+                                <select id="dateVote1" required>
+                                    <option value="">-- é¸ææ¥æ --</option>
+                                    <optgroup label="7æ 2026">
+                                        <option value="2026-07-04">7æ4æ¥ (ææå­)</option>
+                                        <option value="2026-07-05">7æ5f¥ (æææ¥)</option>
+                                        <option value="2026-07-11">7æ11æ¥ (ææå­)</option>
+                                        <option value="2026-07-12">7æ12æ¥ (æææ¥)</option>
+                                        <option value="2026-07-18">7æ18æ¥ (ææå­)</option>
+                                        <option value="2026-07-19">7æ19æ¥ (æææ¥)</option>
+                                        <option value="2026-07-25">7æ25æ¥ (ææå­)</option>
+                                        <option value="2026-07-26">7æ26æ¥ (æææ¥)</option>
                                     </optgroup>
-                                    <optgroup label="8月 2026">
-                                        <option value="2026-08-01">8月1日 (星期六)</option>
-                                        <option value="2026-08-02">8月2日 (星期日)</option>
-                                        <option value="2026-08-08">8月8日 (星期六)</option>
-                                        <option value="2026-08-09">8月9日 (星期日)</option>
-                                        <option value="2026-08-15">8月15日 (星期六)</option>
-                                        <option value="2026-08-16">8月16日 (星期日)</option>
-                                        <option value="2026-08-22">8月22日 (星期六)</option>
-                                        <option value="2026-08-23">8月23日 (星期日)</option>
-                                        <option value="2026-08-29">8月29日 (星期六)</option>
-                                        <option value="2026-08-30">8月30日 (星期日)</option>
+                                    <optgroup label="8æ 2026">
+                                        <option value="2026-08-01">8æ1æ¥ (ææå­)</option>
+                                        <option value="2026-08-02">8æ2æ¥ (æææ¥)</option>
+                                        <option value="2026-08-08">8æ8æ¥ (ææå­)</option>
+                                        <option value="2026-08-09">8æ9æ¥ (æææ¥)</option>
+                                        <option value="2026-08-15">8æ15æ¥ (ææå­)</option>
+                                        <option value="2026-08-16">8æ16æ¥ (æææ¥)</option>
+                                        <option value="2026-08-22">8æ22æ¥ (ææå­)</option>
+                                        <option value="2026-08-23">8æ23æ¥ (æææ¥)</option>
+                                        <option value="2026-08-29">8æ29æ¥ (ææå­)</option>
+                                        <option value="2026-08-30">8æ30æ¥ (æææ¥)</option>
                                     </optgroup>
-                                    <option value="其他">其他日期</option>
+                                    <option value="å¶ä»">å¶ä»æ¥æ</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="dateVoteOther">建議其他日期 (選填)</label>
-                                <textarea id="dateVoteOther" placeholder="如果選擇「其他日期」，請在此建議日期及理由"></textarea>
+                                <label for="dateVote2">ç¬¬äºå¿é¡</label>
+                                <select id="dateVote2">
+                                    <option value="">-- å¯ä¸é¸ --</option>
+                                    <optgroup label="7æ 2026">
+                                        <option value="2026-07-04">7æ4æ¥ (ææå­)</option>
+                                        <option value="2026-07-05">7æ5æ¥ (æææ¥)</option>
+                                        <option value="2026-07-11">7æ11æ¥ (ææå­)</option>
+                                        <option value="2026-07-12">7æ12æ¥ (æææ¥)</option>
+                                        <option value="2026-07-18">7æ18æ¥ (ææå­)</option>
+                                        <option value="2026-07-19">7æ19æ¥ (æææ¥)</option>
+                                        <option value="2026-07-25">7æ25æ¥ (ææå­)</option>
+                                        <option value="2026-07-26">7æ26æ¥ (æææ¥)</option>
+                                    </optgroup>
+                                    <optgroup label="8æ 2026">
+                                        <option value="2026-08-01">8æ1æ¥ (ææå­)</option>
+                                        <option value="2026-08-02">8æ2æ¥ (æææ¥)</option>
+                                        <option value="2026-08-08">8æ8æ¥ (ææå­)</option>
+                                        <option value="2026-08-09">8æ9æ¥ (æææ¥)</option>
+                                        <option value="2026-08-15">8æ15æ¥ (ææå­)</option>
+                                        <option value="2026-08-16">8æ16æ¥ (æææ¥)</option>
+                                        <option value="2026-08-22">8æ22æ¥ (ææå­)</option>
+                                        <option value="2026-08-23">8æ23æ¥ (æææ¥)</option>
+                                        <option value="2026-08-29">8æ29æ¥ (ææå­)</option>
+                                        <option value="2026-08-30">8æ30æ¥ (æææ¥)</option>
+                                    </optgroup>
+                                    <option value="å¶ä»">å¶ä»æ¥æ</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn">投票</button>
+                            <div class="form-group">
+                                <label for="dateVote3">ç¬¬ä¸å¿é¡</label>
+                                <select id="dateVote3">
+                                    <option value="">-- å¯ä¸é¸ --</option>
+                                    <optgroup label="7æ 2026">
+                                        <option value="2026-07-04">7æ4æ¥ (ææå­)</option>
+                                        <option value="2026-07-05">7æ5æ¥ (æææ¥)</option>
+                                        <option value="2026-07-11">7æ11æ¥ (ææå­)</option>
+                                        <option value="2026-07-12">7æ12æ¥ (æææ¥)</option>
+                                        <option value="2026-07-18">7æ18æ¥ (ææå­)</option>
+                                        <option value="2026-07-19">7æ19æ¥ (æææ¥)</option>
+                                        <option value="2026-07-25">7æ25æ¥ (ææå­)</option>
+                                        <option value="2026-07-26">7æ26æ¥ (æææ¥)</option>
+                                    </optgroup>
+                                    <optgroup label="8æ 2026">
+                                        <option value="2026-08-01">8æ1æ¥ (ææå­)</option>
+                                        <option value="2026-08-02">8æ2æ¥ (æææ¥)</option>
+                                        <option value="2026-08-08">8æ8æ¥ (ææå­)</option>
+                                        <option value="2026-08-09">8æ9æ¥ (æææ¥)</option>
+                                        <option value="2026-08-15">8æ15æ¥ (ææå­)</option>
+                                        <option value="2026-08-16">8æ16æ¥ (æææ¥)</option>
+                                        <option value="2026-08-22">8æ22æ¥ (ææå­)</option>
+                                        <option value="2026-08-23">8æ23æ¥ (æææ¥)</option>
+                                        <option value="2026-08-29">8æ29æ¥ (ææå­)</option>
+                                        <option value="2026-08-30">8æ30æ¥ (æææ¥)</option>
+                                    </optgroup>
+                                    <option value="å¶ä»">å¶ä»æ¥æ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateVoteOther">å»ºè­°å¶ä»æ¥æ (é¸å¡«)</label>
+                                <textarea id="dateVoteOther" placeholder="å¦æé¸æãå¶ä»æ¥æãï¼è«å¨æ­¤å»ºè­°æ¥æåçç±"></textarea>
+                            </div>
+                            <button type="submit" class="btn">æç¥¨</button>
                         </form>
 
                         <div class="vote-results" id="dateVoteResults" style="display:none;">
-                            <h4>投票結果</h4>
+                            <h4>æç¥¨çµæ</h4>
                             <div id="dateResultsChart"></div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Music Toggle -->
-    <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="背景音樂">🎵</button>
+    <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="èæ¯é³æ¨">ð¹</button>
 
     <!-- Audio -->
     <audio id="bgMusic" loop>
@@ -733,7 +842,7 @@
     <script>
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbIuLHttMa1eAggOjt0IrkN7NHTg5aMRoQAWQpW2yPWFNKDC4EMZij6dg49_3ZmGgOGA/exec';
 
-        // ==================== SPARKLES ====================
+        // ==================== SPAXKLES ====================
         function createSparkles() {
             const container = document.getElementById('sparkles');
             for (let i = 0; i < 30; i++) {
@@ -758,14 +867,14 @@
                     container.innerHTML = data.registrations.map((reg, i) =>
                         `<div class="classmate-chip" style="animation-delay:${i * 0.08}s">${reg.name}</div>`
                     ).join('');
-                    countEl.textContent = `共 ${data.registrations.length} 位同學已報名`;
+                    countEl.textContent = `å± ${data.registrations.length} ä½åå­¸å·²å ±å`;
                 } else {
-                    container.innerHTML = '<div class="no-classmates">尚無同學報名，快來成為第一位！</div>';
+                    container.innerHTML = '<div class="no-classmates">å°ç¡åå­¸å ±åï¼å¿«ä¾æçºç¬¬ä¸ä½ï¼</div>';
                     countEl.textContent = '';
                 }
             } catch (error) {
                 document.getElementById('welcomeClassmates').innerHTML =
-                    '<div class="no-classmates">載入失敗，請進入後查看</div>';
+                    '<div class="no-classmates">è¼å¥å¤±æï¼è«é²å¥å¾æ¥ç</div>';
             }
         }
 
@@ -785,7 +894,7 @@
             bgMusic.play().then(() => {
                 musicPlaying = true;
                 musicBtn.classList.add('playing');
-                musicBtn.textContent = '🎵';
+                musicBtn.textContent = 'ð¹';
             }).catch(() => {
                 // Autoplay blocked - user can click the button
             });
@@ -826,12 +935,12 @@
             if (musicPlaying) {
                 bgMusic.pause();
                 btn.classList.remove('playing');
-                btn.textContent = '🔇';
+                btn.textContent = 'ð';
                 musicPlaying = false;
             } else {
                 bgMusic.play();
                 btn.classList.add('playing');
-                btn.textContent = '🎵';
+                btn.textContent = 'ðµ';
                 musicPlaying = true;
             }
         }
@@ -860,30 +969,31 @@
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
             const phone = document.getElementById('regPhone').value.trim();
+            const count = document.getElementById('regCount').value;
             const notes = document.getElementById('regNotes').value.trim();
 
             if (!name || !phone) {
-                showFormMessage('請填寫所有必填欄位', 'error', 'registrationMessage');
+                showFormMessage('è«å¡«å¯«ææå¿å¡«æ¬ä½', 'error', 'registrationMessage');
                 return;
             }
 
             try {
                 const fd = new FormData();
                 fd.append('name', name); fd.append('email', '');
-                fd.append('phone', phone); fd.append('notes', notes);
+                fd.append('phone', phone); fd.append('count', count); fd.append('notes', notes);
 
                 const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
                 const result = await res.json();
 
                 if (result.success || result.status === 'ok') {
-                    showFormMessage('報名成功！歡迎加入同學會', 'success', 'registrationMessage');
+                    showFormMessage('å ±åæåï¼æ­¡è¿å å¥åå­¸æ', 'success', 'registrationMessage');
                     document.getElementById('registrationForm').reset();
                     loadRegisteredList();
                 } else {
-                    showFormMessage('報名失敗，請重試', 'error', 'registrationMessage');
+                    showFormMessage('å ±åå¤±æï¼è«éè©¦', 'error', 'registrationMessage');
                 }
             } catch (err) {
-                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'registrationMessage');
+                showFormMessage('ç¼çé¯èª¤ï¼è«æª¢æ¥ç¶²è·¯é£ç·', 'error', 'registrationMessage');
             }
         });
 
@@ -891,31 +1001,34 @@
         document.getElementById('restaurantVoteForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('restaurantVoteName').value.trim();
-            const restaurant = document.getElementById('restaurantVoteSelect').value;
+            const r1 = document.getElementById('restaurantVote1').value;
+            const r2 = document.getElementById('restaurantVote2').value;
+            const r3 = document.getElementById('restaurantVote3').value;
             const other = document.getElementById('restaurantVoteOther').value.trim();
 
-            if (!name || !restaurant) {
-                showFormMessage('請填寫所有必填欄位', 'error', 'restaurantVoteMessage');
+            if (!name || !r1) {
+                showFormMessage('è«å¡«å¯«å§åä¸¦é¸æç¬¬ä¸å¿é¡', 'error', 'restaurantVoteMessage');
                 return;
             }
 
             try {
                 const fd = new FormData();
                 fd.append('action', 'voteRestaurant');
-                fd.append('name', name); fd.append('restaurant', restaurant); fd.append('other', other);
+                fd.append('name', name); fd.append('restaurant', r1);
+                fd.append('restaurant2', r2); fd.append('restaurant3', r3); fd.append('other', other);
 
                 const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
                 const result = await res.json();
 
                 if (result.success || result.status === 'ok') {
-                    showFormMessage('投票成功！感謝您的參與', 'success', 'restaurantVoteMessage');
+                    showFormMessage('æç¥¨æåï¼æè¬æ¨çåè', 'success', 'restaurantVoteMessage');
                     document.getElementById('restaurantVoteForm').reset();
                     loadRestaurantResults();
                 } else {
-                    showFormMessage('投票失敗，請重試', 'error', 'restaurantVoteMessage');
+                    showFormMessage('æç¥¨å¤±æï¼è«éè©¦', 'error', 'restaurantVoteMessage');
                 }
             } catch (err) {
-                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'restaurantVoteMessage');
+                showFormMessage('ç¼çé¯èª¤ï¼è«æª¢æ¥ç¶²è·¯é£ç·', 'error', 'restaurantVoteMessage');
             }
         });
 
@@ -923,31 +1036,34 @@
         document.getElementById('dateVoteForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('dateVoteName').value.trim();
-            const date = document.getElementById('dateVoteSelect').value;
+            const d1 = document.getElementById('dateVote1').value;
+            const d2 = document.getElementById('dateVote2').value;
+            const d3 = document.getElementById('dateVote3').value;
             const other = document.getElementById('dateVoteOther').value.trim();
 
-            if (!name || !date) {
-                showFormMessage('請填寫所有必填欄位', 'error', 'dateVoteMessage');
+            if (!name || !d1) {
+                showFormMessage('è«å¡«å¯«å§åä¸¦é¸æç¬¬ä¸å¿é¡', 'error', 'dateVoteMessage');
                 return;
             }
 
             try {
                 const fd = new FormData();
                 fd.append('action', 'voteDate');
-                fd.append('name', name); fd.append('date', date); fd.append('other', other);
+                fd.append('name', name); fd.append('date', d1);
+                fd.append('date2', d2); fd.append('date3', d3); fd.append('other', other);
 
                 const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
                 const result = await res.json();
 
                 if (result.success || result.status === 'ok') {
-                    showFormMessage('投票成功！感謝您的參與', 'success', 'dateVoteMessage');
+                    showFormMessage('æç¥¨æåï¼æè¬æ¨çåè', 'success', 'dateVoteMessage');
                     document.getElementById('dateVoteForm').reset();
                     loadDateResults();
                 } else {
-                    showFormMessage('投票失敗，請重試', 'error', 'dateVoteMessage');
+                    showFormMessage('æç¥¨å¤±æï¼è«éè©¦', 'error', 'dateVoteMessage');
                 }
             } catch (err) {
-                showFormMessage('發生錯誤，請檢查網路連線', 'error', 'dateVoteMessage');
+                showFormMessage('ç¼çé¯èª¤ï¼è«æª¢æ¥ç¶²è·¯é£ç·', 'error', 'dateVoteMessage');
             }
         });
 
@@ -962,7 +1078,7 @@
                     let max = Math.max(...data.results.map(r => r.count));
                     chart.innerHTML = data.results.map(item => `
                         <div class="vote-item">
-                            <div class="vote-label"><span>${item.restaurant || '其他'}</span><span>${item.count} 票</span></div>
+                            <div class="vote-label"><span>${item.restaurant || 'å¶ä»'}</span><span>${item.count} ç¥¨</span></div>
                             <div class="vote-bar-container">
                                 <div class="vote-bar" style="width:${max > 0 ? (item.count/max*100) : 0}%">${item.count > 0 ? item.count : ''}</div>
                             </div>
@@ -983,7 +1099,7 @@
                     let max = Math.max(...data.results.map(r => r.count));
                     chart.innerHTML = data.results.map(item => `
                         <div class="vote-item">
-                            <div class="vote-label"><span>${item.date || '其他'}</span><span>${item.count} 票</span></div>
+                            <div class="vote-label"><span>${item.date || 'å¶ä»'}</span><span>${item.count} ç¥¨</span></div>
                             <div class="vote-bar-container">
                                 <div class="vote-bar" style="width:${max > 0 ? (item.count/max*100) : 0}%">${item.count > 0 ? item.count : ''}</div>
                             </div>
@@ -1003,8 +1119,8 @@
                     const container = document.getElementById('registeredItemsContainer');
                     container.innerHTML = data.registrations.map(reg => `
                         <div class="registered-item">
-                            <span class="registered-name">${reg.name || '未知'}</span>
-                            <button class="cancel-btn" onclick="cancelRegistration('${reg.name}')">取消報名</button>
+                            <span class="registered-name">${reg.name || 'æªç¥'}</span>
+                            <button class="cancel-btn" onclick="cancelRegistration('${reg.name}')">åæ¶å ±å</button>
                         </div>
                     `).join('');
                     document.getElementById('registeredCount').textContent = data.registrations.length;
@@ -1014,19 +1130,19 @@
         }
 
         async function cancelRegistration(name) {
-            if (!confirm(`確定要取消 ${name} 的報名嗎？`)) return;
+            if (!confirm(`ç¢ºå®è¦åæ¶ ${name} çå ±ååï¼`)) return;
             try {
                 const fd = new FormData();
                 fd.append('action', 'cancel'); fd.append('name', name);
                 const res = await fetch(GOOGLE_APPS_SCRIPT_URL, { method: 'POST', body: fd });
                 const result = await res.json();
                 if (result.success || result.status === 'ok') {
-                    showToast(`已取消 ${name} 的報名`);
+                    showToast(`å·²åæ¶ ${name} çå ±å`);
                     loadRegisteredList();
                 } else {
-                    showToast('取消失敗，請重試', 'error');
+                    showToast('åæ¶å¤±æï¼è«éè©¦', 'error');
                 }
-            } catch (err) { showToast('發生錯誤', 'error'); }
+            } catch (err) { showToast('ç¼çé¯èª¤', 'error'); }
         }
 
         // ==================== INIT ====================
