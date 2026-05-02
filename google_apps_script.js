@@ -15,6 +15,13 @@ function tw(d) {
   return (d || new Date()).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
 }
 
+// 把電話正規化：去掉空白／連字號／括弧；若為 9 碼開頭 9（台灣手機去 0）則補回 0
+function normalizePhone(p) {
+  let s = (p || '').toString().trim().replace(/[\s\-\(\)]/g, '');
+  if (/^9\d{8}$/.test(s)) s = '0' + s;  // 952123456 -> 0952123456
+  return s;
+}
+
 function jsonOut(obj) {
   return ContentService
     .createTextOutput(JSON.stringify(obj))
@@ -25,7 +32,10 @@ function getSheet(ss, name) {
   let s = ss.getSheetByName(name);
   if (!s) {
     s = ss.insertSheet(name);
-    if (name === SHEET_REG)  s.appendRow(['姓名', '', '電話', '參加人數', '備註', '時間']);
+    if (name === SHEET_REG) {
+      s.appendRow(['姓名', '', '電話', '參加人數', '備註', '時間']);
+      s.getRange('C:C').setNumberFormat('@');  // 電話欄位強制文字格式，保留前導 0
+    }
     if (name === SHEET_DATE) s.appendRow(['姓名', '第一志願', '第二志願', '第三志願', '第四志願', '第五志願', '第六志願', '時間']);
     if (name === SHEET_REST) s.appendRow(['姓名', '第一志願', '第二志願', '第三志願', '推薦餐廳', '時間']);
   }
@@ -159,8 +169,8 @@ function doGet(e) {
     let found = false;
     for (let i = regData.length - 1; i >= 1; i--) {
       const rowName  = (regData[i][0] || '').toString().trim();
-      const rowPhone = (regData[i][2] || '').toString().trim();
-      if (rowName === cancelName && rowPhone === cancelPhone) {
+      const rowPhone = normalizePhone(regData[i][2]);
+      if (rowName === cancelName && rowPhone === normalizePhone(cancelPhone)) {
         regSh.deleteRow(i + 1);
         found = true;
         break;
@@ -214,10 +224,13 @@ function doGet(e) {
   // ── 預設：報名寫入 ──
   // 欄位順序：A 姓名 | B 留空 | C 電話 | D 參加人數 | E 備註 | F 時間
   const sh = getSheet(ss, SHEET_REG);
+  // 確保「電話」欄位為文字格式（覆蓋舊試算表沒設定的情況）
+  sh.getRange('C:C').setNumberFormat('@');
+  const phoneNorm = normalizePhone(e.parameter.phone);
   sh.appendRow([
     e.parameter.name || '',
     '',
-    e.parameter.phone || '',
+    phoneNorm,
     parseInt(e.parameter.attendees) || 1,
     e.parameter.note || '',
     tw()
