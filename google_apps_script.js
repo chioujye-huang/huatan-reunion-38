@@ -1,127 +1,186 @@
 // ============================================================
 // 花壇國中 三年八班 同學會 — Google Apps Script
-// 功能：報名寫入 + 報名狀態讀取 + 取消報名 + 餐廳投票（獨立分頁）
+// 後端試算表：花壇國中三年八班同學會報名表.xlsx (Google Drive)
+// 分頁：
+//   ■ 報名      欄位：A 姓名 | B (留空) | C 電話 | D 參加人數 | E 備註 | F 時間
+//   ■ 日期投票  欄位：A 姓名 | B-G 第一志願～第六志願 | H 時間
+//   ■ 餐廳投票  欄位：A 姓名 | B 第一志願 | C 第二志願 | D 第三志願 | E 推薦餐廳 | F 時間
 // ============================================================
 
+const SHEET_REG  = '報名';
+const SHEET_DATE = '日期投票';
+const SHEET_REST = '餐廳投票';
+
+function tw(d) {
+  return (d || new Date()).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+}
+
+function jsonOut(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function getSheet(ss, name) {
+  let s = ss.getSheetByName(name);
+  if (!s) {
+    s = ss.insertSheet(name);
+    if (name === SHEET_REG)  s.appendRow(['姓名', '', '電話', '參加人數', '備註', '時間']);
+    if (name === SHEET_DATE) s.appendRow(['姓名', '第一志願', '第二志願', '第三志願', '第四志願', '第五志願', '第六志願', '時間']);
+    if (name === SHEET_REST) s.appendRow(['姓名', '第一志願', '第二志願', '第三志願', '推薦餐廳', '時間']);
+  }
+  return s;
+}
+
 function doGet(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const action = (e.parameter.action || 'register').trim();
 
-  // ── 投票功能（寫入「投票結果」分頁）──
-  if (e.parameter.action === 'vote') {
-    var voteSheet = ss.getSheetByName('投票結果');
-    if (!voteSheet) {
-      voteSheet = ss.insertSheet('投票結果');
-      voteSheet.appendRow(['時間', '姓名', '偏好日期', '偏好餐廳', '推薦餐廳']);
-    }
-    voteSheet.appendRow([
-      new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
+  // ── 日期投票 (vote) ──
+  if (action === 'vote') {
+    const sh = getSheet(ss, SHEET_DATE);
+    sh.appendRow([
       e.parameter.name || '',
-      e.parameter.date || '',
-      e.parameter.restaurant || '',
-      e.parameter.recommend || ''
+      e.parameter.date1 || '',
+      e.parameter.date2 || '',
+      e.parameter.date3 || '',
+      e.parameter.date4 || '',
+      e.parameter.date5 || '',
+      e.parameter.date6 || '',
+      tw()
     ]);
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'success'
-    })).setMimeType(ContentService.MimeType.JSON);
+    // 同時若有餐廳偏好或推薦，寫到餐廳投票分頁
+    const restPref = e.parameter.restaurant || '';
+    const recommend = e.parameter.recommend || '';
+    if (restPref || recommend) {
+      const sr = getSheet(ss, SHEET_REST);
+      sr.appendRow([
+        e.parameter.name || '',
+        restPref,
+        '',
+        '',
+        recommend,
+        tw()
+      ]);
+    }
+    return jsonOut({ status: 'success' });
   }
 
-  // ── 投票結果統計 ──
-  if (e.parameter.action === 'voteResults') {
-    var voteSheet = ss.getSheetByName('投票結果');
-    if (!voteSheet) {
-      return ContentService.createTextOutput(JSON.stringify({
-        status: 'success', results: []
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
-    var data = voteSheet.getDataRange().getValues();
-    var counts = {};
-    for (var i = 1; i < data.length; i++) {
-      var restaurant = (data[i][3] || '').toString().trim();
-      if (restaurant) {
-        counts[restaurant] = (counts[restaurant] || 0) + 1;
+  // ── 餐廳投票 (restaurantVote) ──
+  if (action === 'restaurantVote') {
+    const sh = getSheet(ss, SHEET_REST);
+    sh.appendRow([
+      e.parameter.name || '',
+      e.parameter.r1 || '',
+      e.parameter.r2 || '',
+      e.parameter.r3 || '',
+      e.parameter.recommend || '',
+      tw()
+    ]);
+    return jsonOut({ status: 'success' });
+  }
+
+  // ── 投票結果 (日期 & 餐廳統計) ──
+  if (action === 'voteResults') {
+    // 日期：依志願加權（第一志願 6 分、第二 5 分、…、第六 1 分）
+    const result = { dateRanked: [], restaurant: [] };
+
+    const ds = ss.getSheetByName(SHEET_DATE);
+    if (ds) {
+      const data = ds.getDataRange().getValues();
+      const score = {}, totals = {};
+      for (let i = 1; i < data.length; i++) {
+        const picks = [data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6]]
+          .map(x => (x || '').toString().trim());
+        picks.forEach((p, idx) => {
+          if (!p) return;
+          score[p] = (score[p] || 0) + (6 - idx);
+          totals[p] = (totals[p] || 0) + 1;
+        });
       }
+      result.dateRanked = Object.keys(score).map(k => ({ name: k, score: score[k], count: totals[k] }))
+        .sort((a, b) => b.score - a.score);
     }
-    var results = [];
-    for (var key in counts) {
-      results.push({ name: key, count: counts[key] });
-    }
-    results.sort(function(a, b) { return b.count - a.count; });
 
-    return ContentService.createTextOutput(JSON.stringify({
-      status: 'success',
-      results: results
-    })).setMimeType(ContentService.MimeType.JSON);
+    const rs = ss.getSheetByName(SHEET_REST);
+    if (rs) {
+      const data = rs.getDataRange().getValues();
+      const counts = {};
+      for (let i = 1; i < data.length; i++) {
+        const picks = [data[i][1], data[i][2], data[i][3]].map(x => (x || '').toString().trim());
+        picks.forEach((p) => {
+          if (!p) return;
+          counts[p] = (counts[p] || 0) + 1;
+        });
+      }
+      result.restaurant = Object.keys(counts).map(k => ({ name: k, count: counts[k] }))
+        .sort((a, b) => b.count - a.count);
+    }
+
+    return jsonOut({ status: 'success', ...result });
   }
 
-  // ── 讀取報名狀態 ──
-  if (e.parameter.action === 'list') {
-    var regSheet = ss.getSheetByName('報名') || ss.getActiveSheet();
-    var data = regSheet.getDataRange().getValues();
-    var names = [];
-    var totalAttendees = 0;
-    for (var i = 1; i < data.length; i++) {
-      var name = (data[i][1] || '').toString().trim();
-      var att = parseInt(data[i][2]) || 1;
+  // ── 讀取報名狀態 (list) ──
+  if (action === 'list') {
+    const sh = getSheet(ss, SHEET_REG);
+    const data = sh.getDataRange().getValues();
+    const names = [];
+    let totalAttendees = 0;
+    for (let i = 1; i < data.length; i++) {
+      const name = (data[i][0] || '').toString().trim();
+      const att = parseInt(data[i][3]) || 1;
       if (name) {
         names.push(name);
         totalAttendees += att;
       }
     }
-    return ContentService.createTextOutput(JSON.stringify({
+    return jsonOut({
       status: 'success',
       count: names.length,
       totalAttendees: totalAttendees,
       names: names,
-      updatedAt: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
-    })).setMimeType(ContentService.MimeType.JSON);
+      updatedAt: tw()
+    });
   }
 
-  // ── 取消報名 ──
-  if (e.parameter.action === 'cancel') {
-    var regSheet = ss.getSheetByName('報名') || ss.getActiveSheet();
-    var cancelName = (e.parameter.name || '').toString().trim();
-    var cancelPhone = (e.parameter.phone || '').toString().trim();
+  // ── 取消報名 (cancel) ──
+  if (action === 'cancel') {
+    const sh = getSheet(ss, SHEET_REG);
+    const cancelName = (e.parameter.name || '').toString().trim();
+    const cancelPhone = (e.parameter.phone || '').toString().trim();
 
     if (!cancelName || !cancelPhone) {
-      return ContentService.createTextOutput(JSON.stringify({
-        status: 'error', message: '請提供姓名和電話'
-      })).setMimeType(ContentService.MimeType.JSON);
+      return jsonOut({ status: 'error', message: '請提供姓名和電話' });
     }
 
-    var data = regSheet.getDataRange().getValues();
-    var found = false;
-    for (var i = data.length - 1; i >= 1; i--) {
-      var rowName = (data[i][1] || '').toString().trim();
-      var rowPhone = (data[i][3] || '').toString().trim();
+    const data = sh.getDataRange().getValues();
+    let found = false;
+    for (let i = data.length - 1; i >= 1; i--) {
+      const rowName  = (data[i][0] || '').toString().trim();
+      const rowPhone = (data[i][2] || '').toString().trim();
       if (rowName === cancelName && rowPhone === cancelPhone) {
-        regSheet.deleteRow(i + 1);
+        sh.deleteRow(i + 1);
         found = true;
         break;
       }
     }
 
     if (found) {
-      return ContentService.createTextOutput(JSON.stringify({
-        status: 'success', message: cancelName + '，您的報名已取消'
-      })).setMimeType(ContentService.MimeType.JSON);
-    } else {
-      return ContentService.createTextOutput(JSON.stringify({
-        status: 'error', message: '找不到符合的報名資料，請確認姓名與電話是否正確'
-      })).setMimeType(ContentService.MimeType.JSON);
+      return jsonOut({ status: 'success', message: cancelName + '，您的報名已取消' });
     }
+    return jsonOut({ status: 'error', message: '找不到符合的報名資料，請確認姓名與電話是否正確' });
   }
 
-  // ── 報名寫入 ──
-  var regSheet = ss.getSheetByName('報名') || ss.getActiveSheet();
-  regSheet.appendRow([
-    new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
-    e.parameter.name,
-    e.parameter.attendees,
-    e.parameter.phone,
-    e.parameter.note || ''
+  // ── 預設：報名寫入 ──
+  // 欄位順序：A 姓名 | B 留空 | C 電話 | D 參加人數 | E 備註 | F 時間
+  const sh = getSheet(ss, SHEET_REG);
+  sh.appendRow([
+    e.parameter.name || '',
+    '',
+    e.parameter.phone || '',
+    parseInt(e.parameter.attendees) || 1,
+    e.parameter.note || '',
+    tw()
   ]);
-
-  return ContentService.createTextOutput(JSON.stringify({
-    status: 'success'
-  })).setMimeType(ContentService.MimeType.JSON);
+  return jsonOut({ status: 'success' });
 }
