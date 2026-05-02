@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>花壇國中 三年Յ�班 畢業33週年同學會</title>
-    <!-- 標楷體為系統字型，無需外部載入 -->
+    <title>花壇國中 三年八班 畢業33週年同學會</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; width: 100%; overflow-x: hidden; }
         body {
             font-family: 'Times New Roman', 'DFKai-SB', '標楷體', 'BiauKai', 'KaiTi', serif;
-            background-color: #F9F6F0;
-            color: #2C3E50;
-            line-height: 1.8;
+            background-color: #F9F6F0; color: #2C3E50; line-height: 1.8;
         }
 
         /* Animated Background */
         .animated-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background:
-                radial-gradient(circle at 20% 50%, rgba(212,165,]6,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(212,165,116,0.08) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(139,94,60,0.05) 0%, transparent 50%),
                 linear-gradient(135deg, #F9F6F0 0%, #E8E2D8 50%, #F9F6F0 100%);
             z-index: -1; pointer-events: none;
         }
         .animated-circles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-        .circle { position: absolute; border-radius: 50%; opacity: 0.05; animation: float 20s infinite ease-in-out; }
-        .circle:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 10%; animation-delay: 0s; border: 2px solid rgba(212,165,]6,0.3); }
-        .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s; border: 2px solid rgba(212,165,]6,0.3); }
-        .circle:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 50%; animation-delay: 4s; border: 2px solid rgba(212,165,]6,0.3); }
-        .circle:nth-child(4) { width: 180px; height: 180px; top: 20%; left: 60%; animation-delay: 6s; border: 2px solid rgba(212,165,]6,0.3); }
-        .circle:nth-child(5) { width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 8s; border: 2px solid rgba(212,165,]6,0.3); }
+        .circle { position: absolute; border-radius: 50%; opacity: 0.05; animation: float 20s infinite ease-in-out; border: 2px solid rgba(212,165,116,0.3); }
+        .circle:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 10%; animation-delay: 0s; }
+        .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s; }
+        .circle:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 50%; animation-delay: 4s; }
+        .circle:nth-child(4) { width: 180px; height: 180px; top: 20%; left: 60%; animation-delay: 6s; }
+        .circle:nth-child(5) { width: 120px; height: 120px; top: 80%; left: 20%; animation-delay: 8s; }
         @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
         .sparkles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; overflow: hidden; pointer-events: none; }
         .sparkle { position: absolute; width: 4px; height: 4px; background-color: #C4A574; border-radius: 50%; opacity: 0; animation: twinkle 3s infinite; }
@@ -43,13 +40,10 @@
             justify-content: center; align-items: center;
             background: linear-gradient(135deg, #2C3E50 0%, #3D5166 50%, #2C3E50 100%);
             transition: opacity 0.6s ease, transform 0.6s ease;
+            overflow-y: auto; padding: 2rem 1rem;
         }
-        .welcome-page.hidden {
-            opacity: 0; pointer-events: none; transform: scale(1.05);
-        }
-        .welcome-header {
-            text-align: center; animation: fadeInUp 1s ease;
-        }
+        .welcome-page.hidden { opacity: 0; pointer-events: none; transform: scale(1.05); }
+        .welcome-header { text-align: center; animation: fadeInUp 1s ease; }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -59,3 +53,864 @@
             color: #D4A574; text-shadow: 0 2px 15px rgba(212,131,107,0.4);
             margin-bottom: 0.3rem;
         }
+        .welcome-header h2 {
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif; font-size: 1.8rem;
+            color: #F9F6F0; margin-bottom: 1rem; letter-spacing: 4px;
+        }
+        .welcome-header p {
+            font-size: 1.05rem; color: rgba(249,246,240,0.8);
+            margin-bottom: 2.5rem; letter-spacing: 2px;
+        }
+        .welcome-divider {
+            width: 80px; height: 2px;
+            background: linear-gradient(90deg, transparent, #D4A574, transparent);
+            margin: 1.5rem auto 2rem;
+        }
+        .enter-btn {
+            background: linear-gradient(135deg, #D4A574 0%, #C4956A 100%);
+            color: #2C3E50; border: none; padding: 0.9rem 2.8rem;
+            font-family: 'DFKai-SB', '標楷體', serif; font-size: 1.15rem;
+            font-weight: bold; letter-spacing: 4px; cursor: pointer;
+            border-radius: 30px; box-shadow: 0 6px 20px rgba(212,165,116,0.35);
+            transition: all 0.3s ease;
+        }
+        .enter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(212,165,116,0.5);
+        }
+
+        /* Welcome page — registered roster */
+        .welcome-roster {
+            margin-top: 2.4rem;
+            padding: 1.4rem 1.8rem;
+            max-width: 720px; width: 92%;
+            background: rgba(249,246,240,0.08);
+            border: 1px solid rgba(212,165,116,0.35);
+            border-radius: 14px;
+            backdrop-filter: blur(4px);
+            text-align: center;
+            animation: fadeInUp 1.4s ease;
+        }
+        .welcome-roster-title {
+            color: #F4E0BC; font-size: 1.05rem;
+            letter-spacing: 3px; margin-bottom: 0.9rem;
+        }
+        .welcome-roster-title strong {
+            color: #D4A574; font-size: 1.4rem;
+            margin: 0 0.35rem; letter-spacing: 1px;
+        }
+        .welcome-name-list {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            justify-content: center; margin: 0.4rem 0;
+        }
+        .welcome-name {
+            padding: 0.35rem 0.95rem;
+            background: rgba(212,165,116,0.12);
+            border: 1px solid rgba(212,165,116,0.5);
+            border-radius: 14px;
+            color: #F9F6F0; font-size: 1rem;
+            letter-spacing: 1.5px;
+            transition: all 0.2s ease;
+        }
+        .welcome-name:hover {
+            background: linear-gradient(135deg, #D4A574, #C4956A);
+            color: #2C3E50; transform: translateY(-1px);
+        }
+        .welcome-roster-foot {
+            color: rgba(249,246,240,0.6);
+            font-size: 0.92rem; letter-spacing: 3px;
+            margin-top: 0.6rem;
+        }
+
+        /* ==================== MAIN CONTENT ===================== */
+        main {
+            opacity: 0; transition: opacity 0.8s ease 0.2s;
+            max-width: 980px; margin: 0 auto; padding: 3rem 1.5rem 5rem;
+        }
+        main.show { opacity: 1; }
+
+        .site-header {
+            text-align: center; margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(212,165,116,0.4);
+        }
+        .site-header h1 { font-size: 2.4rem; color: #2C3E50; margin-bottom: 0.4rem; letter-spacing: 3px; }
+        .site-header h2 { font-size: 1.5rem; color: #8B5E3C; letter-spacing: 4px; font-weight: normal; }
+        .site-header .tagline { margin-top: 1rem; color: #6B7B8C; font-size: 1.05rem; letter-spacing: 2px; }
+
+        section {
+            background: rgba(255,255,255,0.65); backdrop-filter: blur(6px);
+            border: 1px solid rgba(212,165,116,0.25);
+            border-radius: 14px; padding: 2rem 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 18px rgba(60,60,60,0.06);
+        }
+        section h3 {
+            font-size: 1.55rem; color: #2C3E50; margin-bottom: 1.2rem;
+            padding-bottom: 0.6rem; letter-spacing: 3px;
+            border-bottom: 2px solid #D4A574; display: inline-block;
+        }
+        section p { color: #3a4a5c; }
+
+        /* ===== Featured status (registered students) ===== */
+        .featured-status {
+            background: linear-gradient(135deg, rgba(255,253,248,0.95), rgba(248,240,222,0.95));
+            border: 2px solid rgba(212,165,116,0.5);
+            box-shadow: 0 8px 24px rgba(139,94,60,0.12);
+        }
+        .featured-status .stat-pill {
+            background: linear-gradient(135deg, #FFFDF8, #F6E9CB);
+            border: 1.5px solid #D4A574;
+            padding: 0.55rem 1.2rem;
+            font-size: 1.05rem;
+        }
+        .featured-status .stat-pill strong {
+            font-size: 1.45rem; font-weight: bold;
+            color: #8B5E3C; letter-spacing: 1px;
+        }
+        .status-row {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .stat-pill {
+            background: rgba(212,165,116,0.15);
+            border: 1px solid rgba(212,165,116,0.4);
+            padding: 0.4rem 1rem; border-radius: 18px;
+            color: #2C3E50; font-size: 0.95rem;
+        }
+        .stat-pill strong { color: #8B5E3C; margin: 0 0.2rem; }
+        .name-list {
+            display: flex; flex-wrap: wrap; gap: 0.55rem;
+            margin-top: 0.8rem;
+        }
+        .name-tag {
+            background: linear-gradient(135deg, #FFFDF8, #F4E9D6);
+            border: 1px solid #D4A574;
+            color: #2C3E50; padding: 0.4rem 1.1rem;
+            border-radius: 14px; font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            transition: all 0.2s ease;
+        }
+        .name-tag:hover {
+            background: linear-gradient(135deg, #D4A574, #C4956A);
+            color: #2C3E50; transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139,94,60,0.25);
+        }
+        .name-list-empty { color: #8B5E3C; font-style: italic; padding: 0.5rem 0; }
+
+        /* ===== Date voting (multi-select checkboxes) ===== */
+        .date-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.7rem; margin: 1rem 0 0.5rem;
+        }
+        .date-check {
+            display: flex; align-items: center;
+            padding: 0.85rem 1rem; cursor: pointer;
+            background: #FFFDF8;
+            border: 2px solid rgba(212,165,116,0.5);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            font-size: 1.05rem;
+            color: #2C3E50; letter-spacing: 1.5px;
+            position: relative;
+        }
+        .date-check:hover {
+            border-color: #D4A574;
+            box-shadow: 0 4px 14px rgba(212,165,116,0.2);
+            transform: translateY(-1px);
+        }
+        .date-check input { margin-right: 0.7rem; transform: scale(1.2); accent-color: #8B5E3C; }
+        .date-check.picked {
+            background: linear-gradient(135deg, #D4A574 0%, #C4956A 100%);
+            color: #FFFDF8; border-color: #8B5E3C;
+            box-shadow: 0 5px 16px rgba(139,94,60,0.3);
+        }
+        .date-check .rank-badge {
+            position: absolute; right: 10px; top: 50%;
+            transform: translateY(-50%);
+            background: #2C3E50; color: #D4A574;
+            font-size: 0.85rem; padding: 0.15rem 0.55rem;
+            border-radius: 11px; letter-spacing: 1px;
+        }
+        .date-hint {
+            color: #8B5E3C; font-size: 0.95rem;
+            margin-top: 0.5rem; letter-spacing: 1.5px;
+        }
+        .date-hint.warn { color: #B85C3C; }
+
+        /* ===== Restaurant ===== */
+        .restaurant-card {
+            display: grid; grid-template-columns: 1fr; gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        @media (min-width: 720px) {
+            .restaurant-card { grid-template-columns: 1.1fr 1fr; }
+        }
+        .restaurant-info { padding: 1rem 0; }
+        .restaurant-info h4 {
+            font-size: 1.6rem; color: #8B5E3C; margin-bottom: 0.6rem;
+            letter-spacing: 2px;
+        }
+        .restaurant-info .meta { margin: 0.3rem 0; color: #4a5b6c; }
+        .restaurant-info .meta strong { color: #2C3E50; margin-right: 0.4rem; }
+        .map-link {
+            display: inline-block; margin-top: 0.8rem;
+            background: linear-gradient(135deg, #2C3E50 0%, #3D5166 100%);
+            color: #F9F6F0; padding: 0.6rem 1.4rem;
+            border-radius: 22px; text-decoration: none;
+            letter-spacing: 2px; font-size: 0.98rem;
+            transition: all 0.25s ease;
+        }
+        .map-link:hover {
+            background: linear-gradient(135deg, #D4A574 0%, #C4956A 100%);
+            color: #2C3E50; transform: translateY(-2px);
+        }
+        .restaurant-photo {
+            display: flex; flex-direction: column; align-items: stretch;
+            gap: 0.5rem;
+        }
+        .restaurant-photo a {
+            display: block;
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 8px 22px rgba(60,60,60,0.18);
+            border: 1px solid rgba(212,165,116,0.35);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            line-height: 0;
+        }
+        .restaurant-photo a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(60,60,60,0.25);
+        }
+        .restaurant-photo img {
+            display: block; width: 100%; height: auto;
+            max-height: 460px; object-fit: cover;
+            object-position: center; background: #E8E2D8;
+        }
+        .restaurant-photo .photo-caption {
+            text-align: center; color: #8B5E3C;
+            font-size: 0.92rem; letter-spacing: 2px;
+            margin-top: 0.2rem;
+        }
+
+        /* ===== Form ===== */
+        .form-grid {
+            display: grid; grid-template-columns: 1fr; gap: 1rem;
+            margin-top: 1rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .form-grid .full { grid-column: 1 / -1; }
+        }
+        .field label {
+            display: block; margin-bottom: 0.35rem;
+            color: #2C3E50; letter-spacing: 1.5px; font-size: 0.98rem;
+        }
+        .field input, .field textarea, .field select {
+            width: 100%; padding: 0.7rem 0.9rem;
+            border: 1px solid rgba(212,165,116,0.5);
+            background: #FFFDF8; border-radius: 10px;
+            font-family: inherit; font-size: 1rem;
+            color: #2C3E50; transition: all 0.2s ease;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            outline: none; border-color: #8B5E3C;
+            box-shadow: 0 0 0 3px rgba(212,165,116,0.18);
+        }
+        .field textarea { resize: vertical; min-height: 90px; }
+
+        .submit-btn {
+            margin-top: 1rem;
+            background: linear-gradient(135deg, #2C3E50 0%, #3D5166 100%);
+            color: #F9F6F0; border: none;
+            padding: 0.85rem 2.4rem; border-radius: 26px;
+            font-family: inherit; font-size: 1.08rem;
+            letter-spacing: 4px; cursor: pointer;
+            box-shadow: 0 6px 18px rgba(44,62,80,0.25);
+            transition: all 0.25s ease;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #D4A574 0%, #C4956A 100%);
+            color: #2C3E50; transform: translateY(-2px);
+        }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .vote-bar {
+            display: flex; gap: 0.6rem; flex-wrap: wrap;
+            margin-top: 0.4rem;
+        }
+        .secondary-btn {
+            background: transparent; color: #8B5E3C;
+            border: 1px solid #D4A574; padding: 0.55rem 1.2rem;
+            border-radius: 22px; cursor: pointer; font-family: inherit;
+            letter-spacing: 2px; font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .secondary-btn:hover { background: #D4A574; color: #2C3E50; }
+
+        .vote-results { margin-top: 1rem; }
+        .vote-row { display: flex; align-items: center; gap: 0.8rem; padding: 0.4rem 0; }
+        .vote-row .vote-name { min-width: 8rem; color: #2C3E50; }
+        .vote-row .vote-meter {
+            flex: 1; height: 14px; background: rgba(212,165,116,0.2);
+            border-radius: 7px; overflow: hidden;
+        }
+        .vote-row .vote-meter > span {
+            display: block; height: 100%;
+            background: linear-gradient(90deg, #D4A574, #8B5E3C);
+        }
+        .vote-row .vote-count { min-width: 5.5rem; text-align: right; color: #8B5E3C; font-weight: bold; }
+        .vote-row .vote-count small { color: #B6997B; font-weight: normal; margin-left: 0.2rem; }
+        .vote-subtitle {
+            color: #2C3E50; font-size: 1.1rem; letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+            border-left: 3px solid #D4A574; padding-left: 0.6rem;
+        }
+
+        .toast {
+            position: fixed; bottom: 24px; left: 50%;
+            transform: translateX(-50%) translateY(120%);
+            background: #2C3E50; color: #F9F6F0;
+            padding: 0.8rem 1.6rem; border-radius: 24px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+            transition: transform 0.4s ease; z-index: 9999;
+            letter-spacing: 1.5px;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.error { background: #8B3C3C; }
+
+        .music-btn {
+            position: fixed; right: 18px; bottom: 18px;
+            width: 50px; height: 50px; border-radius: 50%;
+            border: none; cursor: pointer;
+            background: linear-gradient(135deg, #D4A574, #8B5E3C);
+            color: #F9F6F0; font-size: 1.4rem;
+            box-shadow: 0 6px 18px rgba(139,94,60,0.4);
+            z-index: 900;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .music-btn:hover { transform: scale(1.05); }
+
+        footer {
+            text-align: center; color: #8B5E3C;
+            padding: 2rem 1rem; letter-spacing: 2px; font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            .welcome-header h1 { font-size: 2.1rem; }
+            .welcome-header h2 { font-size: 1.4rem; }
+            .site-header h1 { font-size: 1.8rem; }
+            .site-header h2 { font-size: 1.2rem; }
+            section { padding: 1.4rem 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="animated-circles">
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div>
+    </div>
+    <div class="sparkles" id="sparkles"></div>
+
+    <!-- ============ Welcome page ============ -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-header">
+            <h1>花壇國中</h1>
+            <h2>三年八班 同學會</h2>
+            <div class="welcome-divider"></div>
+            <p>畢業33週年　歡迎回家</p>
+            <button class="enter-btn" id="enterBtn">進入會場</button>
+        </div>
+
+        <!-- 報名同學顯示在首頁（welcome）下方 -->
+        <div class="welcome-roster" id="welcomeRoster">
+            <p class="welcome-roster-title">
+                目前已有 <strong id="welcomeStatCount">10</strong> 位同學報名
+            </p>
+            <div class="welcome-name-list" id="welcomeNameList">
+                <span class="welcome-name">李瑞峰</span>
+                <span class="welcome-name">李雅慧</span>
+                <span class="welcome-name">黃秋杰</span>
+                <span class="welcome-name">陳慧如</span>
+                <span class="welcome-name">王國倫</span>
+                <span class="welcome-name">吳美雪</span>
+                <span class="welcome-name">白裕誠</span>
+                <span class="welcome-name">鄭麗瑛</span>
+                <span class="welcome-name">賴冠宇</span>
+                <span class="welcome-name">楊千慧</span>
+            </div>
+            <p class="welcome-roster-foot">— 期待您的加入 —</p>
+        </div>
+    </div>
+
+    <!-- ============ Main content ============ -->
+    <main id="mainContent">
+        <header class="site-header">
+            <h1>花壇國中　三年八班</h1>
+            <h2>畢業33週年同學會</h2>
+            <p class="tagline">時光荏苒　情誼長存　期待與你重逢</p>
+        </header>
+
+        <!-- Registered students (front and center) -->
+        <section id="statusSection" class="featured-status">
+            <h3>已報名同學</h3>
+            <div class="status-row">
+                <div class="stat-pill">已報名 <strong id="statCount">10</strong> 人</div>
+                <div class="stat-pill">總出席 <strong id="statTotal">10</strong> 人</div>
+                <div class="stat-pill">更新時間：<strong id="statUpdated">—</strong></div>
+            </div>
+            <div class="name-list" id="nameList">
+                <span class="name-tag">李瑞峰</span>
+                <span class="name-tag">李雅慧</span>
+                <span class="name-tag">黃秋杰</span>
+                <span class="name-tag">陳慧如</span>
+                <span class="name-tag">王國倫</span>
+                <span class="name-tag">吳美雪</span>
+                <span class="name-tag">白裕誠</span>
+                <span class="name-tag">鄭麗瑛</span>
+                <span class="name-tag">賴冠宇</span>
+                <span class="name-tag">楊千慧</span>
+            </div>
+            <div class="vote-bar" style="margin-top: 1rem;">
+                <button type="button" class="secondary-btn" id="refreshStatusBtn">重新整理</button>
+            </div>
+        </section>
+
+        <!-- Date voting (multi-select) -->
+        <section id="dateSection">
+            <h3>聚會時段票選</h3>
+            <p>請依<strong>志願序</strong>勾選，最多可選 6 個時段（依勾選順序自動標記第一志願～第六志願）。</p>
+            <div class="date-checkboxes" id="dateCheckboxes" role="group" aria-label="聚會時段">
+                <label class="date-check"><input type="checkbox" value="7/11(六)晚上"><span>7/11（六）晚上</span></label>
+                <label class="date-check"><input type="checkbox" value="7/12(日)中午"><span>7/12（日）中午</span></label>
+                <label class="date-check"><input type="checkbox" value="7/18(六)晚上"><span>7/18（六）晚上</span></label>
+                <label class="date-check"><input type="checkbox" value="7/19(日)中午"><span>7/19（日）中午</span></label>
+                <label class="date-check"><input type="checkbox" value="8/1(六)晚上"><span>8/1（六）晚上</span></label>
+                <label class="date-check"><input type="checkbox" value="8/2(日)中午"><span>8/2（日）中午</span></label>
+            </div>
+            <p id="datePickedHint" class="date-hint">尚未選擇任何時段。</p>
+        </section>
+
+        <!-- Restaurant info -->
+        <section id="restaurantSection">
+            <h3>餐廳地點</h3>
+            <div class="restaurant-card">
+                <div class="restaurant-info">
+                    <h4>黑公雞風味餐廳</h4>
+                    <p class="meta"><strong>地址：</strong>彰化縣花壇鄉（24.051445, 120.568276）</p>
+                    <p class="meta"><strong>特色：</strong>在地客家／土雞料理，環境寬敞，適合多人聚會。</p>
+                    <p class="meta"><strong>備註：</strong>實際菜色與用餐方式將於日期確定後另行通知。</p>
+                    <a class="map-link" target="_blank" rel="noopener"
+                       href="https://www.google.com/maps/search/?api=1&amp;query=%E9%BB%91%E5%85%AC%E9%9B%9E%E9%A2%A8%E5%91%B3%E9%A4%90%E5%BB%B3&amp;center=24.051445,120.568276">
+                        在 Google Maps 開啟
+                    </a>
+                </div>
+                <div class="restaurant-photo">
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=%E9%BB%91%E5%85%AC%E9%9B%9E%E9%A2%A8%E5%91%B3%E9%A4%90%E5%BB%B3&amp;center=24.051445,120.568276"
+                       target="_blank" rel="noopener" aria-label="黑公雞風味餐廳店景照片">
+                        <img src="restaurant.jpg" alt="黑公雞風味餐廳" loading="lazy">
+                    </a>
+                    <p class="photo-caption">黑公雞風味餐廳　店景</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Voting form (date + restaurant feedback) -->
+        <section id="voteSection">
+            <h3>送出您的偏好</h3>
+            <p>選好時段後，可一併針對餐廳留下意見，或推薦其他可能的聚會餐廳。</p>
+            <form id="voteForm" class="form-grid">
+                <div class="field">
+                    <label for="voteName">姓名</label>
+                    <input type="text" id="voteName" required placeholder="請輸入您的姓名">
+                </div>
+                <div class="field">
+                    <label for="voteRestaurant">對「黑公雞風味餐廳」的意見</label>
+                    <select id="voteRestaurant">
+                        <option value="贊成黑公雞風味餐廳">贊成 — 就在這裡聚會</option>
+                        <option value="可以接受黑公雞風味餐廳">可以接受</option>
+                        <option value="希望換其他餐廳">希望換其他餐廳</option>
+                    </select>
+                </div>
+                <div class="field full">
+                    <label for="voteRecommend">推薦其他餐廳（選填）</label>
+                    <input type="text" id="voteRecommend" placeholder="例如：彰化某某餐廳">
+                </div>
+                <div class="full vote-bar">
+                    <button type="submit" class="submit-btn">送出投票</button>
+                    <button type="button" class="secondary-btn" id="refreshVoteBtn">重新整理票數</button>
+                </div>
+            </form>
+            <div class="vote-results" id="voteResults"></div>
+        </section>
+
+        <!-- Registration -->
+        <section id="registerSection">
+            <h3>線上報名</h3>
+            <p>請填寫以下資料完成報名，最終人數將協助我們訂位。</p>
+            <form id="registerForm" class="form-grid">
+                <div class="field">
+                    <label for="regName">姓名</label>
+                    <input type="text" id="regName" required placeholder="您的姓名">
+                </div>
+                <div class="field">
+                    <label for="regAttendees">出席人數</label>
+                    <input type="number" id="regAttendees" min="1" max="10" value="1" required>
+                </div>
+                <div class="field">
+                    <label for="regPhone">聯絡電話</label>
+                    <input type="tel" id="regPhone" required placeholder="便於聯繫的電話號碼">
+                </div>
+                <div class="field full">
+                    <label for="regNote">備註（特殊飲食、攜伴姓名等）</label>
+                    <textarea id="regNote" placeholder="例：素食、不吃辣、攜伴一位…"></textarea>
+                </div>
+                <div class="full">
+                    <button type="submit" class="submit-btn">確認報名</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Cancel registration -->
+        <section id="cancelSection">
+            <h3>取消報名</h3>
+            <p>如行程有變需要取消，請輸入當初登記的姓名與電話。</p>
+            <form id="cancelForm" class="form-grid">
+                <div class="field">
+                    <label for="cancelName">姓名</label>
+                    <input type="text" id="cancelName" required>
+                </div>
+                <div class="field">
+                    <label for="cancelPhone">聯絡電話</label>
+                    <input type="tel" id="cancelPhone" required>
+                </div>
+                <div class="full">
+                    <button type="submit" class="submit-btn" style="background: linear-gradient(135deg,#8B3C3C,#A0524C);">取消報名</button>
+                </div>
+            </form>
+        </section>
+
+        <footer>
+            <p>花壇國中 三年八班　畢業33週年同學會</p>
+            <p style="margin-top:0.4rem; opacity:0.8;">願彼此安好　常相聚首</p>
+        </footer>
+    </main>
+
+    <button class="music-btn" id="musicBtn" aria-label="背景音樂開關">♪</button>
+    <audio id="bgm" src="bgm.mp3" loop></audio>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+    // ===================== CONFIG =====================
+    // 將下面的網址換成您的 Google Apps Script Web App 部署網址
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxbIuLHttMa1eAggOjt0IrkN7NHTg5aMRoQAWQpW2yPWFNKDC4EMZij6dg49_3ZmGgOGA/exec';
+    // 若 URL 還是預留字串，則維持頁面上 hard-code 的 10 位同學名單（不要去打不存在的後端）
+    const APPS_SCRIPT_READY = !/REPLACE_WITH/i.test(APPS_SCRIPT_URL);
+
+    // ===================== Welcome Page =====================
+    const welcomePage = document.getElementById('welcomePage');
+    const mainContent = document.getElementById('mainContent');
+    const enterBtn = document.getElementById('enterBtn');
+    const bgm = document.getElementById('bgm');
+    const musicBtn = document.getElementById('musicBtn');
+
+    enterBtn.addEventListener('click', () => {
+        welcomePage.classList.add('hidden');
+        mainContent.classList.add('show');
+        bgm.volume = 0.5;
+        bgm.play().catch(() => {});
+        if (APPS_SCRIPT_READY) { loadStatus(); loadVoteResults(); }
+    });
+
+    musicBtn.addEventListener('click', () => {
+        if (bgm.paused) { bgm.play().catch(() => {}); musicBtn.textContent = '♪'; }
+        else { bgm.pause(); musicBtn.textContent = '♫'; }
+    });
+
+    // ===================== Sparkles =====================
+    const sparkles = document.getElementById('sparkles');
+    for (let i = 0; i < 30; i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.left = Math.random() * 100 + '%';
+        s.style.animationDelay = (Math.random() * 3) + 's';
+        sparkles.appendChild(s);
+    }
+
+    // ===================== Date selection (multi-select with rank) =====================
+    const dateCheckboxes = document.getElementById('dateCheckboxes');
+    const datePickedHint = document.getElementById('datePickedHint');
+    const pickedDates = [];
+
+    const RANK_TEXT = ['第一志願', '第二志願', '第三志願', '第四志願', '第五志願', '第六志願'];
+    const RANK_CIRCLE = ['①','②','③','④','⑤','⑥'];
+
+    function refreshDateUI() {
+        dateCheckboxes.querySelectorAll('.date-check').forEach(label => {
+            const cb = label.querySelector('input');
+            const idx = pickedDates.indexOf(cb.value);
+            label.classList.toggle('picked', idx !== -1);
+            const old = label.querySelector('.rank-badge');
+            if (old) old.remove();
+            if (idx !== -1) {
+                const badge = document.createElement('span');
+                badge.className = 'rank-badge';
+                badge.textContent = RANK_TEXT[idx] || `第 ${idx + 1} 順位`;
+                label.appendChild(badge);
+            }
+        });
+        if (pickedDates.length === 0) {
+            datePickedHint.textContent = '尚未選擇任何時段。';
+            datePickedHint.classList.remove('warn');
+        } else {
+            datePickedHint.textContent = `已選 ${pickedDates.length} 個時段：` +
+                pickedDates.map((d, i) => `${RANK_CIRCLE[i] || (i+1)+'.'} ${d}`).join('　');
+            datePickedHint.classList.remove('warn');
+        }
+    }
+
+    dateCheckboxes.addEventListener('change', (e) => {
+        const cb = e.target;
+        if (!cb.matches('input[type="checkbox"]')) return;
+        if (cb.checked) {
+            if (!pickedDates.includes(cb.value)) pickedDates.push(cb.value);
+        } else {
+            const i = pickedDates.indexOf(cb.value);
+            if (i !== -1) pickedDates.splice(i, 1);
+        }
+        refreshDateUI();
+    });
+
+    function getSelectedDates() { return pickedDates.slice(0, 6); }
+
+    // ===================== Toast =====================
+    const toast = document.getElementById('toast');
+    function showToast(message, isError = false) {
+        toast.textContent = message;
+        toast.classList.toggle('error', !!isError);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    // ===================== GAS request helper =====================
+    function gasRequest(params) {
+        return new Promise((resolve) => {
+            const url = APPS_SCRIPT_URL + '?' + new URLSearchParams(params).toString();
+            fetch(url, { method: 'GET' })
+                .then(r => r.json())
+                .then(resolve)
+                .catch(() => {
+                    // Fallback：以隱藏 form 單向送出（僅適用於寫入動作）
+                    const cbName = 'cb_' + Math.random().toString(36).slice(2);
+                    const iframe = document.createElement('iframe');
+                    iframe.name = cbName; iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                    const form = document.createElement('form');
+                    form.method = 'GET'; form.action = APPS_SCRIPT_URL; form.target = cbName;
+                    Object.entries(params).forEach(([k, v]) => {
+                        const input = document.createElement('input');
+                        input.name = k; input.value = v;
+                        form.appendChild(input);
+                    });
+                    document.body.appendChild(form);
+                    form.submit();
+                    setTimeout(() => {
+                        form.remove(); iframe.remove();
+                        resolve({ status: 'success', offline: true });
+                    }, 1500);
+                });
+        });
+    }
+
+    // ===================== Vote form =====================
+    const voteForm = document.getElementById('voteForm');
+    voteForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('voteName').value.trim();
+        const restaurant = document.getElementById('voteRestaurant').value;
+        const recommend = document.getElementById('voteRecommend').value.trim();
+        const dates = getSelectedDates();
+        if (!name) return showToast('請填寫姓名', true);
+        if (dates.length === 0) return showToast('請至少選擇一個時段', true);
+
+        const submitBtn = voteForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true; submitBtn.textContent = '送出中…';
+        try {
+            const r = await gasRequest({
+                action: 'vote',
+                name,
+                date1: dates[0] || '',
+                date2: dates[1] || '',
+                date3: dates[2] || '',
+                date4: dates[3] || '',
+                date5: dates[4] || '',
+                date6: dates[5] || '',
+                restaurant, recommend
+            });
+            if (r.status === 'success') {
+                showToast('感謝您的投票！');
+                voteForm.reset();
+                pickedDates.length = 0;
+                dateCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                refreshDateUI();
+                loadVoteResults();
+            } else {
+                showToast('送出失敗，請稍後再試', true);
+            }
+        } catch {
+            showToast('網路錯誤，請稍後再試', true);
+        } finally {
+            submitBtn.disabled = false; submitBtn.textContent = '送出投票';
+        }
+    });
+    document.getElementById('refreshVoteBtn').addEventListener('click', loadVoteResults);
+
+    function renderVoteRows(items, valueKey, labelSuffix) {
+        if (!items || !items.length) return '<p style="color:#8B5E3C;">目前尚無資料。</p>';
+        const max = Math.max(...items.map(x => x[valueKey] || 0)) || 1;
+        return items.map(item => {
+            const v = item[valueKey] || 0;
+            const pct = (v / max) * 100;
+            const extra = (valueKey === 'score' && item.count != null) ? ` <small>(${item.count} 票)</small>` : '';
+            return `<div class="vote-row">
+                <span class="vote-name">${item.name}</span>
+                <span class="vote-meter"><span style="width:${pct}%"></span></span>
+                <span class="vote-count">${v}${labelSuffix || ''}${extra}</span>
+            </div>`;
+        }).join('');
+    }
+
+    async function loadVoteResults() {
+        try {
+            const r = await gasRequest({ action: 'voteResults' });
+            const wrap = document.getElementById('voteResults');
+            const dateData = r.dateRanked || [];
+            const restData = r.restaurant || [];
+            wrap.innerHTML = `
+                <div class="vote-block">
+                    <h4 class="vote-subtitle">日期票數（依志願加權）</h4>
+                    ${renderVoteRows(dateData, 'score', ' 分')}
+                </div>
+                <div class="vote-block" style="margin-top:1rem;">
+                    <h4 class="vote-subtitle">餐廳票數</h4>
+                    ${renderVoteRows(restData, 'count', ' 票')}
+                </div>`;
+        } catch {}
+    }
+
+    // ===================== Registration form =====================
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('regName').value.trim();
+        const attendees = document.getElementById('regAttendees').value;
+        const phone = document.getElementById('regPhone').value.trim();
+        const note = document.getElementById('regNote').value.trim();
+        if (!name || !phone) return showToast('請完整填寫姓名與電話', true);
+
+        const btn = registerForm.querySelector('button[type="submit"]');
+        btn.disabled = true; btn.textContent = '報名中…';
+        try {
+            const r = await gasRequest({ name, attendees, phone, note });
+            if (r.status === 'success') {
+                showToast(name + '，報名成功！');
+                registerForm.reset();
+                document.getElementById('regAttendees').value = '1';
+                loadStatus();
+            } else {
+                showToast('報名失敗，請稍後再試', true);
+            }
+        } catch {
+            showToast('網路錯誤，請稍後再試', true);
+        } finally {
+            btn.disabled = false; btn.textContent = '確認報名';
+        }
+    });
+
+    // ===================== Status =====================
+    async function loadStatus() {
+        try {
+            const r = await gasRequest({ action: 'list' });
+            if (r.status !== 'success') return;
+            const names = (r.names || []).filter(Boolean);
+            // 只在 API 真的回傳資料時才更新 UI（避免空回應覆蓋 hard-code 名單）
+            if (names.length === 0 && r.offline) return;
+
+            document.getElementById('statCount').textContent = r.count ?? names.length;
+            document.getElementById('statTotal').textContent = r.totalAttendees ?? names.length;
+            document.getElementById('statUpdated').textContent = r.updatedAt || '';
+
+            const list = document.getElementById('nameList');
+            list.innerHTML = '';
+            if (names.length === 0) {
+                const empty = document.createElement('span');
+                empty.className = 'name-list-empty';
+                empty.textContent = '目前尚無同學報名，趕快來成為第一位！';
+                list.appendChild(empty);
+            } else {
+                names.forEach(n => {
+                    const tag = document.createElement('span');
+                    tag.className = 'name-tag';
+                    tag.textContent = n;
+                    list.appendChild(tag);
+                });
+            }
+
+            const wCount = document.getElementById('welcomeStatCount');
+            const wList  = document.getElementById('welcomeNameList');
+            if (wCount) wCount.textContent = r.count ?? names.length;
+            if (wList && names.length > 0) {
+                wList.innerHTML = '';
+                names.forEach(n => {
+                    const tag = document.createElement('span');
+                    tag.className = 'welcome-name';
+                    tag.textContent = n;
+                    wList.appendChild(tag);
+                });
+            }
+        } catch {}
+    }
+    document.getElementById('refreshStatusBtn').addEventListener('click', loadStatus);
+
+    // ===================== Cancel =====================
+    const cancelForm = document.getElementById('cancelForm');
+    cancelForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('cancelName').value.trim();
+        const phone = document.getElementById('cancelPhone').value.trim();
+        if (!name || !phone) return showToast('請填寫姓名與電話', true);
+        if (!confirm('確定要取消報名嗎？')) return;
+        const btn = cancelForm.querySelector('button[type="submit"]');
+        btn.disabled = true; btn.textContent = '處理中…';
+        try {
+            const r = await gasRequest({ action: 'cancel', name, phone });
+            if (r.status === 'success') {
+                showToast(r.message || '已取消報名');
+                cancelForm.reset();
+                loadStatus();
+            } else {
+                showToast(r.message || '取消失敗', true);
+            }
+        } catch {
+            showToast('網路錯誤，請稍後再試', true);
+        } finally {
+            btn.disabled = false; btn.textContent = '取消報名';
+        }
+    });
+
+    setInterval(() => {
+        if (APPS_SCRIPT_READY && mainContent.classList.contains('show')) {
+            loadStatus();
+        }
+    }, 60000);
+
+    if (APPS_SCRIPT_READY) {
+        loadStatus();
+        loadVoteResults();
+    }
+    </script>
+</body>
+</html>
