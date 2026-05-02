@@ -144,8 +144,9 @@ function doGet(e) {
   }
 
   // ── 取消報名 (cancel) ──
+  // 連動刪除：同名的「日期投票」「餐廳投票」也一併清除，避免票數失真
   if (action === 'cancel') {
-    const sh = getSheet(ss, SHEET_REG);
+    const regSh = getSheet(ss, SHEET_REG);
     const cancelName = (e.parameter.name || '').toString().trim();
     const cancelPhone = (e.parameter.phone || '').toString().trim();
 
@@ -153,22 +154,61 @@ function doGet(e) {
       return jsonOut({ status: 'error', message: '請提供姓名和電話' });
     }
 
-    const data = sh.getDataRange().getValues();
+    // (1) 刪除「報名」分頁中對應的列（用姓名 + 電話雙重比對）
+    const regData = regSh.getDataRange().getValues();
     let found = false;
-    for (let i = data.length - 1; i >= 1; i--) {
-      const rowName  = (data[i][0] || '').toString().trim();
-      const rowPhone = (data[i][2] || '').toString().trim();
+    for (let i = regData.length - 1; i >= 1; i--) {
+      const rowName  = (regData[i][0] || '').toString().trim();
+      const rowPhone = (regData[i][2] || '').toString().trim();
       if (rowName === cancelName && rowPhone === cancelPhone) {
-        sh.deleteRow(i + 1);
+        regSh.deleteRow(i + 1);
         found = true;
         break;
       }
     }
 
-    if (found) {
-      return jsonOut({ status: 'success', message: cancelName + '，您的報名已取消' });
+    if (!found) {
+      return jsonOut({ status: 'error', message: '找不到符合的報名資料，請確認姓名與電話是否正確' });
     }
-    return jsonOut({ status: 'error', message: '找不到符合的報名資料，請確認姓名與電話是否正確' });
+
+    // (2) 連動刪除「日期投票」分頁中所有同姓名的列
+    let dateVotesRemoved = 0;
+    const dateSh = ss.getSheetByName(SHEET_DATE);
+    if (dateSh) {
+      const dateData = dateSh.getDataRange().getValues();
+      for (let i = dateData.length - 1; i >= 1; i--) {
+        const rowName = (dateData[i][0] || '').toString().trim();
+        if (rowName === cancelName) {
+          dateSh.deleteRow(i + 1);
+          dateVotesRemoved++;
+        }
+      }
+    }
+
+    // (3) 連動刪除「餐廳投票」分頁中所有同姓名的列
+    let restVotesRemoved = 0;
+    const restSh = ss.getSheetByName(SHEET_REST);
+    if (restSh) {
+      const restData = restSh.getDataRange().getValues();
+      for (let i = restData.length - 1; i >= 1; i--) {
+        const rowName = (restData[i][0] || '').toString().trim();
+        if (rowName === cancelName) {
+          restSh.deleteRow(i + 1);
+          restVotesRemoved++;
+        }
+      }
+    }
+
+    let msg = cancelName + '，您的報名已取消';
+    if (dateVotesRemoved + restVotesRemoved > 0) {
+      msg += '（同時移除 ' + dateVotesRemoved + ' 筆日期投票、' + restVotesRemoved + ' 筆餐廳投票）';
+    }
+    return jsonOut({
+      status: 'success',
+      message: msg,
+      dateVotesRemoved: dateVotesRemoved,
+      restVotesRemoved: restVotesRemoved
+    });
   }
 
   // ── 預設：報名寫入 ──
