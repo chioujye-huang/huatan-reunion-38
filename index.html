@@ -629,14 +629,34 @@
         else { bgm.pause(); musicBtn.textContent = '♫'; }
     });
 
-    // 手機／瀏覽器離開頁面時暫停音樂（避免關閉網頁後背景音樂仍在播放）
+    // 手機／瀏覽器離開頁面時暫停音樂；切回網頁時自動續播
+    let bgmWasPlaying = false;
     document.addEventListener('visibilitychange', () => {
-        if (document.hidden && !bgm.paused) {
-            bgm.pause();
-            musicBtn.textContent = '♫';
+        if (document.hidden) {
+            // 切走時：若正在播，記住狀態並暫停
+            if (!bgm.paused) {
+                bgmWasPlaying = true;
+                bgm.pause();
+                musicBtn.textContent = '♫';
+            }
+        } else {
+            // 回到頁面時：若先前有在播，自動續播
+            if (bgmWasPlaying) {
+                bgm.play().then(() => { musicBtn.textContent = '♪'; }).catch(() => {});
+                bgmWasPlaying = false;
+            }
         }
     });
-    window.addEventListener('pagehide', () => { try { bgm.pause(); } catch(e) {} });
+    // pageshow 事件（特別針對手機 bfcache 還原）
+    window.addEventListener('pageshow', (e) => {
+        if (bgmWasPlaying) {
+            bgm.play().then(() => { musicBtn.textContent = '♪'; }).catch(() => {});
+            bgmWasPlaying = false;
+        }
+    });
+    window.addEventListener('pagehide', () => {
+        try { if (!bgm.paused) { bgmWasPlaying = true; bgm.pause(); } } catch(e) {}
+    });
     window.addEventListener('beforeunload', () => { try { bgm.pause(); } catch(e) {} });
 
     // ===================== Sparkles =====================
