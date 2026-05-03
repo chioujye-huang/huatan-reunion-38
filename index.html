@@ -903,3 +903,24 @@
                 loadStatus();
             } else {
                 showToast(r.message || '取消失敗', true);
+            }
+        } catch {
+            showToast('網路錯誤，請稍後再試', true);
+        } finally {
+            btn.disabled = false; btn.textContent = '取消報名';
+        }
+    });
+
+    setInterval(() => {
+        if (APPS_SCRIPT_READY && mainContent.classList.contains('show')) {
+            loadStatus();
+        }
+    }, 60000);
+
+    if (APPS_SCRIPT_READY) {
+        loadStatus();
+        loadVoteResults();
+    }
+    </script>
+</body>
+</html>
